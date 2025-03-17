@@ -1,0 +1,10 @@
+C:\Users\danie\source\repos\proto\proto\bin\Debug\proto.exe.config
+C:\Users\danie\source\repos\proto\proto\bin\Debug\proto.exe
+C:\Users\danie\source\repos\proto\proto\bin\Debug\proto.pdb
+C:\Users\danie\source\repos\proto\proto\obj\Debug\proto.csprojAssemblyReference.cache
+C:\Users\danie\source\repos\proto\proto\obj\Debug\proto.frmProto.resources
+C:\Users\danie\source\repos\proto\proto\obj\Debug\proto.Properties.Resources.resources
+C:\Users\danie\source\repos\proto\proto\obj\Debug\proto.csproj.GenerateResource.cache
+C:\Users\danie\source\repos\proto\proto\obj\Debug\proto.csproj.CoreCompileInputs.cache
+C:\Users\danie\source\repos\proto\proto\obj\Debug\proto.exe
+C:\Users\danie\source\repos\proto\proto\obj\Debug\proto.pdb
