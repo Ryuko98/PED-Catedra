@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{15FCC715-BF37-4172-8097-19D00B9E7E75}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Mambo_s_Pizza</RootNamespace>
+    <AssemblyName>Mambo%27s Pizza</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmCarrito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmCarrito.Designer.cs">
+      <DependentUpon>frmCarrito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmClientes.Designer.cs">
+      <DependentUpon>frmClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmDetallesPedido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmDetallesPedido.Designer.cs">
+      <DependentUpon>frmDetallesPedido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmEstadosDePedidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmEstadosDePedidos.Designer.cs">
+      <DependentUpon>frmEstadosDePedidos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmInfoActualPedido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmInfoActualPedido.Designer.cs">
+      <DependentUpon>frmInfoActualPedido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmInicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmInicio.Designer.cs">
+      <DependentUpon>frmInicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmInicioDeSesion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmInicioDeSesion.Designer.cs">
+      <DependentUpon>frmInicioDeSesion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vista\frmMembresias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmMembresias.Designer.cs">
+      <DependentUpon>frmMembresias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmMenu.Designer.cs">
+      <DependentUpon>frmMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmPedidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmPedidos.Designer.cs">
+      <DependentUpon>frmPedidos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmPerfilRepartidor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmPerfilRepartidor.Designer.cs">
+      <DependentUpon>frmPerfilRepartidor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmPrincipal.Designer.cs">
+      <DependentUpon>frmPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmRealizarPedido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmRealizarPedido.Designer.cs">
+      <DependentUpon>frmRealizarPedido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmRepartidores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmRepartidores.Designer.cs">
+      <DependentUpon>frmRepartidores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmReseñas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmReseñas.Designer.cs">
+      <DependentUpon>frmReseñas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmUsuarios.Designer.cs">
+      <DependentUpon>frmUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmVistaClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmVistaClientes.Designer.cs">
+      <DependentUpon>frmVistaClientes.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmCarrito.resx">
+      <DependentUpon>frmCarrito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmClientes.resx">
+      <DependentUpon>frmClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmDetallesPedido.resx">
+      <DependentUpon>frmDetallesPedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmEstadosDePedidos.resx">
+      <DependentUpon>frmEstadosDePedidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmInfoActualPedido.resx">
+      <DependentUpon>frmInfoActualPedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmInicio.resx">
+      <DependentUpon>frmInicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmInicioDeSesion.resx">
+      <DependentUpon>frmInicioDeSesion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Vista\frmMembresias.resx">
+      <DependentUpon>frmMembresias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmMenu.resx">
+      <DependentUpon>frmMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmPedidos.resx">
+      <DependentUpon>frmPedidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmPerfilRepartidor.resx">
+      <DependentUpon>frmPerfilRepartidor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmPrincipal.resx">
+      <DependentUpon>frmPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmRealizarPedido.resx">
+      <DependentUpon>frmRealizarPedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmRepartidores.resx">
+      <DependentUpon>frmRepartidores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmReseñas.resx">
+      <DependentUpon>frmReseñas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmUsuarios.resx">
+      <DependentUpon>frmUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmVistaClientes.resx">
+      <DependentUpon>frmVistaClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Res\Icons\icons8-home-30.png" />
+    <Content Include="Res\Icons\icons8-add-20.png" />
+    <Content Include="Res\Icons\icons8-add-30%281%29.png" />
+    <Content Include="Res\Icons\icons8-add-30.png" />
+    <Content Include="Res\Icons\icons8-blind-26.png" />
+    <Content Include="Res\Icons\icons8-clear-30.png" />
+    <Content Include="Res\Icons\icons8-close-20.png" />
+    <Content Include="Res\Icons\icons8-database-20.png" />
+    <Content Include="Res\Icons\icons8-database-administrator-15.png" />
+    <Content Include="Res\Icons\icons8-edit-30.png" />
+    <Content Include="Res\Icons\icons8-erase-30.png" />
+    <Content Include="Res\Icons\icons8-eye-26.png" />
+    <Content Include="Res\Icons\icons8-home-45.png" />
+    <Content Include="Res\Icons\icons8-invisible-26.png" />
+    <Content Include="Res\Icons\icons8-login-20.png" />
+    <Content Include="Res\Icons\icons8-membership-20.png" />
+    <Content Include="Res\Icons\icons8-minimize-20.png" />
+    <Content Include="Res\Icons\icons8-pizza-five-eighths-50.ico" />
+    <Content Include="Res\Icons\icons8-star-20.png" />
+    <Content Include="Res\Icons\icons8-visible-26.png" />
+    <Content Include="Res\logo.png" />
+    <Content Include="Res\maps.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
