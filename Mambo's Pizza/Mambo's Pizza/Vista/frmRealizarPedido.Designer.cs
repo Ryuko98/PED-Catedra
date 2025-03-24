@@ -106,7 +106,7 @@
             this.Controls.Add(this.txtCantidad);
             this.Controls.Add(this.us);
             this.Name = "frmRealizarPedido";
-            this.Text = "frmRealizarPedido";
+            this.Text = "Añadir al carrito";
             this.ResumeLayout(false);
             this.PerformLayout();
 

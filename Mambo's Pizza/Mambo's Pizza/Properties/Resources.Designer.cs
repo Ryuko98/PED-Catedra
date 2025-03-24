@@ -279,5 +279,15 @@ namespace Mambo_s_Pizza.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pngtree_pizza_logo_png_image_8905868 {
+            get {
+                object obj = ResourceManager.GetObject("pngtree-pizza-logo-png-image_8905868", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

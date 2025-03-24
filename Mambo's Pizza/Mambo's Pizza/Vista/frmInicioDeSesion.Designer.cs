@@ -124,7 +124,7 @@
             // 
             // pbLogo
             // 
-            this.pbLogo.Image = global::Mambo_s_Pizza.Properties.Resources.logo;
+            this.pbLogo.Image = global::Mambo_s_Pizza.Properties.Resources.pngtree_pizza_logo_png_image_8905868;
             this.pbLogo.Location = new System.Drawing.Point(260, 10);
             this.pbLogo.Name = "pbLogo";
             this.pbLogo.Size = new System.Drawing.Size(530, 410);
