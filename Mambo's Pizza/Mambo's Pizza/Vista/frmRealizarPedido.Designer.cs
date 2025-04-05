@@ -87,7 +87,7 @@
             // btnAñadir
             // 
             this.btnAñadir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(13)))), ((int)(((byte)(20)))));
-            this.btnAñadir.Image = global::Mambo_s_Pizza.Properties.Resources.icons8_add_30_1_;
+            this.btnAñadir.Image = global::Mambo_s_Pizza.Properties.Resources.icons8_add_30;
             this.btnAñadir.Location = new System.Drawing.Point(637, 13);
             this.btnAñadir.Name = "btnAñadir";
             this.btnAñadir.Size = new System.Drawing.Size(40, 40);

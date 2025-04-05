@@ -155,7 +155,7 @@
             // btnInsertar
             // 
             this.btnInsertar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(13)))), ((int)(((byte)(20)))));
-            this.btnInsertar.Image = global::Mambo_s_Pizza.Properties.Resources.icons8_add_30_1_;
+            this.btnInsertar.Image = global::Mambo_s_Pizza.Properties.Resources.icons8_add_30;
             this.btnInsertar.Location = new System.Drawing.Point(800, 10);
             this.btnInsertar.Name = "btnInsertar";
             this.btnInsertar.Size = new System.Drawing.Size(40, 40);

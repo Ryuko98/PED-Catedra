@@ -63,29 +63,9 @@ namespace Mambo_s_Pizza.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_add_20 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-add-20", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap icons8_add_30 {
             get {
                 object obj = ResourceManager.GetObject("icons8-add-30", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_add_30_1_ {
-            get {
-                object obj = ResourceManager.GetObject("icons8-add-30(1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -243,9 +223,9 @@ namespace Mambo_s_Pizza.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap maps {
+        internal static System.Drawing.Bitmap logo2 {
             get {
-                object obj = ResourceManager.GetObject("maps", resourceCulture);
+                object obj = ResourceManager.GetObject("logo2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -253,9 +233,9 @@ namespace Mambo_s_Pizza.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pngtree_pizza_logo_png_image_8905868 {
+        internal static System.Drawing.Bitmap maps {
             get {
-                object obj = ResourceManager.GetObject("pngtree-pizza-logo-png-image_8905868", resourceCulture);
+                object obj = ResourceManager.GetObject("maps", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
