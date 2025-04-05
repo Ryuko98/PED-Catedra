@@ -108,6 +108,7 @@
             // us
             // 
             this.us.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.us.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
             this.us.Location = new System.Drawing.Point(10, 10);
             this.us.Name = "us";
             this.us.Size = new System.Drawing.Size(200, 30);
@@ -118,6 +119,7 @@
             // clave
             // 
             this.clave.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
             this.clave.Location = new System.Drawing.Point(10, 70);
             this.clave.Name = "clave";
             this.clave.Size = new System.Drawing.Size(200, 30);
@@ -127,6 +129,7 @@
             // 
             // fondo
             // 
+            this.fondo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.fondo.Controls.Add(this.pbLogo);
             this.fondo.Controls.Add(this.btnAlternarVisibilidad);
             this.fondo.Controls.Add(this.btnIngresar);
@@ -142,7 +145,6 @@
             // 
             // pbLogo
             // 
-            this.pbLogo.Image = global::Mambo_s_Pizza.Properties.Resources.pngtree_pizza_logo_png_image_8905868;
             this.pbLogo.Location = new System.Drawing.Point(260, 10);
             this.pbLogo.Name = "pbLogo";
             this.pbLogo.Size = new System.Drawing.Size(450, 430);
@@ -174,29 +176,35 @@
             this.btnIngresar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip.SetToolTip(this.btnIngresar, "Click para ingresar al sistema");
             this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
-            this.btnIngresar.MouseEnter += new System.EventHandler(this.label1_MouseEnter);
-            this.btnIngresar.MouseLeave += new System.EventHandler(this.label1_MouseLeave);
+            this.btnIngresar.MouseEnter += new System.EventHandler(this.btnIngresar_MouseEnter);
+            this.btnIngresar.MouseLeave += new System.EventHandler(this.btnIngresar_MouseLeave);
             // 
             // txtClave
             // 
+            this.txtClave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtClave.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtClave.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtClave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
             this.txtClave.Location = new System.Drawing.Point(10, 100);
             this.txtClave.Name = "txtClave";
             this.txtClave.PasswordChar = '*';
             this.txtClave.Size = new System.Drawing.Size(200, 26);
             this.txtClave.TabIndex = 4;
             this.toolTip.SetToolTip(this.txtClave, "Ingrese su contraseña");
+            this.txtClave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtClave_KeyDown);
             // 
             // txtUsuario
             // 
+            this.txtUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUsuario.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
             this.txtUsuario.Location = new System.Drawing.Point(10, 40);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(200, 26);
             this.txtUsuario.TabIndex = 3;
             this.toolTip.SetToolTip(this.txtUsuario, "Ingrese su usuario");
+            this.txtUsuario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUsuario_KeyDown);
             // 
             // frmInicioDeSesion
             // 

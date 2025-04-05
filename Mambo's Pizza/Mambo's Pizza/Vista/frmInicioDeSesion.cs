@@ -31,16 +31,6 @@ namespace Mambo_s_Pizza
             WindowState = FormWindowState.Minimized;
         }
 
-        private void label1_MouseEnter(object sender, EventArgs e)
-        {
-            btnIngresar.BackColor = ColorTranslator.FromHtml("#8C3A42");
-        }
-
-        private void label1_MouseLeave(object sender, EventArgs e)
-        {
-            btnIngresar.BackColor = ColorTranslator.FromHtml("#640D14");
-        }
-
         private void btnMinimizar_MouseEnter(object sender, EventArgs e)
         {
             btnMinimizar.BackColor = ColorTranslator.FromHtml("#8C3A42");
@@ -77,26 +67,7 @@ namespace Mambo_s_Pizza
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            if (txtUsuario.Text == "admin")
-            {
-                Vista.frmPrincipal frm = new Vista.frmPrincipal();
-                frm.Show();
-            }
-            else if (txtUsuario.Text ==  "cliente")
-            {
-                Vista.frmVistaClientes frm = new Vista.frmVistaClientes();
-                frm.Show();
-            }
-            else if (txtUsuario.Text == "repartidor")
-            {
-                Vista.frmPerfilRepartidor frm = new Vista.frmPerfilRepartidor();
-                frm.Show();
-            }
-            else
-            {
-                MessageBox.Show("Verifique nuevamente las credenciales ingresadas", "Credenciales incorrectas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            this.Hide();
+            validarCredenciales();
         }
 
         private void barra_MouseMove(object sender, MouseEventArgs e)
@@ -119,6 +90,64 @@ namespace Mambo_s_Pizza
                 WindowState = FormWindowState.Maximized;
             else
                 WindowState = FormWindowState.Normal;
+        }
+
+        private void btnIngresar_MouseEnter(object sender, EventArgs e)
+        {
+            btnIngresar.BackColor = ColorTranslator.FromHtml("#8C3A42");
+        }
+
+        private void btnIngresar_MouseLeave(object sender, EventArgs e)
+        {
+            btnIngresar.BackColor = ColorTranslator.FromHtml("#640D14");
+        }
+
+        private void txtUsuario_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                validarCredenciales();
+        }
+
+        private void txtClave_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                validarCredenciales();
+        }
+
+        void validarCredenciales()
+        {
+            string usuario = txtUsuario.Text.Trim();
+            string clave = txtClave.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(clave))
+            {
+                MessageBox.Show("Credenciales vacías");
+                return;
+            }
+
+            switch (txtUsuario.Text)
+            {
+                case "admin":
+                    Vista.frmPrincipal frmAdmin = new Vista.frmPrincipal();
+                    frmAdmin.Show();
+                    this.Hide();
+                    break;
+                case "cliente":
+                    Vista.frmVistaClientes frmClientes = new Vista.frmVistaClientes();
+                    frmClientes.Show();
+                    this.Hide();
+                    break;
+                case "repartidor":
+                    Vista.frmPerfilRepartidor frmRepartidor = new Vista.frmPerfilRepartidor();
+                    frmRepartidor.Show();
+                    this.Hide();
+                    break;
+                default:
+                    MessageBox.Show("Verifique nuevamente las credenciales ingresadas", "Credenciales incorrectas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtUsuario.Clear();
+                    txtClave.Clear();
+                    break;
+            }
         }
     }
 }
