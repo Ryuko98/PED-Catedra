@@ -113,36 +113,6 @@ namespace Mambo_s_Pizza.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_close_201 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-close-201", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_database_20 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-database-20", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_database_administrator_15 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-database-administrator-15", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap icons8_edit_30 {
             get {
                 object obj = ResourceManager.GetObject("icons8-edit-30", resourceCulture);
@@ -163,16 +133,6 @@ namespace Mambo_s_Pizza.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_eye_26 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-eye-26", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap icons8_home_30 {
             get {
                 object obj = ResourceManager.GetObject("icons8-home-30", resourceCulture);
@@ -186,6 +146,16 @@ namespace Mambo_s_Pizza.Properties {
         internal static System.Drawing.Bitmap icons8_home_45 {
             get {
                 object obj = ResourceManager.GetObject("icons8-home-45", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_invisible_20 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-invisible-20", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -233,9 +203,9 @@ namespace Mambo_s_Pizza.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_minimize_201 {
+        internal static System.Drawing.Bitmap icons8_star_20 {
             get {
-                object obj = ResourceManager.GetObject("icons8-minimize-201", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8-star-20", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -243,9 +213,9 @@ namespace Mambo_s_Pizza.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_star_20 {
+        internal static System.Drawing.Bitmap icons8_visible_20 {
             get {
-                object obj = ResourceManager.GetObject("icons8-star-20", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8-visible-20", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

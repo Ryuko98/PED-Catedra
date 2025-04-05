@@ -56,12 +56,12 @@ namespace Mambo_s_Pizza
             if (txtClave.PasswordChar == '*')
             {
                 txtClave.PasswordChar = '\0'; // Hace visible el texto
-                btnAlternarVisibilidad.Image = Properties.Resources.icons8_visible_26;
+                btnAlternarVisibilidad.Image = Properties.Resources.icons8_invisible_20;
             }
             else
             {
                 txtClave.PasswordChar = '*'; // Oculta el texto
-                btnAlternarVisibilidad.Image = Properties.Resources.icons8_invisible_26;
+                btnAlternarVisibilidad.Image = Properties.Resources.icons8_visible_20;
             }
         }
 

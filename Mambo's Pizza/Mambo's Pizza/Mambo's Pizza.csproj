@@ -235,17 +235,17 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Res\Icons 2\icons8-close-20.png" />
-    <Content Include="Res\Icons 2\icons8-expand-20.png" />
-    <Content Include="Res\Icons 2\icons8-maximize-20.png" />
-    <Content Include="Res\Icons 2\icons8-minimize-20.png" />
+    <Content Include="Res\Icons\icons8-invisible-20.png" />
+    <Content Include="Res\Icons\icons8-visible-20.png" />
+    <Content Include="Res\logo.png" />
+    <Content Include="Res\Icons\icons8-close-20.png" />
+    <Content Include="Res\Icons\icons8-minimize-20.png" />
     <Content Include="Res\Icons\icons8-home-30.png" />
     <Content Include="Res\Icons\icons8-add-20.png" />
     <Content Include="Res\Icons\icons8-add-30%281%29.png" />
     <Content Include="Res\Icons\icons8-add-30.png" />
     <Content Include="Res\Icons\icons8-blind-26.png" />
     <Content Include="Res\Icons\icons8-clear-30.png" />
-    <Content Include="Res\Icons\icons8-close-20.png" />
     <Content Include="Res\Icons\icons8-database-20.png" />
     <Content Include="Res\Icons\icons8-database-administrator-15.png" />
     <Content Include="Res\Icons\icons8-edit-30.png" />
@@ -255,12 +255,11 @@
     <Content Include="Res\Icons\icons8-invisible-26.png" />
     <Content Include="Res\Icons\icons8-login-20.png" />
     <Content Include="Res\Icons\icons8-membership-20.png" />
-    <Content Include="Res\Icons\icons8-minimize-20.png" />
     <Content Include="Res\Icons\icons8-pizza-five-eighths-50.ico" />
     <Content Include="Res\Icons\icons8-star-20.png" />
     <Content Include="Res\Icons\icons8-visible-26.png" />
     <Content Include="Res\pngtree-pizza-logo-png-image_8905868.png" />
-    <Content Include="Res\logo.png" />
+    <Content Include="Res\gustambo.png" />
     <Content Include="Res\maps.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

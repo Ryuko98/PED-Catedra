@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.barra = new System.Windows.Forms.Panel();
             this.us = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -38,19 +37,9 @@
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.btnMinimizar = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Label();
+            this.barra = new System.Windows.Forms.Panel();
             this.barra.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // barra
-            // 
-            this.barra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(13)))), ((int)(((byte)(20)))));
-            this.barra.Controls.Add(this.btnMinimizar);
-            this.barra.Controls.Add(this.btnCerrar);
-            this.barra.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barra.Location = new System.Drawing.Point(0, 0);
-            this.barra.Name = "barra";
-            this.barra.Size = new System.Drawing.Size(800, 20);
-            this.barra.TabIndex = 1;
             // 
             // us
             // 
@@ -108,13 +97,16 @@
             // 
             this.btnMinimizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMinimizar.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnMinimizar.Image = global::Mambo_s_Pizza.Properties.Resources.icons8_minimize_201;
+            this.btnMinimizar.Image = global::Mambo_s_Pizza.Properties.Resources.icons8_minimize_20;
             this.btnMinimizar.Location = new System.Drawing.Point(740, 0);
             this.btnMinimizar.Name = "btnMinimizar";
-            this.btnMinimizar.Size = new System.Drawing.Size(30, 20);
-            this.btnMinimizar.TabIndex = 2;
+            this.btnMinimizar.Size = new System.Drawing.Size(30, 30);
+            this.btnMinimizar.TabIndex = 3;
             this.btnMinimizar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip.SetToolTip(this.btnMinimizar, "Minimizar ventana");
             this.btnMinimizar.Click += new System.EventHandler(this.btnMinimizar_Click);
+            this.btnMinimizar.MouseEnter += new System.EventHandler(this.btnMinimizar_MouseEnter);
+            this.btnMinimizar.MouseLeave += new System.EventHandler(this.btnMinimizar_MouseLeave);
             // 
             // btnCerrar
             // 
@@ -123,22 +115,37 @@
             this.btnCerrar.Image = global::Mambo_s_Pizza.Properties.Resources.icons8_close_20;
             this.btnCerrar.Location = new System.Drawing.Point(770, 0);
             this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(30, 20);
+            this.btnCerrar.Size = new System.Drawing.Size(30, 30);
             this.btnCerrar.TabIndex = 1;
             this.btnCerrar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip.SetToolTip(this.btnCerrar, "Cerrar ventana");
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            this.btnCerrar.MouseEnter += new System.EventHandler(this.btnCerrar_MouseEnter);
+            this.btnCerrar.MouseLeave += new System.EventHandler(this.btnCerrar_MouseLeave);
+            // 
+            // barra
+            // 
+            this.barra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(13)))), ((int)(((byte)(20)))));
+            this.barra.Controls.Add(this.btnMinimizar);
+            this.barra.Controls.Add(this.btnCerrar);
+            this.barra.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barra.Location = new System.Drawing.Point(0, 0);
+            this.barra.Name = "barra";
+            this.barra.Size = new System.Drawing.Size(800, 30);
+            this.barra.TabIndex = 11;
+            this.barra.MouseMove += new System.Windows.Forms.MouseEventHandler(this.barra_MouseMove);
             // 
             // frmPerfilRepartidor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.barra);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.us);
-            this.Controls.Add(this.barra);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmPerfilRepartidor";
             this.Text = "frmPerfilRepartidor";
@@ -148,15 +155,14 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel barra;
-        private System.Windows.Forms.Label btnMinimizar;
-        private System.Windows.Forms.Label btnCerrar;
         private System.Windows.Forms.Label us;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel barra;
+        private System.Windows.Forms.Label btnMinimizar;
+        private System.Windows.Forms.Label btnCerrar;
     }
 }
