@@ -12,6 +12,9 @@ namespace Mambo_s_Pizza.Vista
 {
     public partial class frmPrincipal : Form
     {
+        int x = 0;
+        int y = 0;
+
         public frmPrincipal()
         {
             InitializeComponent();
@@ -123,6 +126,34 @@ namespace Mambo_s_Pizza.Vista
         {
             frmInicio frm = new frmInicio();
             MostarPanel(frm);
+        }
+
+        private void barra_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Left)
+            {
+                x = e.X;
+                y = e.Y;
+            }
+            else
+            {
+                Left = Left + (e.X - x);
+                Top = Top + (e.Y - y);
+            }
+        }
+
+        private void titulo_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Left)
+            {
+                x = e.X;
+                y = e.Y;
+            }
+            else
+            {
+                Left = Left + (e.X - x);
+                Top = Top + (e.Y - y);
+            }
         }
     }
 }

@@ -117,10 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnMaximizar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        EwAACxMBAJqcGAAAAK9JREFUOE/NlNEJwzAMRE2WKSXTNEN0mkLpPBmiXcfYoN4FOaj5qi195IGJjMnj
+        FJmkU1BKWWqtd7tE5KrH/Vgh6ieewlqPx0GqC0RvSF9uYZPlnGfKXEIr494l5MfHyx87BLR849Lt/xyT
+        uYBsgmy1ydxQquU4IZIG29M2Q5KND+A4dk32czW6wMv7xXQlazRhiIxQhpYfITKiCQVS/oq2tKgXPe5H
+        h7CJQoRxpPQFzfb+KkFLUjEAAAAASUVORK5CYII=
+</value>
+  </data>
   <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnMinimizar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        EwAACxMBAJqcGAAAAB9JREFUOE9jGAWjYFiC379/L6Ampr6Bo2AUDD/AwAAAlaWOqUFvdJIAAAAASUVO
+        RK5CYII=
+</value>
+  </data>
+  <data name="btnCerrar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        EwAACxMBAJqcGAAAAI5JREFUOE/VlFEKgCAQRL1EZyii+5+jjiMINhsj+WG6a37UA1F3Z8ZC0P2HGOOE
+        sXCrRjzi5fZGGiGEA/PKUhPR0lP+EDRmCHbv/cbSI2qtRmg5+KJmMIclSsbusEQe8DosgaDrJmXImuV+
+        hgbmv5mv2bZRCugOrRnNoRqDOtRyelMLwdjHAcWxz9dHce4EzYwkzNbeNN8AAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAMjIAAAEAIADIKAAAFgAAACgAAAAyAAAAZAAAAAEAIAAAAAAAECcAABMLAAATCwAAAAAAAAAA

@@ -12,6 +12,9 @@ namespace Mambo_s_Pizza
 {
     public partial class frmInicioDeSesion : Form
     {
+        int x=0;
+        int y=0;
+
         public frmInicioDeSesion()
         {
             InitializeComponent();
@@ -94,6 +97,28 @@ namespace Mambo_s_Pizza
                 MessageBox.Show("Verifique nuevamente las credenciales ingresadas", "Credenciales incorrectas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             this.Hide();
+        }
+
+        private void barra_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Left)
+            {
+                x = e.X;
+                y = e.Y;
+            }
+            else
+            {
+                Left = Left + (e.X - x);
+                Top = Top + (e.Y - y);
+            }
+        }
+
+        private void btnMaximizar_Click(object sender, EventArgs e)
+        {
+            if (WindowState != FormWindowState.Maximized)
+                WindowState = FormWindowState.Maximized;
+            else
+                WindowState = FormWindowState.Normal;
         }
     }
 }

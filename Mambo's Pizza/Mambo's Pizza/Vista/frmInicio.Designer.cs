@@ -40,7 +40,7 @@
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmInicio";
-            this.Text = "frmInicio";
+            this.Text = "Inicio";
             this.ResumeLayout(false);
 
         }

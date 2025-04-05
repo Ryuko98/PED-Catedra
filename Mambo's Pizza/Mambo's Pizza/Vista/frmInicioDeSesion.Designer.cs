@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInicioDeSesion));
             this.barra = new System.Windows.Forms.Panel();
+            this.btnMaximizar = new System.Windows.Forms.Label();
             this.btnMinimizar = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Label();
             this.us = new System.Windows.Forms.Label();
@@ -50,23 +51,39 @@
             // barra
             // 
             this.barra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(13)))), ((int)(((byte)(20)))));
+            this.barra.Controls.Add(this.btnMaximizar);
             this.barra.Controls.Add(this.btnMinimizar);
             this.barra.Controls.Add(this.btnCerrar);
             this.barra.Dock = System.Windows.Forms.DockStyle.Top;
             this.barra.Location = new System.Drawing.Point(0, 0);
             this.barra.Name = "barra";
-            this.barra.Size = new System.Drawing.Size(800, 20);
+            this.barra.Size = new System.Drawing.Size(720, 30);
             this.barra.TabIndex = 0;
+            this.barra.MouseMove += new System.Windows.Forms.MouseEventHandler(this.barra_MouseMove);
+            // 
+            // btnMaximizar
+            // 
+            this.btnMaximizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMaximizar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnMaximizar.Image = ((System.Drawing.Image)(resources.GetObject("btnMaximizar.Image")));
+            this.btnMaximizar.Location = new System.Drawing.Point(630, 0);
+            this.btnMaximizar.Name = "btnMaximizar";
+            this.btnMaximizar.Size = new System.Drawing.Size(30, 30);
+            this.btnMaximizar.TabIndex = 2;
+            this.btnMaximizar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip.SetToolTip(this.btnMaximizar, "Minimizar ventana");
+            this.btnMaximizar.Visible = false;
+            this.btnMaximizar.Click += new System.EventHandler(this.btnMaximizar_Click);
             // 
             // btnMinimizar
             // 
             this.btnMinimizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMinimizar.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnMinimizar.Image = global::Mambo_s_Pizza.Properties.Resources.icons8_minimize_201;
-            this.btnMinimizar.Location = new System.Drawing.Point(740, 0);
+            this.btnMinimizar.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimizar.Image")));
+            this.btnMinimizar.Location = new System.Drawing.Point(660, 0);
             this.btnMinimizar.Name = "btnMinimizar";
-            this.btnMinimizar.Size = new System.Drawing.Size(30, 20);
-            this.btnMinimizar.TabIndex = 2;
+            this.btnMinimizar.Size = new System.Drawing.Size(30, 30);
+            this.btnMinimizar.TabIndex = 3;
             this.btnMinimizar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip.SetToolTip(this.btnMinimizar, "Minimizar ventana");
             this.btnMinimizar.Click += new System.EventHandler(this.btnMinimizar_Click);
@@ -77,10 +94,10 @@
             // 
             this.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCerrar.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnCerrar.Image = global::Mambo_s_Pizza.Properties.Resources.icons8_close_20;
-            this.btnCerrar.Location = new System.Drawing.Point(770, 0);
+            this.btnCerrar.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrar.Image")));
+            this.btnCerrar.Location = new System.Drawing.Point(690, 0);
             this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(30, 20);
+            this.btnCerrar.Size = new System.Drawing.Size(30, 30);
             this.btnCerrar.TabIndex = 1;
             this.btnCerrar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip.SetToolTip(this.btnCerrar, "Cerrar ventana");
@@ -117,9 +134,10 @@
             this.fondo.Controls.Add(this.txtUsuario);
             this.fondo.Controls.Add(this.clave);
             this.fondo.Controls.Add(this.us);
-            this.fondo.Location = new System.Drawing.Point(0, 20);
+            this.fondo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.fondo.Location = new System.Drawing.Point(0, 30);
             this.fondo.Name = "fondo";
-            this.fondo.Size = new System.Drawing.Size(800, 430);
+            this.fondo.Size = new System.Drawing.Size(720, 450);
             this.fondo.TabIndex = 1;
             // 
             // pbLogo
@@ -127,7 +145,7 @@
             this.pbLogo.Image = global::Mambo_s_Pizza.Properties.Resources.pngtree_pizza_logo_png_image_8905868;
             this.pbLogo.Location = new System.Drawing.Point(260, 10);
             this.pbLogo.Name = "pbLogo";
-            this.pbLogo.Size = new System.Drawing.Size(530, 410);
+            this.pbLogo.Size = new System.Drawing.Size(450, 430);
             this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbLogo.TabIndex = 7;
             this.pbLogo.TabStop = false;
@@ -185,7 +203,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(720, 480);
             this.Controls.Add(this.fondo);
             this.Controls.Add(this.barra);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -214,5 +232,6 @@
         private System.Windows.Forms.Label btnAlternarVisibilidad;
         private System.Windows.Forms.PictureBox pbLogo;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.Label btnMaximizar;
     }
 }

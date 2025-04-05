@@ -235,6 +235,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Res\Icons 2\icons8-close-20.png" />
+    <Content Include="Res\Icons 2\icons8-expand-20.png" />
+    <Content Include="Res\Icons 2\icons8-maximize-20.png" />
+    <Content Include="Res\Icons 2\icons8-minimize-20.png" />
     <Content Include="Res\Icons\icons8-home-30.png" />
     <Content Include="Res\Icons\icons8-add-20.png" />
     <Content Include="Res\Icons\icons8-add-30%281%29.png" />
