@@ -38,7 +38,7 @@ namespace Mambo_s_Pizza
 
         private void btnMinimizar_MouseLeave(object sender, EventArgs e)
         {
-            btnMinimizar.BackColor = ColorTranslator.FromHtml("#640D14");
+            btnMinimizar.BackColor = Color.Transparent;
         }
 
         private void btnCerrar_MouseEnter(object sender, EventArgs e)
@@ -48,7 +48,7 @@ namespace Mambo_s_Pizza
 
         private void btnCerrar_MouseLeave(object sender, EventArgs e)
         {
-            btnCerrar.BackColor = ColorTranslator.FromHtml("#640D14");
+            btnCerrar.BackColor = Color.Transparent;
         }
 
         private void btnAlternarVisibilidad_Click(object sender, EventArgs e)
@@ -148,6 +148,51 @@ namespace Mambo_s_Pizza
                     txtClave.Clear();
                     break;
             }
+        }
+
+        private void btnRecuperarClave_MouseEnter(object sender, EventArgs e)
+        {
+            btnRecuperarClave.BackColor = ColorTranslator.FromHtml("#640D14");
+        }
+
+        private void btnRecuperarClave_MouseLeave(object sender, EventArgs e)
+        {
+            btnRecuperarClave.BackColor = Color.Transparent;
+        }
+
+        private void btnRegistrarse_MouseEnter(object sender, EventArgs e)
+        {
+            btnRegistrarse.BackColor = ColorTranslator.FromHtml("#640D14");
+        }
+
+        private void btnRegistrarse_MouseLeave(object sender, EventArgs e)
+        {
+            btnRegistrarse.BackColor = Color.Transparent;
+        }
+
+        private void btnRecuperarClave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRegistrarse_Click(object sender, EventArgs e)
+        {
+            Vista.frmRegistrarse frm = new Vista.frmRegistrarse();
+            MostarPanel(frm);
+        }
+
+        void MostarPanel(Form frm)
+        {
+            while (fondo.Controls.Count > 0)
+            {
+                fondo.Controls.RemoveAt(0);
+            }
+            frm.TopLevel = false;
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.Dock = DockStyle.Fill;
+            fondo.Controls.Clear();
+            fondo.Controls.Add(frm);
+            frm.Show();
         }
     }
 }

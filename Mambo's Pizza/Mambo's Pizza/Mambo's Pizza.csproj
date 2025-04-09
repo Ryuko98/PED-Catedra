@@ -132,6 +132,12 @@
     <Compile Include="Vista\frmRealizarPedido.Designer.cs">
       <DependentUpon>frmRealizarPedido.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vista\frmRegistrarse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmRegistrarse.Designer.cs">
+      <DependentUpon>frmRegistrarse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vista\frmRepartidores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,6 +214,9 @@
     <EmbeddedResource Include="Vista\frmRealizarPedido.resx">
       <DependentUpon>frmRealizarPedido.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmRegistrarse.resx">
+      <DependentUpon>frmRegistrarse.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vista\frmRepartidores.resx">
       <DependentUpon>frmRepartidores.cs</DependentUpon>
     </EmbeddedResource>
@@ -235,9 +244,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Res\logo.png" />
     <Content Include="Res\Icons\icons8-invisible-20.png" />
     <Content Include="Res\Icons\icons8-visible-20.png" />
-    <Content Include="Res\logo.png" />
     <Content Include="Res\Icons\icons8-close-20.png" />
     <Content Include="Res\Icons\icons8-minimize-20.png" />
     <Content Include="Res\Icons\icons8-home-30.png" />
