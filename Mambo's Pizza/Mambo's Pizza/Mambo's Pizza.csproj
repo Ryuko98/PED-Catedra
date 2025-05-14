@@ -243,7 +243,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Controlador\" />
+    <Folder Include="Modelo\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Res\logo.png" />
     <Content Include="Res\Icons\icons8-invisible-20.png" />
