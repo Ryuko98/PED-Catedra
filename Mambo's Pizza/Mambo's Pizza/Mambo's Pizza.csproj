@@ -47,12 +47,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\Conexion.cs" />
+    <Compile Include="Controlador\Controlador_Usuarios.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="mensajes.cs" />
+    <Compile Include="Modelo\Modelo_Usuarios.cs" />
     <Compile Include="Vista\frmCarrito.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -243,10 +246,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controlador\" />
-    <Folder Include="Modelo\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Res\logo.png" />
     <Content Include="Res\Icons\icons8-invisible-20.png" />
