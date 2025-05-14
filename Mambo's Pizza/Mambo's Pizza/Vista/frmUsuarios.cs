@@ -36,7 +36,7 @@ namespace Mambo_s_Pizza.Vista
             txtRol.Clear();
         }
 
-        private void frmUsuarios_Load(object sender, EventArgs e)
+        private void frmUsuarios_Load(object sender, EventArgs e)   
         {
             RefrescarPantalla();
             txtID.Enabled = false;
