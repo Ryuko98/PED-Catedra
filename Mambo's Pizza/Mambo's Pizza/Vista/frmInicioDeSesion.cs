@@ -7,12 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace Mambo_s_Pizza
 {
+    
     public partial class frmInicioDeSesion : Form
     {
-        int x=0;
+        Conexion con = new Conexion();
+
+        int x =0;
         int y=0;
 
         public frmInicioDeSesion()
@@ -67,7 +71,20 @@ namespace Mambo_s_Pizza
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            validarCredenciales();
+            try
+            {
+                SqlConnection conn = con.AbrirConexion();
+                MessageBox.Show("Conexión exitosa.");
+
+                validarCredenciales();
+
+                con.CerrarConexion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al conectar: " + ex.Message);
+            }
+
         }
 
         private void barra_MouseMove(object sender, MouseEventArgs e)
