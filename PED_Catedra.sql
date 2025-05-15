@@ -4,86 +4,86 @@ USE PED_Catedra
 GO
 
 CREATE TABLE [Usuarios] (
-  [IdUsuario] integer PRIMARY KEY NOT NULL,
+  [IdUsuario] INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
   [Nombre] NVARCHAR(100),
   [Apellido] NVARCHAR(100),
   [FechaNacimiento] DATE,
   [Correo] NVARCHAR(255) UNIQUE,
   [Usuario] NVARCHAR(100) UNIQUE,
-  [ContraseÃ±a] NVARCHAR(255),
+  [Contraseña] NVARCHAR(255),
   [Rol] NVARCHAR(50)
 )
 GO
 
-CREATE TABLE [Clientes] (
-  [IdCliente] integer PRIMARY KEY NOT NULL,
-  [IdUsuario] integer,
-  [Direccion] NVARCHAR(255),
-  [IdMembresia] integer,
-  [FechaExpiracion] DATE
-)
-GO
-
-CREATE TABLE [Repartidores] (
-  [IdRepartidor] integer PRIMARY KEY NOT NULL,
-  [DUI] NVARCHAR(10) UNIQUE,
-  [CalificacionPromedio] FLOAT,
-  [TotalCalificaciones] integer,
-  [FechaRegistro] DATE,
-  [IdUsuario] integer,
-  [Disponibilidad] NVARCHAR(50)
-)
-GO
-
 CREATE TABLE [Membresias] (
-  [IdMembresia] integer PRIMARY KEY NOT NULL,
+  [IdMembresia] INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
   [Membresia] NVARCHAR(50),
   [Descripcion] NVARCHAR(255)
 )
 GO
 
-CREATE TABLE [Reviews] (
-  [IdReview] integer PRIMARY KEY NOT NULL,
-  [IdRepartidor] integer,
-  [IdPedido] integer,
-  [Calificacion] integer,
-  [Comentario] NVARCHAR(500),
-  [FechaReview] DATE
+CREATE TABLE [Clientes] (
+  [IdCliente] INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+  [IdUsuario] INT,
+  [Direccion] NVARCHAR(255),
+  [IdMembresia] INT,
+  [FechaExpiracion] DATE
+)
+GO
+
+CREATE TABLE [Repartidores] (
+  [IdRepartidor] INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+  [DUI] NVARCHAR(10) UNIQUE,
+  [CalificacionPromedio] FLOAT,
+  [TotalCalificaciones] INT,
+  [FechaRegistro] DATE,
+  [IdUsuario] INT,
+  [Disponibilidad] NVARCHAR(50)
 )
 GO
 
 CREATE TABLE [EstadosPedidos] (
-  [IdEstadoPedido] integer PRIMARY KEY NOT NULL,
+  [IdEstadoPedido] INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
   [Estado] NVARCHAR(50)
 )
 GO
 
+CREATE TABLE [Menus] (
+  [IdMenu] INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+  [NombreMenu] NVARCHAR(100),
+  [Precio] DECIMAL(10,2),
+  [Descripcion] NVARCHAR(255)
+)
+GO
+
 CREATE TABLE [Pedidos] (
-  [IdPedido] integer PRIMARY KEY NOT NULL,
+  [IdPedido] INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
   [Descripcion] NVARCHAR(255),
-  [IdCliente] integer,
+  [IdCliente] INT,
   [HoraPedido] DATETIME,
   [HoraEntrega] DATETIME,
-  [IdRepartidor] integer,
-  [IdEstadoPedido] integer,
+  [IdRepartidor] INT,
+  [IdEstadoPedido] INT,
   [TotalPrecio] DECIMAL(10,2)
 )
 GO
 
 CREATE TABLE [DetallesPedidos] (
-  [IdDetallePedido] integer PRIMARY KEY NOT NULL,
-  [IdPedido] integer,
-  [IdMenu] integer,
-  [Cantidad] integer,
+  [IdDetallePedido] INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+  [IdPedido] INT,
+  [IdMenu] INT,
+  [Cantidad] INT,
   [PrecioUnitario] DECIMAL(10,2)
 )
 GO
 
-CREATE TABLE [Menus] (
-  [IdMenu] integer PRIMARY KEY NOT NULL,
-  [NombreMenu] NVARCHAR(100),
-  [Precio] DECIMAL(10,2),
-  [Descripcion] NVARCHAR(255)
+CREATE TABLE [Reviews] (
+  [IdReview] INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+  [IdRepartidor] INT,
+  [IdPedido] INT,
+  [Calificacion] INT,
+  [Comentario] NVARCHAR(500),
+  [FechaReview] DATE
 )
 GO
 
@@ -116,6 +116,3 @@ GO
 
 ALTER TABLE [DetallesPedidos] ADD CONSTRAINT [fk_DetallesPedidos_Menu] FOREIGN KEY ([IdMenu]) REFERENCES [Menus] ([IdMenu])
 GO
-
-
-
