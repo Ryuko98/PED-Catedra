@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Mambo_s_Pizza.Controlador;
 
 namespace Mambo_s_Pizza.Vista
 {
@@ -18,9 +19,13 @@ namespace Mambo_s_Pizza.Vista
         public frmVistaClientes()
         {
             InitializeComponent();
-            dgvOfertas.Rows.Add("Orange Chicken", "9.99");
-            dgvOfertas.Rows.Add("Pizza Mambo's Style", "9999.99");
-            dgvOfertas.Rows.Add("Chop Suey", "4.99");
+            //dgvOfertas.Rows.Add("Orange Chicken", "9.99");
+            //dgvOfertas.Rows.Add("Pizza Mambo's Style", "9999.99");
+            //dgvOfertas.Rows.Add("Chop Suey", "4.99");
+
+            CargarOfertas();
+
+
 
             dgvVolverPedir.Rows.Add("Pizza Mambo's Style EXTRA Spicy","19.99");
         }
@@ -81,5 +86,16 @@ namespace Mambo_s_Pizza.Vista
         {
             btnCerrar.BackColor = ColorTranslator.FromHtml("#640D14");
         }
+
+        public void CargarOfertas()
+        {
+            dgvOfertas.DataSource = null; // Quita el origen de datos
+            dgvOfertas.Rows.Clear();      // Limpia las filas (por si acaso)
+            dgvOfertas.Columns.Clear();   // Limpia las 
+            DataTable dt = Controlador_Menus.ObtenerMenus();
+            dgvOfertas.DataSource = dt;
+        }
+
+
     }
 }
