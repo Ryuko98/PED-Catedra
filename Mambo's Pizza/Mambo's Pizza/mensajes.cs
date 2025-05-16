@@ -27,6 +27,11 @@ namespace Mambo_s_Pizza
             MessageBox.Show("Error al momento de crear un registro. " + ex, tabla + "Error de inserción", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
+        public void errorInicioSesion(string accion)
+        {
+            MessageBox.Show("Credenciales incorrectas " + accion, "Error de inicio de sesion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
         public void errorActualizacion(string ex, string tabla)
         {
             MessageBox.Show("Error al momento de actualizar el registro. " + ex, tabla + "Error de actualización", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -41,6 +46,7 @@ namespace Mambo_s_Pizza
         {
             MessageBox.Show("Debe seleccionar un registro para " + accion, "Falta información", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
+
 
         public DialogResult confirmarEliminacion(string tabla)
         {
@@ -68,6 +74,11 @@ namespace Mambo_s_Pizza
         public void exitoEliminacion(string tabla)
         {
             MessageBox.Show("El registro seleccionado se ha eliminado correctamente", tabla + "Éxito en eliminación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public void exitoInicioSesion()
+        {
+            MessageBox.Show("Credenciales correctas", "Exito de inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
