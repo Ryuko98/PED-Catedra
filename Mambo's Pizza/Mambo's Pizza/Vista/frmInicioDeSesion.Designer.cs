@@ -226,6 +226,7 @@
             // fondo
             // 
             this.fondo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.fondo.Controls.Add(this.btnAlternarVisibilidad);
             this.fondo.Controls.Add(this.us);
             this.fondo.Controls.Add(this.btnRegistrarse);
             this.fondo.Controls.Add(this.txtClave);
@@ -234,7 +235,6 @@
             this.fondo.Controls.Add(this.btnIngresar);
             this.fondo.Controls.Add(this.pbLogo);
             this.fondo.Controls.Add(this.clave);
-            this.fondo.Controls.Add(this.btnAlternarVisibilidad);
             this.fondo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fondo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
             this.fondo.Location = new System.Drawing.Point(0, 30);
