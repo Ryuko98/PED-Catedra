@@ -87,34 +87,34 @@ CREATE TABLE [Reviews] (
 )
 GO
 
-ALTER TABLE [Repartidores] ADD CONSTRAINT [fk_Repartidores_Usuario] FOREIGN KEY ([IdUsuario]) REFERENCES [Usuarios] ([IdUsuario])
+ALTER TABLE [Repartidores] ADD CONSTRAINT [fk_Repartidores_Usuario] FOREIGN KEY ([IdUsuario]) REFERENCES [Usuarios] ([IdUsuario]) ON UPDATE CASCADE ON DELETE CASCADE
 GO
 
-ALTER TABLE [Clientes] ADD CONSTRAINT [fk_Clientes_Usuario] FOREIGN KEY ([IdUsuario]) REFERENCES [Usuarios] ([IdUsuario])
+ALTER TABLE [Clientes] ADD CONSTRAINT [fk_Clientes_Usuario] FOREIGN KEY ([IdUsuario]) REFERENCES [Usuarios] ([IdUsuario]) ON UPDATE CASCADE ON DELETE CASCADE
 GO
 
-ALTER TABLE [Clientes] ADD CONSTRAINT [fk_Clientes_Membresia] FOREIGN KEY ([IdMembresia]) REFERENCES [Membresias] ([IdMembresia])
+ALTER TABLE [Clientes] ADD CONSTRAINT [fk_Clientes_Membresia] FOREIGN KEY ([IdMembresia]) REFERENCES [Membresias] ([IdMembresia]) ON UPDATE CASCADE ON DELETE CASCADE
 GO
 
-ALTER TABLE [Reviews] ADD CONSTRAINT [fk_Reviews_Repartidor] FOREIGN KEY ([IdRepartidor]) REFERENCES [Repartidores] ([IdRepartidor])
+ALTER TABLE [Reviews] ADD CONSTRAINT [fk_Reviews_Repartidor] FOREIGN KEY ([IdRepartidor]) REFERENCES [Repartidores] ([IdRepartidor]) ON UPDATE CASCADE ON DELETE CASCADE
 GO
 
-ALTER TABLE [Reviews] ADD CONSTRAINT [fk_Reviews_Pedido] FOREIGN KEY ([IdPedido]) REFERENCES [Pedidos] ([IdPedido])
+ALTER TABLE [Reviews] ADD CONSTRAINT [fk_Reviews_Pedido] FOREIGN KEY ([IdPedido]) REFERENCES [Pedidos] ([IdPedido]) ON UPDATE CASCADE ON DELETE CASCADE
 GO
 
 ALTER TABLE [Pedidos] ADD CONSTRAINT [fk_Pedidos_Cliente] FOREIGN KEY ([IdCliente]) REFERENCES [Clientes] ([IdCliente])
 GO
 
-ALTER TABLE [Pedidos] ADD CONSTRAINT [fk_Pedidos_Repartidor] FOREIGN KEY ([IdRepartidor]) REFERENCES [Repartidores] ([IdRepartidor])
+ALTER TABLE Pedidos ADD CONSTRAINT fk_Pedido_Repartidor FOREIGN KEY (IdRepartidor) REFERENCES Repartidores (IdRepartidor)
 GO
 
-ALTER TABLE [Pedidos] ADD CONSTRAINT [fk_Pedidos_Estado] FOREIGN KEY ([IdEstadoPedido]) REFERENCES [EstadosPedidos] ([IdEstadoPedido])
+ALTER TABLE [Pedidos] ADD CONSTRAINT [fk_Pedidos_Estado] FOREIGN KEY ([IdEstadoPedido]) REFERENCES [EstadosPedidos] ([IdEstadoPedido]) ON UPDATE CASCADE ON DELETE CASCADE
 GO
 
-ALTER TABLE [DetallesPedidos] ADD CONSTRAINT [fk_DetallesPedidos_Pedido] FOREIGN KEY ([IdPedido]) REFERENCES [Pedidos] ([IdPedido])
+ALTER TABLE [DetallesPedidos] ADD CONSTRAINT [fk_DetallesPedidos_Pedido] FOREIGN KEY ([IdPedido]) REFERENCES [Pedidos] ([IdPedido]) ON UPDATE CASCADE ON DELETE CASCADE
 GO
 
-ALTER TABLE [DetallesPedidos] ADD CONSTRAINT [fk_DetallesPedidos_Menu] FOREIGN KEY ([IdMenu]) REFERENCES [Menus] ([IdMenu])
+ALTER TABLE [DetallesPedidos] ADD CONSTRAINT [fk_DetallesPedidos_Menu] FOREIGN KEY ([IdMenu]) REFERENCES [Menus] ([IdMenu]) ON UPDATE CASCADE ON DELETE CASCADE
 GO
 
 -- Insert initial state into EstadosPedidos
