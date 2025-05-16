@@ -159,7 +159,7 @@ namespace Mambo_s_Pizza.Modelo
                                 reader["CalificacionPromedio"],
                                 reader["TotalCalificaciones"],
                                 reader["FechaRegistro"],
-                                reader["IdUsuario"],
+                                reader["Usuario"],
                                 reader["Disponibilidad"]
                             );
                         }
@@ -168,6 +168,7 @@ namespace Mambo_s_Pizza.Modelo
             }
             return dt;
         }
+
         public static DataTable MostrarUsuarios()
         {
             DataTable dt = new DataTable();
@@ -199,5 +200,6 @@ namespace Mambo_s_Pizza.Modelo
             }
             return dt;
         }
+
     }
 }

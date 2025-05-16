@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Clases\Conexion.cs" />
     <Compile Include="Controlador\Controlador_Menus.cs" />
+    <Compile Include="Controlador\Controlador_Pedidos.cs" />
     <Compile Include="Controlador\Controlador_Repartidores.cs" />
     <Compile Include="Controlador\Controlador_Usuarios.cs" />
     <Compile Include="Form1.cs">
@@ -58,6 +59,7 @@
     </Compile>
     <Compile Include="mensajes.cs" />
     <Compile Include="Modelo\Modelo_Menus.cs" />
+    <Compile Include="Modelo\Modelo_Pedidos.cs" />
     <Compile Include="Modelo\Modelo_Repartidores.cs" />
     <Compile Include="Modelo\Modelo_Usuarios.cs" />
     <Compile Include="Vista\frmCarrito.cs">

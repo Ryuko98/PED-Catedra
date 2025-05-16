@@ -62,7 +62,7 @@
             this.barra.Dock = System.Windows.Forms.DockStyle.Top;
             this.barra.Location = new System.Drawing.Point(0, 0);
             this.barra.Name = "barra";
-            this.barra.Size = new System.Drawing.Size(1024, 30);
+            this.barra.Size = new System.Drawing.Size(1017, 30);
             this.barra.TabIndex = 1;
             this.barra.MouseMove += new System.Windows.Forms.MouseEventHandler(this.barra_MouseMove);
             // 
@@ -84,7 +84,7 @@
             this.btnMinimizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMinimizar.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnMinimizar.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimizar.Image")));
-            this.btnMinimizar.Location = new System.Drawing.Point(964, 0);
+            this.btnMinimizar.Location = new System.Drawing.Point(957, 0);
             this.btnMinimizar.Name = "btnMinimizar";
             this.btnMinimizar.Size = new System.Drawing.Size(30, 30);
             this.btnMinimizar.TabIndex = 2;
@@ -98,7 +98,7 @@
             this.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCerrar.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnCerrar.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrar.Image")));
-            this.btnCerrar.Location = new System.Drawing.Point(994, 0);
+            this.btnCerrar.Location = new System.Drawing.Point(987, 0);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(30, 30);
             this.btnCerrar.TabIndex = 1;
@@ -113,7 +113,7 @@
             this.contenido.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.contenido.Location = new System.Drawing.Point(0, 60);
             this.contenido.Name = "contenido";
-            this.contenido.Size = new System.Drawing.Size(1024, 708);
+            this.contenido.Size = new System.Drawing.Size(1017, 708);
             this.contenido.TabIndex = 3;
             // 
             // toolStrip
@@ -131,7 +131,7 @@
             this.btnUsuarios});
             this.toolStrip.Location = new System.Drawing.Point(0, 30);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1024, 30);
+            this.toolStrip.Size = new System.Drawing.Size(1017, 30);
             this.toolStrip.TabIndex = 4;
             this.toolStrip.Text = "toolStrip1";
             // 
@@ -263,7 +263,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.ClientSize = new System.Drawing.Size(1017, 768);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.contenido);
             this.Controls.Add(this.barra);

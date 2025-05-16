@@ -17,7 +17,7 @@ namespace Mambo_s_Pizza
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmInicioDeSesion());
+            Application.Run(new frmPrincipal());
         }
     }
 }
