@@ -72,15 +72,15 @@ namespace Mambo_s_Pizza.Vista
                     return;
                 }
 
-                //int resultado = Controlador_Usuarios.InsertarUsuarios(nuevoUsuario);
+                int resultado = Controlador_Usuarios.InsertarUsuarios(nuevoUsuario);
 
 
-                //if (resultado > 0)
-                //{
-                //    msg.exitoInsercion("Usuario agregado correctamente");
-                //    limpiarCampos();
-                //    RefrescarPantalla();
-                //}
+                if (resultado > 0)
+                {
+                    msg.exitoInsercion("Usuario agregado correctamente");
+                    limpiarCampos();
+                    RefrescarPantalla();
+                }
             }
             catch (FormatException)
             {
