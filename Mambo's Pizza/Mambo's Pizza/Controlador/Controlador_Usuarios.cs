@@ -20,13 +20,12 @@ namespace Mambo_s_Pizza.Controlador
         public string Usuario { get; set; }
         public string Contraseña { get; set; }
         public string Rol { get; set; }
-<<<<<<< Updated upstream
-=======
 
         public static DataTable ObtenerUsuarios()
         {
             return Modelo_Usuarios.MostrarUsuarios();
         }
+
 
         public static int InsertarUsuarios(string Nombre, string Apellido, DateTime FechaNacimiento, string Correo, string Usuario, string Contraseña, string Rol)
         {
@@ -48,6 +47,5 @@ namespace Mambo_s_Pizza.Controlador
             return Modelo_Usuarios.IniciarSesion(Usuario, Contraseña);
         }
 
->>>>>>> Stashed changes
     }
 }
