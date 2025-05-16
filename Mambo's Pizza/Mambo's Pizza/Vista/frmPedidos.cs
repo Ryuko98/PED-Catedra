@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Mambo_s_Pizza.Controlador;
+using Mambo_s_Pizza.Modelo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,9 +15,337 @@ namespace Mambo_s_Pizza.Vista
 {
     public partial class frmPedidos : Form
     {
+        mensajes msg = new mensajes();
         public frmPedidos()
         {
             InitializeComponent();
+        }
+
+        public void RefrescarPantalla()
+        {
+            dgvDatos.DataSource = Modelo_Pedidos.MostrarPedidos();
+        }
+
+        void limpiarCampos()    
+        {
+            txtDescipcion.Clear();
+            cmbCliente.SelectedIndex = -1;
+            cmbRepartidor.SelectedIndex = -1;
+            cmbEstado.SelectedIndex = -1;
+            txtTotal.Clear();
+        }
+
+        private void frmPedidos_Load(object sender, EventArgs e)
+        {
+            RefrescarPantalla();
+            txtID.Enabled = false;
+
+            cmbCliente.DataSource = Modelo_Pedidos.MostrarClientes();
+            cmbCliente.DisplayMember = "NombreUsuario";  // El nombre que se mostrará
+            cmbCliente.ValueMember = "IdCliente";
+
+            cmbRepartidor.DataSource = Modelo_Pedidos.MostrarRepartidor();
+            cmbRepartidor.DisplayMember = "NombreCliente";  // El nombre que se mostrará
+            cmbRepartidor.ValueMember = "IdRepartidor";
+
+            cmbEstado.DataSource = Modelo_Pedidos.MostrarEstados();
+            cmbEstado.DisplayMember = "Estado";  // El nombre que se mostrará
+            cmbEstado.ValueMember = "IdEstadoPedido";
+
+            dgvDatos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
+        private void btnInsertar_Click(object sender, EventArgs e)
+        {
+            // Validación de campos vacíos
+            if (string.IsNullOrWhiteSpace(txtDescipcion.Text) ||
+                cmbCliente.SelectedValue == null ||
+                cmbEstado.SelectedValue == null ||
+                dtpEntrega.Value == null)
+            {
+                msg.camposVacios();
+                return;
+            }
+
+            try
+            {
+                Controlador_Pedidos nuevoPedido = new Controlador_Pedidos();
+
+                // Asignación de valores desde los controles
+                nuevoPedido.Descripcion = txtDescipcion.Text;
+                nuevoPedido.IdCliente = Convert.ToInt32(cmbCliente.SelectedValue);
+                nuevoPedido.HoraPedido = dtpPedido.Value;
+                // HoraEntrega (puede ser nula)
+                nuevoPedido.HoraEntrega = dtpEntrega.Value;
+                // Repartidor (puede ser nulo si no está asignado)
+                nuevoPedido.IdRepartidor = cmbRepartidor.SelectedValue != null ?
+                                         Convert.ToInt32(cmbRepartidor.SelectedValue) : 0;
+
+                nuevoPedido.IdEstadoPedido = Convert.ToInt32(cmbEstado.SelectedValue);
+
+                // Validación del precio total
+                if (!decimal.TryParse(txtTotal.Text, out decimal totalPrecio))
+                {
+                    msg.errorInsercion("El precio total debe ser un valor numérico válido", "Pedido");
+                    return;
+                }
+                nuevoPedido.TotalPrecio = totalPrecio;
+
+                // Llamada al modelo para insertar
+                int resultado = Modelo_Pedidos.AgregarPedido(nuevoPedido);
+
+                if (resultado > 0)
+                {
+                    msg.exitoInsercion("Pedido registrado correctamente");
+                    limpiarCampos();
+                    RefrescarPantalla();
+                }
+            }
+            catch (FormatException)
+            {
+                msg.errorInsercion("Formato incorrecto en los datos", "Pedido");
+            }
+            catch (SqlException sqlEx)
+            {
+                msg.errorInsercion(sqlEx.Message, "Pedido");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error crítico: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            // Validar que haya un pedido seleccionado
+            if (!(dgvDatos.SelectedRows.Count == 1 && txtID.Text != ""))
+            {
+                msg.seleccionarRegistro("actualizar");
+                return;
+            }
+
+            // Validar campos obligatorios
+            if (string.IsNullOrWhiteSpace(txtDescipcion.Text) ||
+                cmbCliente.SelectedValue == null ||
+                cmbEstado.SelectedValue == null ||
+                dtpPedido.Value == null)
+            {
+                msg.camposVacios();
+                return;
+            }
+
+            try
+            {
+                Controlador_Pedidos pedidoActualizado = new Controlador_Pedidos();
+
+                // Asignación de valores desde los controles
+                pedidoActualizado.IdPedido = Convert.ToInt32(txtID.Text);
+                pedidoActualizado.Descripcion = txtDescipcion.Text;
+                pedidoActualizado.IdCliente = Convert.ToInt32(cmbCliente.SelectedValue);
+                pedidoActualizado.HoraPedido = dtpPedido.Value;
+
+                // HoraEntrega (puede ser nula)
+                pedidoActualizado.HoraEntrega = dtpEntrega.Value;
+
+                // Repartidor (puede ser nulo si no está asignado)
+                pedidoActualizado.IdRepartidor = cmbRepartidor.SelectedValue != null ?
+                                               Convert.ToInt32(cmbRepartidor.SelectedValue) : 0;
+
+                pedidoActualizado.IdEstadoPedido = Convert.ToInt32(cmbEstado.SelectedValue);
+
+                // Validación del precio total
+                if (!decimal.TryParse(txtTotal.Text, out decimal totalPrecio))
+                {
+                    msg.errorActualizacion("El precio total debe ser un valor numérico válido", "Tabla: Pedidos");
+                    return;
+                }
+                pedidoActualizado.TotalPrecio = totalPrecio;
+
+                // Llamar al modelo para actualizar
+                int resultado = Modelo_Pedidos.ActualizarPedido(pedidoActualizado);
+
+                if (resultado > 0)
+                {
+                    msg.exitoActualizacion("Pedido actualizado correctamente");
+                }
+                else
+                {
+                    msg.errorActualizacion("No se pudo actualizar el pedido", "Tabla: Pedidos");
+                }
+            }
+            catch (FormatException)
+            {
+                msg.errorActualizacion("Formato de datos incorrecto", "Tabla: Pedidos");
+            }
+            catch (SqlException sqlEx)
+            {
+                msg.errorActualizacion(sqlEx.Message, "Tabla: Pedidos");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error crítico: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                limpiarCampos();
+                RefrescarPantalla();
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            // Validar que haya una fila seleccionada y que el ID no esté vacío
+            if (!(dgvDatos.SelectedRows.Count == 1 && txtID.Text != ""))
+            {
+                msg.seleccionarRegistro("eliminar");
+                return;
+            }
+
+            // Confirmar con el usuario antes de eliminar
+            if (msg.confirmarEliminacion("Tabla: Pedidos") == DialogResult.Yes)
+            {
+                try
+                {
+                    // Obtener el ID del pedido seleccionado
+                    int id = Convert.ToInt32(dgvDatos.CurrentRow.Cells["IdPedido"].Value);
+
+                    // Llamar al controlador para eliminar
+                    int resultado = Modelo_Pedidos.EliminarPedido(id);
+
+                    if (resultado > 0)
+                    {
+                        msg.exitoEliminacion("Pedido eliminado correctamente");
+                    }
+                    else
+                    {
+                        msg.errorEliminacion("No se pudo eliminar el pedido", "Tabla: Pedidos");
+                    }
+                }
+                catch (FormatException)
+                {
+                    msg.errorEliminacion("ID de pedido no válido", "Tabla: Pedidos");
+                }
+                catch (SqlException sqlEx)
+                {
+                    // Manejo especial para error de clave foránea
+                    if (sqlEx.Number == 547) // SQL Server error code for constraint violation
+                    {
+                        msg.errorEliminacion("No se puede eliminar el pedido porque tiene registros relacionados", "Tabla: Pedidos");
+                    }
+                    else
+                    {
+                        msg.errorEliminacion(sqlEx.Message, "Tabla: Pedidos");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error crítico: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    limpiarCampos();
+                    RefrescarPantalla();
+                }
+            }
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            limpiarCampos();
+        }
+
+        private void dgvDatos_Click(object sender, EventArgs e)
+        {
+            dgvDatos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            if (dgvDatos.CurrentRow == null || dgvDatos.CurrentRow.IsNewRow) return;
+
+            try
+            {
+                txtID.Text = ObtenerValorCelda("IdPedido");
+                txtDescipcion.Text = ObtenerValorCelda("Descripcion");
+                txtTotal.Text = ObtenerValorCelda("TotalPrecio", "0");
+                DateTime fechaPedido;
+
+                if (DateTime.TryParse(ObtenerValorCelda("HoraPedido"), out fechaPedido))
+                    dtpPedido.Value = fechaPedido;
+
+                if (DateTime.TryParse(ObtenerValorCelda("HoraEntrega"), out DateTime fechaEntrega))
+                {
+                    dtpEntrega.Value = fechaEntrega;
+                    dtpEntrega.Checked = true;
+                }
+
+                else
+                {
+                    dtpEntrega.Checked = false;
+                }
+
+                if (dgvDatos.Columns.Contains("Cliente")) 
+                {
+                    string nombreCliente = ObtenerValorCelda("Cliente");
+                    if (!string.IsNullOrEmpty(nombreCliente))
+                    {
+                        // Buscar el IdCliente usando el nombre
+                        int idCliente = ObtenerIdClientePorNombre(nombreCliente);
+                        if (idCliente > 0 && cmbCliente.Items.Count > 0)
+                        {
+                            cmbCliente.SelectedValue = idCliente;
+                        }
+                    }
+                }
+                if (dgvDatos.Columns.Contains("IdRepartidor"))
+                {
+                    int idRepartidor;
+                    if (int.TryParse(ObtenerValorCelda("IdRepartidor"), out idRepartidor))
+                        cmbRepartidor.SelectedValue = idRepartidor;
+                }
+                if (dgvDatos.Columns.Contains("IdEstadoPedido"))
+                {
+                    int idEstado;
+                    if (int.TryParse(ObtenerValorCelda("IdEstadoPedido"), out idEstado))
+                        cmbEstado.SelectedValue = idEstado;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar datos: {ex.Message}", "Error",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private string ObtenerValorCelda(string nombreColumna, string valorPorDefecto = "")
+        {
+            if (dgvDatos.Columns.Contains(nombreColumna) &&
+                dgvDatos.CurrentRow.Cells[nombreColumna].Value != null)
+            {
+                return dgvDatos.CurrentRow.Cells[nombreColumna].Value.ToString();
+            }
+            return valorPorDefecto;
+        }
+
+        private int ObtenerIdClientePorNombre(string nombreCliente)
+        {
+            try
+            {
+                using (var con = new SqlConnection("TuCadenaDeConexion"))
+                {
+                    string query = @"SELECT c.IdCliente 
+                           FROM Clientes c
+                           INNER JOIN Usuarios u ON c.IdUsuario = u.IdUsuario
+                           WHERE u.Nombre + ' ' + u.Apellido = @Nombre";
+
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@Nombre", nombreCliente);
+                    con.Open();
+                    object result = cmd.ExecuteScalar();
+                    return result != null ? Convert.ToInt32(result) : 0;
+                }
+            }
+            catch
+            {
+                return 0;
+            }
         }
     }
 }

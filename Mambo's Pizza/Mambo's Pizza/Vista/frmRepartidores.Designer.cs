@@ -45,7 +45,7 @@
             this.btnActualizar = new System.Windows.Forms.Label();
             this.btnEliminar = new System.Windows.Forms.Label();
             this.btnLimpiar = new System.Windows.Forms.Label();
-            this.dtpExpiracion = new System.Windows.Forms.DateTimePicker();
+            this.dtpRegistro = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.SuspendLayout();
@@ -59,6 +59,7 @@
             this.dgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDatos.Size = new System.Drawing.Size(980, 305);
             this.dgvDatos.TabIndex = 28;
+            this.dgvDatos.Click += new System.EventHandler(this.dgvDatos_Click);
             // 
             // txtID
             // 
@@ -216,14 +217,15 @@
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(40, 40);
             this.btnLimpiar.TabIndex = 32;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
-            // dtpExpiracion
+            // dtpRegistro
             // 
-            this.dtpExpiracion.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpExpiracion.Location = new System.Drawing.Point(220, 160);
-            this.dtpExpiracion.Name = "dtpExpiracion";
-            this.dtpExpiracion.Size = new System.Drawing.Size(200, 26);
-            this.dtpExpiracion.TabIndex = 61;
+            this.dtpRegistro.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpRegistro.Location = new System.Drawing.Point(220, 160);
+            this.dtpRegistro.Name = "dtpRegistro";
+            this.dtpRegistro.Size = new System.Drawing.Size(200, 26);
+            this.dtpRegistro.TabIndex = 61;
             // 
             // label6
             // 
@@ -241,7 +243,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 564);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.dtpExpiracion);
+            this.Controls.Add(this.dtpRegistro);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtDisponibilidad);
             this.Controls.Add(this.label5);
@@ -288,7 +290,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtDisponibilidad;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dtpExpiracion;
+        private System.Windows.Forms.DateTimePicker dtpRegistro;
         private System.Windows.Forms.Label label6;
     }
 }

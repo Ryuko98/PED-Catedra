@@ -1,0 +1,288 @@
+﻿using Mambo_s_Pizza.Controlador;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Mambo_s_Pizza.Modelo
+{
+    class Modelo_Pedidos
+    {
+        private static List<Controlador_Pedidos> articulosDeLimpieza = new List<Controlador_Pedidos>();
+
+        public static int AgregarPedido(Controlador_Pedidos pedido)
+        {
+            mensajes msg = new mensajes();
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                try
+                {
+                    string query = @"INSERT INTO Pedidos (Descripcion, IdCliente, HoraPedido, HoraEntrega, IdRepartidor, IdEstadoPedido, TotalPrecio) 
+                           VALUES (@Descripcion, @IdCliente, @HoraPedido, @HoraEntrega, @IdRepartidor, @IdEstadoPedido, @TotalPrecio)";
+
+                    SqlCommand comando = new SqlCommand(query, con);
+                    comando.Parameters.AddWithValue("@Descripcion", pedido.Descripcion);
+                    comando.Parameters.AddWithValue("@IdCliente", pedido.IdCliente);
+                    comando.Parameters.AddWithValue("@HoraPedido", pedido.HoraPedido);
+                    comando.Parameters.AddWithValue("@HoraEntrega", (object)pedido.HoraEntrega ?? DBNull.Value);
+                    comando.Parameters.AddWithValue("@IdRepartidor", pedido.IdRepartidor);
+                    comando.Parameters.AddWithValue("@IdEstadoPedido", pedido.IdEstadoPedido);
+                    comando.Parameters.AddWithValue("@TotalPrecio", pedido.TotalPrecio);
+
+                    comando.ExecuteNonQuery();
+                    msg.exitoInsercion("Tabla: Pedidos.");
+                    return 1;
+                }
+                catch (SqlException ex)
+                {
+                    msg.errorInsercion(ex.Message, "Tabla: Pedidos.");
+                    return 0;
+                }
+                finally
+                {
+                    conexionBD.CerrarConexion();
+                }
+            }
+        }
+
+        public static int ActualizarPedido(Controlador_Pedidos pedido)
+        {
+            mensajes msg = new mensajes();
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                try
+                {
+                    string query = @"UPDATE Pedidos 
+                           SET Descripcion = @Descripcion,
+                               IdCliente = @IdCliente,
+                               HoraPedido = @HoraPedido,
+                               HoraEntrega = @HoraEntrega,
+                               IdRepartidor = @IdRepartidor,
+                               IdEstadoPedido = @IdEstadoPedido,
+                               TotalPrecio = @TotalPrecio
+                           WHERE IdPedido = @IdPedido";
+
+                    SqlCommand comando = new SqlCommand(query, con);
+
+                    comando.Parameters.AddWithValue("@IdPedido", pedido.IdPedido);
+                    comando.Parameters.AddWithValue("@Descripcion", pedido.Descripcion);
+                    comando.Parameters.AddWithValue("@IdCliente", pedido.IdCliente);
+                    comando.Parameters.AddWithValue("@HoraPedido", pedido.HoraPedido);
+                    comando.Parameters.AddWithValue("@HoraEntrega", (object)pedido.HoraEntrega ?? DBNull.Value);
+                    comando.Parameters.AddWithValue("@IdRepartidor", pedido.IdRepartidor);
+                    comando.Parameters.AddWithValue("@IdEstadoPedido", pedido.IdEstadoPedido);
+                    comando.Parameters.AddWithValue("@TotalPrecio", pedido.TotalPrecio);
+
+                    int filasAfectadas = comando.ExecuteNonQuery();
+                    msg.exitoActualizacion("Tabla: Pedidos.");
+                    return filasAfectadas;
+                }
+                catch (SqlException ex)
+                {
+                    msg.errorActualizacion(ex.Message, "Tabla: Pedidos.");
+                    return 0;
+                }
+                finally
+                {
+                    conexionBD.CerrarConexion();
+                }
+            }
+        }
+
+        public static int EliminarPedido(int idPedido)
+        {
+            mensajes msg = new mensajes();
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                string query = "DELETE FROM Pedidos WHERE IdPedido = @IdPedido";
+                SqlCommand comando = new SqlCommand(query, con);
+                comando.Parameters.AddWithValue("@IdPedido", idPedido);
+
+                try
+                {
+                    int filasAfectadas = comando.ExecuteNonQuery();
+
+                    if (filasAfectadas > 0)
+                    {
+                        msg.exitoEliminacion("Tabla: Pedidos.");
+                    }
+
+                    return filasAfectadas;
+                }
+                catch (SqlException ex)
+                {
+                    msg.errorEliminacion(ex.Message, "Tabla: Pedidos.");
+                    return 0;
+                }
+                finally
+                {
+                    conexionBD.CerrarConexion();
+                }
+            }
+        }
+        public static DataTable MostrarPedidos()
+        {
+            DataTable dt = new DataTable();
+
+            // Configurar columnas
+            dt.Columns.Add("IdPedido");
+            dt.Columns.Add("Descripcion");
+            dt.Columns.Add("Cliente");  // Nombre del cliente (desde Usuarios)
+            dt.Columns.Add("HoraPedido");
+            dt.Columns.Add("HoraEntrega");
+            dt.Columns.Add("Repartidor");  // Nombre del repartidor
+            dt.Columns.Add("EstadoPedido");  // Nombre del estado
+            dt.Columns.Add("TotalPrecio");
+
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                string query = @"SELECT p.IdPedido, p.Descripcion, 
+                        u.Nombre + ' ' + u.Apellido AS Cliente,
+                        p.HoraPedido, p.HoraEntrega,
+                        ur.Nombre AS Repartidor,
+                        ep.Estado AS EstadoPedido,
+                        p.TotalPrecio
+                        FROM Pedidos p
+                        INNER JOIN Clientes c ON p.IdCliente = c.IdCliente
+                        INNER JOIN Usuarios u ON c.IdUsuario = u.IdUsuario
+                        LEFT JOIN Repartidores r ON p.IdRepartidor = r.IdRepartidor
+                        LEFT JOIN Usuarios ur ON r.IdUsuario = ur.IdUsuario
+                        INNER JOIN EstadosPedidos ep ON p.IdEstadoPedido = ep.IdEstadoPedido";
+
+                using (SqlCommand comando = new SqlCommand(query, con))
+                {
+                    using (SqlDataReader reader = comando.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            dt.Rows.Add(
+                                reader["IdPedido"],
+                                reader["Descripcion"],
+                                reader["Cliente"],
+                                reader["HoraPedido"],
+                                reader["HoraEntrega"],
+                                reader["Repartidor"] ,
+                                reader["EstadoPedido"],
+                                reader["TotalPrecio"]
+                            );
+                        }
+                    }
+                }
+            }
+            return dt;
+        }
+
+        public static DataTable MostrarClientes()
+        {
+            DataTable dt = new DataTable();
+
+            // Columnas solicitadas
+            dt.Columns.Add("IdCliente", typeof(int));
+            dt.Columns.Add("NombreUsuario", typeof(string)); // Nombre del usuario asociado
+
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                string query = @"SELECT c.IdCliente, u.Nombre + ' ' + u.Apellido AS NombreUsuario
+                        FROM Clientes c
+                        INNER JOIN Usuarios u ON c.IdUsuario = u.IdUsuario
+                        ORDER BY u.Nombre";
+
+                using (SqlCommand comando = new SqlCommand(query, con))
+                {
+                    using (SqlDataReader reader = comando.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            dt.Rows.Add(
+                                reader.GetInt32(0),     // IdCliente
+                                reader.GetString(1)     // NombreUsuario (Nombre + Apellido)
+                            );
+                        }
+                    }
+                }
+            }
+            return dt;
+        }
+
+        public static DataTable MostrarRepartidor()
+        {
+            DataTable dt = new DataTable();
+
+            // Configurar columnas
+            dt.Columns.Add("IdRepartidor", typeof(int));
+            dt.Columns.Add("IdUsuario", typeof(string));
+
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                string query = @"SELECT r.IdRepartidor, u.Nombre + ' ' + u.Apellido AS NombreRepartidor
+                        FROM Repartidores r
+                        INNER JOIN Usuarios u ON r.IdUsuario = u.IdUsuario
+                        ORDER BY u.Nombre";
+
+                using (SqlCommand comando = new SqlCommand(query, con))
+                {
+                    using (SqlDataReader reader = comando.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            dt.Rows.Add(
+                                reader.GetInt32(0),    // IdRepartidor
+                                reader.GetString(1)    // NombreRepartidor
+                            );
+                        }
+                    }
+                }
+            }
+            return dt;
+        }
+
+        public static DataTable MostrarEstados()
+        {
+            DataTable dt = new DataTable();
+
+            // Configurar columnas
+            dt.Columns.Add("IdEstadoPedido", typeof(int));
+            dt.Columns.Add("Estado", typeof(string));
+
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                string query = @"SELECT IdEstadoPedido, Estado 
+                        FROM EstadosPedidos 
+                        ORDER BY Estado";
+
+                using (SqlCommand comando = new SqlCommand(query, con))
+                {
+                    using (SqlDataReader reader = comando.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            dt.Rows.Add(
+                                reader.GetInt32(0),    // IdEstadoRepartidor
+                                reader.GetString(1)    // NombreEstado
+                            );
+                        }
+                    }
+                }
+            }
+            return dt;
+        }
+
+    }
+}
