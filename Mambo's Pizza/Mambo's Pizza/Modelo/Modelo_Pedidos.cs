@@ -11,10 +11,10 @@ namespace Mambo_s_Pizza.Modelo
 {
     class Modelo_Pedidos
     {
-        private static List<Controlador_Pedidos> articulosDeLimpieza = new List<Controlador_Pedidos>();
 
-        public static int AgregarPedido(Controlador_Pedidos pedido)
+        public static bool AgregarPedido(string pDescripcion, int pIdCliente, DateTime pHoraPedido, DateTime pHoraEntrega, int pIdRepartidor, int pIdEstadoPedido, double pTotalPrecio)
         {
+            bool retorno = false;
             mensajes msg = new mensajes();
             Conexion conexionBD = new Conexion();
 
@@ -26,22 +26,22 @@ namespace Mambo_s_Pizza.Modelo
                            VALUES (@Descripcion, @IdCliente, @HoraPedido, @HoraEntrega, @IdRepartidor, @IdEstadoPedido, @TotalPrecio)";
 
                     SqlCommand comando = new SqlCommand(query, con);
-                    comando.Parameters.AddWithValue("@Descripcion", pedido.Descripcion);
-                    comando.Parameters.AddWithValue("@IdCliente", pedido.IdCliente);
-                    comando.Parameters.AddWithValue("@HoraPedido", pedido.HoraPedido);
-                    comando.Parameters.AddWithValue("@HoraEntrega", (object)pedido.HoraEntrega ?? DBNull.Value);
-                    comando.Parameters.AddWithValue("@IdRepartidor", pedido.IdRepartidor);
-                    comando.Parameters.AddWithValue("@IdEstadoPedido", pedido.IdEstadoPedido);
-                    comando.Parameters.AddWithValue("@TotalPrecio", pedido.TotalPrecio);
+                    comando.Parameters.AddWithValue("@Descripcion", pDescripcion);
+                    comando.Parameters.AddWithValue("@IdCliente", pIdCliente);
+                    comando.Parameters.AddWithValue("@HoraPedido", pHoraPedido);
+                    comando.Parameters.AddWithValue("@HoraEntrega", (object)pHoraEntrega ?? DBNull.Value);
+                    comando.Parameters.AddWithValue("@IdRepartidor", pIdRepartidor);
+                    comando.Parameters.AddWithValue("@IdEstadoPedido", pIdEstadoPedido);
+                    comando.Parameters.AddWithValue("@TotalPrecio", pTotalPrecio);
 
-                    comando.ExecuteNonQuery();
+                    retorno = Convert.ToBoolean(comando.ExecuteNonQuery());
                     msg.exitoInsercion("Tabla: Pedidos.");
-                    return 1;
+                    return retorno;
                 }
                 catch (SqlException ex)
                 {
                     msg.errorInsercion(ex.Message, "Tabla: Pedidos.");
-                    return 0;
+                    return retorno;
                 }
                 finally
                 {
@@ -50,8 +50,9 @@ namespace Mambo_s_Pizza.Modelo
             }
         }
 
-        public static int ActualizarPedido(Controlador_Pedidos pedido)
+        public static bool ActualizarPedido(int IdPedido, string pDescripcion, int pIdCliente, DateTime pHoraPedido, DateTime pHoraEntrega, int pIdRepartidor, int pIdEstadoPedido, double pTotalPrecio)
         {
+            bool retorno = false;
             mensajes msg = new mensajes();
             Conexion conexionBD = new Conexion();
 
@@ -71,23 +72,23 @@ namespace Mambo_s_Pizza.Modelo
 
                     SqlCommand comando = new SqlCommand(query, con);
 
-                    comando.Parameters.AddWithValue("@IdPedido", pedido.IdPedido);
-                    comando.Parameters.AddWithValue("@Descripcion", pedido.Descripcion);
-                    comando.Parameters.AddWithValue("@IdCliente", pedido.IdCliente);
-                    comando.Parameters.AddWithValue("@HoraPedido", pedido.HoraPedido);
-                    comando.Parameters.AddWithValue("@HoraEntrega", (object)pedido.HoraEntrega ?? DBNull.Value);
-                    comando.Parameters.AddWithValue("@IdRepartidor", pedido.IdRepartidor);
-                    comando.Parameters.AddWithValue("@IdEstadoPedido", pedido.IdEstadoPedido);
-                    comando.Parameters.AddWithValue("@TotalPrecio", pedido.TotalPrecio);
+                    comando.Parameters.AddWithValue("@IdPedido", IdPedido);
+                    comando.Parameters.AddWithValue("@Descripcion", pDescripcion);
+                    comando.Parameters.AddWithValue("@IdCliente", pIdCliente);
+                    comando.Parameters.AddWithValue("@HoraPedido", pHoraPedido);
+                    comando.Parameters.AddWithValue("@HoraEntrega", (object)pHoraEntrega ?? DBNull.Value);
+                    comando.Parameters.AddWithValue("@IdRepartidor", pIdRepartidor);
+                    comando.Parameters.AddWithValue("@IdEstadoPedido", pIdEstadoPedido);
+                    comando.Parameters.AddWithValue("@TotalPrecio", pTotalPrecio);
 
-                    int filasAfectadas = comando.ExecuteNonQuery();
+                    retorno = Convert.ToBoolean(comando.ExecuteNonQuery());
                     msg.exitoActualizacion("Tabla: Pedidos.");
-                    return filasAfectadas;
+                    return retorno;
                 }
                 catch (SqlException ex)
                 {
                     msg.errorActualizacion(ex.Message, "Tabla: Pedidos.");
-                    return 0;
+                    return retorno;
                 }
                 finally
                 {
@@ -96,8 +97,9 @@ namespace Mambo_s_Pizza.Modelo
             }
         }
 
-        public static int EliminarPedido(int idPedido)
+        public static bool EliminarPedido(int idPedido)
         {
+            bool retorno = false;
             mensajes msg = new mensajes();
             Conexion conexionBD = new Conexion();
 
@@ -109,19 +111,19 @@ namespace Mambo_s_Pizza.Modelo
 
                 try
                 {
-                    int filasAfectadas = comando.ExecuteNonQuery();
+                    retorno = Convert.ToBoolean(comando.ExecuteNonQuery());
 
-                    if (filasAfectadas > 0)
+                    if (retorno == true)
                     {
                         msg.exitoEliminacion("Tabla: Pedidos.");
                     }
 
-                    return filasAfectadas;
+                    return retorno;
                 }
                 catch (SqlException ex)
                 {
                     msg.errorEliminacion(ex.Message, "Tabla: Pedidos.");
-                    return 0;
+                    return retorno;
                 }
                 finally
                 {

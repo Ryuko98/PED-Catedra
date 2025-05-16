@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Mambo_s_Pizza.Modelo;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,13 +10,59 @@ namespace Mambo_s_Pizza.Controlador
 {
     class Controlador_Pedidos
     {
-        public int IdPedido { get; set; }
+        public static int IdPedido { get; set; }
         public string Descripcion { get; set; }
         public int IdCliente { get; set; }
         public DateTime HoraPedido { get; set; }
         public DateTime HoraEntrega { get; set; }
         public int IdRepartidor { get; set; }
         public int IdEstadoPedido { get; set; }
-        public decimal TotalPrecio { get; set; }
+        public double TotalPrecio { get; set; }
+
+        public Controlador_Pedidos(string pDescripcion, int pIdCliente, DateTime pHoraPedido, DateTime pHoraEntrega, int pIdRepartidor, int pIdEstadoPedido, double pTotalPrecio)
+        {
+            Descripcion = pDescripcion;
+            IdCliente = pIdCliente;
+            HoraPedido = pHoraPedido;
+            HoraEntrega = pHoraEntrega;
+            IdRepartidor = pIdRepartidor;
+            IdEstadoPedido = pIdEstadoPedido;
+            TotalPrecio = pTotalPrecio;
+        }
+
+        public static DataTable ObtenerPedidos()
+        {
+            return Modelo_Pedidos.MostrarPedidos();
+        }
+
+        public bool InsertarUsuarios()
+        {
+            return Modelo_Pedidos.AgregarPedido(Descripcion, IdCliente, HoraPedido, HoraEntrega, IdRepartidor, IdEstadoPedido, TotalPrecio);
+        }
+
+        public bool ActualizarUsuarios()
+        {
+            return Modelo_Pedidos.ActualizarPedido(IdPedido, Descripcion, IdCliente, HoraPedido, HoraEntrega, IdRepartidor, IdEstadoPedido, TotalPrecio);
+        }
+
+        public static bool EliminarUsuarios()
+        {
+            return Modelo_Pedidos.EliminarPedido(IdPedido);
+        }
+
+        public static DataTable ObtenerCliente()
+        {
+            return Modelo_Pedidos.MostrarClientes();
+        }
+
+        public static DataTable ObtenerRepartidor()
+        {
+            return Modelo_Pedidos.MostrarRepartidor();
+        }
+
+        public static DataTable ObtenerEstadoPedido()
+        {
+            return Modelo_Pedidos.MostrarEstados();
+        }
     }
 }
