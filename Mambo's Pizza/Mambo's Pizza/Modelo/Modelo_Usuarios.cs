@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Mambo_s_Pizza.Controlador;
 using System.Drawing;
+using System.Security.Cryptography;
 
 namespace Mambo_s_Pizza.Modelo
 {
@@ -65,8 +66,28 @@ namespace Mambo_s_Pizza.Modelo
             {
                 try
                 {
-                    SqlCommand query = new SqlCommand("UPDATE Usuarios SET Nombre = '"+pNombre+"', Apellido = '"+pApellido+"', FechaNacimiento = '"+pFechaNacimiento+"', Correo = '"+pCorreo+"', Usuario = '´"+pUsuario+"', Contraseña = '"+pContraseña+"', Rol = '"+pRol+"' WHERE IdUsuario = '"+pIdUsuario+"'",con);
-                    retorno = Convert.ToBoolean(query.ExecuteNonQuery());
+                    string query = @"UPDATE Usuarios 
+                   SET Nombre = @Nombre, 
+                       Apellido = @Apellido, 
+                       FechaNacimiento = @FechaNacimiento, 
+                       Correo = @Correo, 
+                       Usuario = @Usuario, 
+                       Contraseña = @Contraseña,
+                       Rol = @Rol
+                   WHERE idUsuario = @idUsuario";
+
+                    SqlCommand comando = new SqlCommand(query, con);
+                    comando.Parameters.AddWithValue("@idUsuario", pIdUsuario);
+                    comando.Parameters.AddWithValue("@Nombre", pNombre);
+                    comando.Parameters.AddWithValue("@Apellido", pApellido);
+                    comando.Parameters.AddWithValue("@FechaNacimiento", pFechaNacimiento);
+                    comando.Parameters.AddWithValue("@Correo", pCorreo);
+                    comando.Parameters.AddWithValue("@Usuario", pUsuario);
+                    comando.Parameters.AddWithValue("@Contraseña", pContraseña);
+                    comando.Parameters.AddWithValue("@Rol", pRol);
+
+                    retorno = Convert.ToBoolean(comando.ExecuteNonQuery());
+                    msg.exitoActualizacion("Tabla: Repartidores.");
                     return retorno; // Retorna el número de filas afectadas
                 }
                 catch (SqlException ex)

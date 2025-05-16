@@ -66,7 +66,6 @@ namespace Mambo_s_Pizza.Vista
                 usuario = txtUsuario.Text;
                 contraseña = txtContraseña.Text;
                 rol = txtRol.Text;
-                objUsuario = new Controlador_Usuarios(nombre,apellido,fechanacimiento,correo,usuario,contraseña,rol);
 
 
                 // Validación básica del rol
@@ -75,16 +74,21 @@ namespace Mambo_s_Pizza.Vista
                     msg.errorInsercion("El rol especificado no es válido", "Usuario");
                     return;
                 }
-
-                bool resultado = objUsuario.InsertarUsuarios();
-
-
-                if (resultado == true)
+                else
                 {
-                    msg.exitoInsercion("Usuario agregado correctamente");
-                    limpiarCampos();
-                    RefrescarPantalla();
-                }
+                    objUsuario = new Controlador_Usuarios(nombre, apellido, fechanacimiento, correo, usuario, contraseña, rol);
+                    bool resultado = objUsuario.InsertarUsuarios();
+
+                    if (resultado == true)
+                    {
+                        limpiarCampos();
+                        RefrescarPantalla();
+                    }
+                    else
+                    {
+                        msg.errorEliminacion("No se pudo agregar", "Tabla: Menus");
+                    }
+                }                  
             }
             catch (FormatException)
             {
@@ -103,7 +107,7 @@ namespace Mambo_s_Pizza.Vista
         private bool EsRolValido(string rol)
         {
             // Lista de roles permitidos - puedes personalizarla
-            string[] rolesPermitidos = { "Administrador", "Repartidor", "Cliente" };
+            string[] rolesPermitidos = { "admin", "cliente", "repartidor" };
             return rolesPermitidos.Contains(rol);
         }
 
@@ -145,11 +149,12 @@ namespace Mambo_s_Pizza.Vista
 
                 if (resultado == true)
                 {
-                    MessageBox.Show("Usuario Actualizado con exito","Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    limpiarCampos();
+                    RefrescarPantalla();
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo actualizar el usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    msg.errorEliminacion("No se pudo actualizar", "Tabla: Menus");
                 }
             }
             catch (FormatException)
@@ -195,12 +200,14 @@ namespace Mambo_s_Pizza.Vista
 
                     if (resultado == true)
                     {
-                        msg.exitoEliminacion("Usuario eliminado correctamente");
+                        limpiarCampos();
+                        RefrescarPantalla();
                     }
                     else
                     {
-                        msg.errorEliminacion("No se pudo eliminar el usuario", "Tabla: Usuarios");
+                        msg.errorEliminacion("No se pudo eliminar la opcion", "Tabla: Menus");
                     }
+
                 }
                 catch (FormatException)
                 {

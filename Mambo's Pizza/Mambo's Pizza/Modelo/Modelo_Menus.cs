@@ -119,7 +119,7 @@ namespace Mambo_s_Pizza.Modelo
             return idCliente;
         }
 
-        public static bool AgregarMenus(string mNombre, float mPrecio, string mDescripcion)
+        public static bool AgregarMenus(string mNombreMenu, float mPrecio, string mDescripcion)
 
         {
             bool retorno = false;
@@ -135,7 +135,7 @@ namespace Mambo_s_Pizza.Modelo
 
                     SqlCommand comando = new SqlCommand(query, con);
 
-                    comando.Parameters.AddWithValue("@Nombre", mNombre);
+                    comando.Parameters.AddWithValue("@Nombre", mNombreMenu);
                     comando.Parameters.AddWithValue("@Precio", mPrecio);
                     comando.Parameters.AddWithValue("@Descripcion", mDescripcion);
 
@@ -165,8 +165,20 @@ namespace Mambo_s_Pizza.Modelo
             {
                 try
                 {
-                    SqlCommand query = new SqlCommand("UPDATE Menus SET NombreMenu = '" + mNombreMenu + "', Precio = " + mPrecio + ", Descripcion = '" + mDescripcion + "' WHERE IdMenu = '" + mIdMenu + "'", con);
-                    retorno = Convert.ToBoolean(query.ExecuteNonQuery());
+                    string query = @"UPDATE Menus 
+                   SET NombreMenu = @Nombre, 
+                       Precio = @Precio, 
+                       Descripcion = @Descripcion
+                   WHERE IdMenu = @IdMenu";
+
+                    SqlCommand comando = new SqlCommand(query, con);
+                    comando.Parameters.AddWithValue("@IdMenu", mIdMenu);
+                    comando.Parameters.AddWithValue("@Nombre", mNombreMenu);
+                    comando.Parameters.AddWithValue("@Precio", mPrecio);
+                    comando.Parameters.AddWithValue("@Descripcion", mDescripcion);
+
+                    retorno = Convert.ToBoolean(comando.ExecuteNonQuery());
+                    msg.exitoActualizacion("Tabla: Repartidores.");
                     return retorno; // Retorna el número de filas afectadas
                 }
                 catch (SqlException ex)

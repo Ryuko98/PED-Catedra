@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Mambo_s_Pizza.Controlador;
+using System.Windows.Forms;
 
 namespace Mambo_s_Pizza.Modelo
 {
@@ -13,8 +14,9 @@ namespace Mambo_s_Pizza.Modelo
     {
         private static List<Controlador_Repartidores> articulosDeLimpieza = new List<Controlador_Repartidores>();
 
-        public static int AgregarRepartidor(Controlador_Repartidores repartidor)
+        public static bool AgregarRepartidor(string pDUI, float pCalificacion, int pTotalCalificacion, DateTime pFechaRegistro, int pIdUsuario, string pDisponibilidad)
         {
+            bool retorno = false;
             mensajes msg = new mensajes();
             Conexion conexionBD = new Conexion();
 
@@ -26,21 +28,21 @@ namespace Mambo_s_Pizza.Modelo
                                  "VALUES (@DUI, @CalificacionPromedio, @TotalCalificaciones, @FechaRegistro, @IdUsuario, @Disponibilidad)";
 
                     SqlCommand comando = new SqlCommand(query, con);
-                    comando.Parameters.AddWithValue("@DUI", repartidor.DUI);
-                    comando.Parameters.AddWithValue("@CalificacionPromedio", repartidor.CalificacionPromedio);
-                    comando.Parameters.AddWithValue("@TotalCalificaciones", repartidor.TotalCalificaciones);
-                    comando.Parameters.AddWithValue("@FechaRegistro", repartidor.FechaRegistro);
-                    comando.Parameters.AddWithValue("@IdUsuario", repartidor.IdUsuario);
-                    comando.Parameters.AddWithValue("@Disponibilidad", repartidor.Disponibilidad);
+                    comando.Parameters.AddWithValue("@DUI", pDUI);
+                    comando.Parameters.AddWithValue("@CalificacionPromedio", pCalificacion);
+                    comando.Parameters.AddWithValue("@TotalCalificaciones", pTotalCalificacion);
+                    comando.Parameters.AddWithValue("@FechaRegistro", pFechaRegistro);
+                    comando.Parameters.AddWithValue("@IdUsuario", pIdUsuario);
+                    comando.Parameters.AddWithValue("@Disponibilidad", pDisponibilidad);
 
-                    comando.ExecuteNonQuery();
+                    retorno = Convert.ToBoolean(comando.ExecuteNonQuery());
                     msg.exitoInsercion("Tabla: Repartidores. ");
-                    return 1; // Retorna 1 si se agrega correctamente
+                    return retorno; // Retorna 1 si se agrega correctamente
                 }
                 catch (SqlException ex)
                 {
                     msg.errorInsercion(ex.Message, "Tabla: Repartidores. ");
-                    return 0; // Retorna 0 si hay un error
+                    return retorno; // Retorna 0 si hay un error
                 }
                 finally
                 {
@@ -49,8 +51,9 @@ namespace Mambo_s_Pizza.Modelo
             }
         }
 
-        public static int ActualizarRepartidor(Controlador_Repartidores repartidor)
+        public static bool ActualizarRepartidor(int IdRepartidor, string pDUI, float pCalificacion, int pTotalCalificacion, DateTime pFechaRegistro, int pIdUsuario, string pDisponibilidad)
         {
+            bool retorno = false;
             mensajes msg = new mensajes();
             Conexion conexionBD = new Conexion();
 
@@ -68,22 +71,22 @@ namespace Mambo_s_Pizza.Modelo
                    WHERE IdRepartidor = @IdRepartidor";
 
                     SqlCommand comando = new SqlCommand(query, con);
-                    comando.Parameters.AddWithValue("@IdRepartidor", repartidor.IdRepartidor);
-                    comando.Parameters.AddWithValue("@DUI", repartidor.DUI);
-                    comando.Parameters.AddWithValue("@CalificacionPromedio", repartidor.CalificacionPromedio);
-                    comando.Parameters.AddWithValue("@TotalCalificaciones", repartidor.TotalCalificaciones);
-                    comando.Parameters.AddWithValue("@FechaRegistro", repartidor.FechaRegistro);
-                    comando.Parameters.AddWithValue("@IdUsuario", repartidor.IdUsuario);
-                    comando.Parameters.AddWithValue("@Disponibilidad", repartidor.Disponibilidad);
+                    comando.Parameters.AddWithValue("@IdRepartidor", IdRepartidor);
+                    comando.Parameters.AddWithValue("@DUI", pDUI);
+                    comando.Parameters.AddWithValue("@CalificacionPromedio", pCalificacion);
+                    comando.Parameters.AddWithValue("@TotalCalificaciones", pTotalCalificacion);
+                    comando.Parameters.AddWithValue("@FechaRegistro", pFechaRegistro);
+                    comando.Parameters.AddWithValue("@IdUsuario", pIdUsuario);
+                    comando.Parameters.AddWithValue("@Disponibilidad", pDisponibilidad);
 
-                    int filasAfectadas = comando.ExecuteNonQuery();
+                    retorno = Convert.ToBoolean(comando.ExecuteNonQuery());
                     msg.exitoActualizacion("Tabla: Repartidores.");
-                    return filasAfectadas; // Retorna el número de filas afectadas
+                    return retorno; // Retorna el número de filas afectadas
                 }
                 catch (SqlException ex)
                 {
                     msg.errorActualizacion(ex.Message, "Tabla: Repartidores.");
-                    return 0; // Retorna 0 si hay un error
+                    return retorno; // Retorna 0 si hay un error
                 }
                 finally
                 {
@@ -91,8 +94,9 @@ namespace Mambo_s_Pizza.Modelo
                 }
             }
         }
-        public static int EliminarRepartidor(int idRepartidor)
+        public static bool EliminarRepartidor(int idRepartidor)
         {
+            bool retorno = false;
             mensajes msg = new mensajes();
             Conexion conexionBD = new Conexion();
 
@@ -104,19 +108,19 @@ namespace Mambo_s_Pizza.Modelo
 
                 try
                 {
-                    int filasAfectadas = comando.ExecuteNonQuery();
+                    retorno = Convert.ToBoolean(comando.ExecuteNonQuery());
 
-                    if (filasAfectadas > 0)
+                    if (retorno == true)
                     {
                         msg.exitoEliminacion("Tabla: Repartidores.");
                     }
 
-                    return filasAfectadas; // Retorna el número de filas afectadas
+                    return retorno; // Retorna el número de filas afectadas
                 }
                 catch (SqlException ex)
                 {
                     msg.errorEliminacion(ex.Message, "Tabla: Repartidores.");
-                    return 0; // Retorna 0 si hay un error
+                    return retorno; // Retorna 0 si hay un error
                 }
                 finally
                 {

@@ -72,9 +72,12 @@ namespace Mambo_s_Pizza.Vista
 
                 if (result)
                 {
-                    msg.exitoInsercion("Opcion agregada correctamente");
                     Limpiar();
                     RefrescarPantalla();
+                }
+                else
+                {
+                    msg.errorEliminacion("No se pudo agregar", "Tabla: Menus");
                 }
             }
             catch (FormatException)
@@ -140,11 +143,12 @@ namespace Mambo_s_Pizza.Vista
 
                 if (resultado == true)
                 {
-                    MessageBox.Show("Opcion Actualizada con exito", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Limpiar();
+                    RefrescarPantalla();
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo actualizar la opcion", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    msg.errorEliminacion("No se actualizar", "Tabla: Menus");
                 }
             }
             catch (FormatException)
@@ -190,7 +194,8 @@ namespace Mambo_s_Pizza.Vista
 
                     if (resultado == true)
                     {
-                        msg.exitoEliminacion("Opcion eliminada correctamente");
+                        Limpiar();
+                        RefrescarPantalla();
                     }
                     else
                     {

@@ -17,6 +17,7 @@ namespace Mambo_s_Pizza.Vista
     public partial class frmRepartidores : Form
     {
         mensajes msg = new mensajes();
+        Controlador_Repartidores objRepartidor;
         public frmRepartidores()
         {
             InitializeComponent();
@@ -24,7 +25,7 @@ namespace Mambo_s_Pizza.Vista
 
         public void RefrescarPantalla()
         {
-            dgvDatos.DataSource = Modelo_Repartidores.MostrarRepartidores();
+            dgvDatos.DataSource = Controlador_Repartidores.ObtenerRepartidores();
         }
 
         void limpiarCampos()
@@ -41,7 +42,7 @@ namespace Mambo_s_Pizza.Vista
             RefrescarPantalla();
             txtID.Enabled = false;
 
-            cmbUsuario.DataSource = Modelo_Repartidores.MostrarUsuarios();
+            cmbUsuario.DataSource = Controlador_Repartidores.ObtenerUsuarios();
             cmbUsuario.DisplayMember = "Nombre";  // El nombre que se mostrará
             cmbUsuario.ValueMember = "IdUsuario";
 
@@ -59,10 +60,12 @@ namespace Mambo_s_Pizza.Vista
 
             try
             {
-                Controlador_Repartidores nuevoRepartidor = new Controlador_Repartidores();
-
+                string dui, disponibilidad;
+                int idUsuario, totalcalificaion;
+                float calificacionPromedio;
+                DateTime fechaRegistro;
                 // Asignar valores desde los controles
-                nuevoRepartidor.DUI = txtDUI.Text;
+                dui = txtDUI.Text;
 
                 // Convertir calificaciones a números
                 if (!float.TryParse(txtCalificacionPromedio.Text, out float calificacion))
@@ -70,27 +73,30 @@ namespace Mambo_s_Pizza.Vista
                     msg.errorInsercion("La calificación debe ser un número válido", "Repartidor");
                     return;
                 }
-                nuevoRepartidor.CalificacionPromedio = calificacion;
+                calificacionPromedio = calificacion;
 
                 if (!int.TryParse(txtTotalReseñas.Text, out int totalReseñas))
                 {
                     msg.errorInsercion("El total de reseñas debe ser un número entero", "Repartidor");
                     return;
                 }
-                nuevoRepartidor.TotalCalificaciones = totalReseñas;
+                totalcalificaion = totalReseñas;
 
-                nuevoRepartidor.FechaRegistro = dtpRegistro.Value;
-                nuevoRepartidor.IdUsuario = (int)cmbUsuario.SelectedValue; // Asume que el combo tiene ValueMember=IdUsuario
-                nuevoRepartidor.Disponibilidad = txtDisponibilidad.Text;
+                fechaRegistro = dtpRegistro.Value;
+                idUsuario = (int)cmbUsuario.SelectedValue; // Asume que el combo tiene ValueMember=IdUsuario
+                disponibilidad = txtDisponibilidad.Text;
 
                 // Insertar en la base de datos
-                int resultado = Modelo_Repartidores.AgregarRepartidor(nuevoRepartidor);
-
-                if (resultado > 0)
+                objRepartidor = new Controlador_Repartidores(dui, calificacionPromedio, totalcalificaion,fechaRegistro, idUsuario, disponibilidad);
+                bool respuesta = objRepartidor.InsertarRepartidor();
+                if (respuesta == true)
                 {
-                    msg.exitoInsercion("Repartidor agregado correctamente");
                     limpiarCampos();
                     RefrescarPantalla();
+                }
+                else
+                {
+                    msg.errorEliminacion("No se pudo agregar", "Tabla: Menus");
                 }
             }
             catch (FormatException)
@@ -127,41 +133,45 @@ namespace Mambo_s_Pizza.Vista
 
             try
             {
-                Controlador_Repartidores repartidorActualizado = new Controlador_Repartidores();
+                string dui, disponibilidad;
+                int idUsuario, totalcalificaion;
+                float calificacionPromedio;
+                DateTime fechaRegistro;
 
+                Controlador_Repartidores.IdRepartidor = int.Parse(txtID.Text);
                 // Asignar valores desde los controles
-                repartidorActualizado.IdRepartidor = Convert.ToInt32(txtID.Text);
-                repartidorActualizado.DUI = txtDUI.Text;
+                dui = txtDUI.Text;
 
-                // Conversión segura de valores numéricos
+                // Convertir calificaciones a números
                 if (!float.TryParse(txtCalificacionPromedio.Text, out float calificacion))
                 {
-                    msg.errorActualizacion("La calificación debe ser un número válido", "Repartidor");
+                    msg.errorInsercion("La calificación debe ser un número válido", "Repartidor");
                     return;
                 }
-                repartidorActualizado.CalificacionPromedio = calificacion;
+                calificacionPromedio = calificacion;
 
                 if (!int.TryParse(txtTotalReseñas.Text, out int totalReseñas))
                 {
-                    msg.errorActualizacion("El total de reseñas debe ser un número entero", "Repartidor");
+                    msg.errorInsercion("El total de reseñas debe ser un número entero", "Repartidor");
                     return;
                 }
-                repartidorActualizado.TotalCalificaciones = totalReseñas;
+                totalcalificaion = totalReseñas;
 
-                repartidorActualizado.FechaRegistro = dtpRegistro.Value;
-                repartidorActualizado.IdUsuario = (int)cmbUsuario.SelectedValue;
-                repartidorActualizado.Disponibilidad = txtDisponibilidad.Text;
+                fechaRegistro = dtpRegistro.Value;
+                idUsuario = (int)cmbUsuario.SelectedValue; // Asume que el combo tiene ValueMember=IdUsuario
+                disponibilidad = txtDisponibilidad.Text;
 
                 // Llamar al modelo para actualizar
-                int resultado = Modelo_Repartidores.ActualizarRepartidor(repartidorActualizado);
-
-                if (resultado > 0)
+                objRepartidor = new Controlador_Repartidores(dui, calificacionPromedio, totalcalificaion, fechaRegistro, idUsuario, disponibilidad);
+                bool resultado = objRepartidor.ActualizarRepartidor();
+                if (resultado == true)
                 {
-                    msg.exitoActualizacion("Repartidor actualizado correctamente");
+                    limpiarCampos();
+                    RefrescarPantalla();
                 }
                 else
                 {
-                    msg.errorActualizacion("No se pudo actualizar el repartidor", "Tabla: Repartidores");
+                    msg.errorEliminacion("No se pudo actualizar", "Tabla: Menus");
                 }
             }
             catch (FormatException)
@@ -206,19 +216,21 @@ namespace Mambo_s_Pizza.Vista
                 try
                 {
                     // Obtener el ID del repartidor seleccionado
-                    int id = Convert.ToInt32(dgvDatos.CurrentRow.Cells["IdRepartidor"].Value);
+                    Controlador_Repartidores.IdRepartidor = Convert.ToInt32(txtID.Text);
 
                     // Llamar al controlador para eliminar
-                    int resultado = Modelo_Repartidores.EliminarRepartidor(id);
+                    bool resultado = Controlador_Repartidores.EliminarRepartidor();
 
-                    if (resultado > 0)
+                    if (resultado == true)
                     {
-                        msg.exitoEliminacion("Repartidor eliminado correctamente");
+                        limpiarCampos();
+                        RefrescarPantalla();
                     }
                     else
                     {
-                        msg.errorEliminacion("No se pudo eliminar el repartidor", "Tabla: Repartidores");
+                        msg.errorEliminacion("No se pudo eliminar", "Tabla: Menus");
                     }
+
                 }
                 catch (FormatException)
                 {
