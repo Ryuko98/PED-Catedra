@@ -40,8 +40,12 @@ namespace Mambo_s_Pizza.Vista
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("¿Cerrar el sistema?", "Cerrar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                Application.Exit();
+            if (MessageBox.Show("¿Cerrar su sesión?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                frmInicioDeSesion frmLogin = new frmInicioDeSesion();
+                frmLogin.Show();
+                this.Hide();
+            }
         }
 
         private void btnMinimizar_Click(object sender, EventArgs e)
