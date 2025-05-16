@@ -23,7 +23,7 @@ namespace Mambo_s_Pizza.Vista
 
         public void RefrescarPantalla()
         {
-            dgvDatos.DataSource = Controlador_Usuarios.MostrarUsuarios();
+            dgvDatos.DataSource = Modelo_Usuarios.MostrarUsuarios();
         }
 
         void limpiarCampos()
@@ -56,7 +56,7 @@ namespace Mambo_s_Pizza.Vista
 
             try
             {
-                Modelo_Usuarios nuevoUsuario = new Modelo_Usuarios();
+                Controlador_Usuarios nuevoUsuario = new Controlador_Usuarios();
                 nuevoUsuario.Nombre = txtNombre.Text;
                 nuevoUsuario.Apellido = txtApellido.Text;
                 nuevoUsuario.FechaNacimiento = dtpExpiracion.Value;
@@ -72,7 +72,7 @@ namespace Mambo_s_Pizza.Vista
                     return;
                 }
 
-                int resultado = Controlador_Usuarios.AgregarUsuarios(nuevoUsuario);
+                int resultado = Modelo_Usuarios.AgregarUsuarios(nuevoUsuario);
 
                 if (resultado > 0)
                 {
@@ -121,7 +121,7 @@ namespace Mambo_s_Pizza.Vista
 
             try
             {
-                Modelo_Usuarios usuarioActualizado = new Modelo_Usuarios();
+                Controlador_Usuarios usuarioActualizado = new Controlador_Usuarios();
                 usuarioActualizado.IdUsuario = Convert.ToInt32(txtID.Text);
                 usuarioActualizado.Nombre = txtNombre.Text;
                 usuarioActualizado.Apellido = txtApellido.Text;
@@ -132,7 +132,7 @@ namespace Mambo_s_Pizza.Vista
                 usuarioActualizado.Rol = txtRol.Text;
 
                 // Llamar al controlador para actualizar
-                int resultado = Controlador_Usuarios.ActualizarUsuario(usuarioActualizado);
+                int resultado = Modelo_Usuarios.ActualizarUsuario(usuarioActualizado);
 
                 if (resultado > 0)
                 {
@@ -180,7 +180,7 @@ namespace Mambo_s_Pizza.Vista
                     int id = Convert.ToInt32(dgvDatos.CurrentRow.Cells["IdUsuario"].Value);
 
                     // Llamar al controlador para eliminar
-                    int resultado = Controlador_Usuarios.EliminarUsuario(id);
+                    int resultado = Modelo_Usuarios.EliminarUsuario(id);
 
                     if (resultado > 0)
                     {

@@ -1,4 +1,5 @@
 ﻿using Mambo_s_Pizza.Controlador;
+using Mambo_s_Pizza.Modelo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +22,7 @@ namespace Mambo_s_Pizza.Vista
 
         public void RefrescarPantalla()
         {
-            dgvDatos.DataSource = Controlador_Repartidores.MostrarRepartidores();
+            dgvDatos.DataSource = Modelo_Repartidores.MostrarRepartidores();
         }
 
         void limpiarCampos()
