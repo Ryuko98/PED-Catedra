@@ -20,6 +20,9 @@ namespace Mambo_s_Pizza.Controlador
             return Modelo_Menus.MostrarMenus();
         }
 
-
+        public static DataTable ObtenerHistorialMenus()
+        {
+            return Modelo_Menus.MostrarHistorialMenus(Controlador_InicioSesion.IdUsuario);
+        }
     }
 }

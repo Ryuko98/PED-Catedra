@@ -19,15 +19,8 @@ namespace Mambo_s_Pizza.Vista
         public frmVistaClientes()
         {
             InitializeComponent();
-            //dgvOfertas.Rows.Add("Orange Chicken", "9.99");
-            //dgvOfertas.Rows.Add("Pizza Mambo's Style", "9999.99");
-            //dgvOfertas.Rows.Add("Chop Suey", "4.99");
-
             CargarOfertas();
-
-
-
-            dgvVolverPedir.Rows.Add("Pizza Mambo's Style EXTRA Spicy","19.99");
+            CargarHistorialPedidos();
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -96,6 +89,13 @@ namespace Mambo_s_Pizza.Vista
             dgvOfertas.DataSource = dt;
         }
 
-
+        public void CargarHistorialPedidos()
+        {
+            dgvVolverPedir.DataSource = null;
+            dgvVolverPedir.Rows.Clear();
+            dgvVolverPedir.Columns.Clear();
+            DataTable dt = Controlador_Menus.ObtenerHistorialMenus();
+            dgvVolverPedir.DataSource = dt;
+        }
     }
 }
