@@ -156,35 +156,33 @@ namespace Mambo_s_Pizza
                 Controlador_InicioSesion.IdUsuario = Convert.ToInt16(datos[0]);
                 Controlador_InicioSesion.Nombre = datos[1];
                 Controlador_InicioSesion.Rol = datos[2];
-                frmPrincipal frm = new frmPrincipal(Controlador_InicioSesion.IdUsuario,Controlador_InicioSesion.Nombre,Controlador_InicioSesion.Rol);
-                frm.Show();
-                this.Hide();
+                switch (Controlador_InicioSesion.Rol)
+                {
+                    case "admin":
+
+                        Vista.frmPrincipal frmAdmin = new Vista.frmPrincipal();
+                        frmAdmin.Show();
+                        this.Hide();
+                        break;
+                    case "cliente":
+                        Vista.frmVistaClientes frmClientes = new Vista.frmVistaClientes();
+                        frmClientes.Show();
+                        this.Hide();
+                        break;
+                    case "repartidor":
+                        Vista.frmPerfilRepartidor frmRepartidor = new Vista.frmPerfilRepartidor();
+                        frmRepartidor.Show();
+                        this.Hide();
+                        break;
+                    default:
+                        MessageBox.Show("Verifique nuevamente las credenciales ingresadas", "Credenciales incorrectas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtUsuario.Clear();
+                        txtClave.Clear();
+                        break;
+                }
             }
 
-            //switch (usuario)
-            //    {
-            //        case "admin":
-
-            //            Vista.frmPrincipal frmAdmin = new Vista.frmPrincipal();
-            //            frmAdmin.Show();
-            //            this.Hide();
-            //            break;
-            //        case "cliente":
-            //            Vista.frmVistaClientes frmClientes = new Vista.frmVistaClientes();
-            //            frmClientes.Show();
-            //            this.Hide();
-            //            break;
-            //        case "repartidor":
-            //            Vista.frmPerfilRepartidor frmRepartidor = new Vista.frmPerfilRepartidor();
-            //            frmRepartidor.Show();
-            //            this.Hide();
-            //            break;
-            //        default:
-            //            MessageBox.Show("Verifique nuevamente las credenciales ingresadas", "Credenciales incorrectas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //            txtUsuario.Clear();
-            //            txtClave.Clear();
-            //            break;
-            //    }
+            
         }
 
         private void btnRecuperarClave_MouseEnter(object sender, EventArgs e)
