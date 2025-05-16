@@ -203,22 +203,30 @@ namespace Mambo_s_Pizza.Modelo
                     SqlCommand comando = new SqlCommand(query, con);
                     comando.Parameters.Add(new SqlParameter("@Usuario",usuario));
                     SqlDataReader reader = comando.ExecuteReader();
+
+                    if (!reader.HasRows)
+                    {
+                        Console.WriteLine("No se encontraron resultados para el usuario: " + usuario);
+                        return lista;
+                    }
+
                     while (reader.Read())
                     {
-                        lista.Add(reader.GetString(0));
-                        lista.Add(reader.GetString(1));
-                        lista.Add(reader.GetString(2));
-                        a = lista[0];
-                        b = lista[1];
-                        c = lista[2];
+                        lista.Add(reader["IdUsuario"].ToString());
+                        lista.Add(reader["Nombre"].ToString());
+                        lista.Add(reader["Rol"].ToString());
                     }
-                    return lista;
-                }
-                catch (Exception)
-                {
 
-                    return lista = null;
+                    return lista;
+
                 }
+
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                    return null;
+                }
+
             }
 
         }

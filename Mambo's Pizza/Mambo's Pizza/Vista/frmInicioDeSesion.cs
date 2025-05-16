@@ -152,6 +152,7 @@ namespace Mambo_s_Pizza
             {
                 List<string> datos = new List<string>();
                 datos = Controlador_InicioSesion.DatosUsuario();
+                //MessageBox.Show("Papu con id: "+datos[0] + ", papu con nombre: " + datos[1]);
                 Controlador_InicioSesion.IdUsuario = Convert.ToInt16(datos[0]);
                 Controlador_InicioSesion.Nombre = datos[1];
                 Controlador_InicioSesion.Rol = datos[2];
