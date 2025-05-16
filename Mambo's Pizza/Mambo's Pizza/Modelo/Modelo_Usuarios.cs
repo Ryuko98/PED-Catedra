@@ -6,15 +6,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Mambo_s_Pizza.Controlador;
+<<<<<<< Updated upstream
+=======
+using System.Drawing;
+>>>>>>> Stashed changes
 
 namespace Mambo_s_Pizza.Modelo
 {
     class Modelo_Usuarios
     {
+<<<<<<< Updated upstream
 
         private static List<Controlador_Usuarios> articulosDeLimpieza = new List<Controlador_Usuarios>();
 
         public static int AgregarUsuarios(Controlador_Usuarios usuario)
+=======
+        private static List<Modelo_Usuarios> articulosDeLimpieza = new List<Modelo_Usuarios>();
+
+        public static int AgregarUsuarios(string Nombre, string Apellido, DateTime FechaNacimiento, string Correo, string Usuario, string Contraseña, string Rol)
+>>>>>>> Stashed changes
         {
             mensajes msg = new mensajes();
             Conexion conexionBD = new Conexion();
@@ -27,6 +37,7 @@ namespace Mambo_s_Pizza.Modelo
                                  "VALUES (@Nombre, @Apellido, @FechaNacimiento, @Correo, @Usuario, @Contraseña, @Rol)";
 
                     SqlCommand comando = new SqlCommand(query, con);
+<<<<<<< Updated upstream
                     comando.Parameters.AddWithValue("@Nombre", usuario.Nombre);
                     comando.Parameters.AddWithValue("@Apellido", usuario.Apellido);
                     comando.Parameters.AddWithValue("@FechaNacimiento", usuario.FechaNacimiento);
@@ -34,6 +45,15 @@ namespace Mambo_s_Pizza.Modelo
                     comando.Parameters.AddWithValue("@Usuario", usuario.Usuario);
                     comando.Parameters.AddWithValue("@Contraseña", usuario.Contraseña);
                     comando.Parameters.AddWithValue("@Rol", usuario.Rol);
+=======
+                    comando.Parameters.AddWithValue("@Nombre", Nombre);
+                    comando.Parameters.AddWithValue("@Apellido", Apellido);
+                    comando.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento);
+                    comando.Parameters.AddWithValue("@Correo", Correo);
+                    comando.Parameters.AddWithValue("@Usuario", Usuario);
+                    comando.Parameters.AddWithValue("@Contraseña", Contraseña);
+                    comando.Parameters.AddWithValue("@Rol", Rol);
+>>>>>>> Stashed changes
 
                     comando.ExecuteNonQuery();
                     msg.exitoInsercion("Tabla: Usuarios. ");
@@ -51,7 +71,11 @@ namespace Mambo_s_Pizza.Modelo
             }
         }
 
+<<<<<<< Updated upstream
         public static int ActualizarUsuario(Controlador_Usuarios usuario)
+=======
+        public static int ActualizarUsuario(string Nombre, string Apellido, DateTime FechaNacimiento, string Correo, string Usuario, string Contraseña, string Rol, int IdUsuario)
+>>>>>>> Stashed changes
         {
             mensajes msg = new mensajes();
             Conexion conexionBD = new Conexion();
@@ -71,6 +95,7 @@ namespace Mambo_s_Pizza.Modelo
                            WHERE IdUsuario = @IdUsuario";
 
                     SqlCommand comando = new SqlCommand(query, con);
+<<<<<<< Updated upstream
                     comando.Parameters.AddWithValue("@IdUsuario", usuario.IdUsuario);
                     comando.Parameters.AddWithValue("@Nombre", usuario.Nombre);
                     comando.Parameters.AddWithValue("@Apellido", usuario.Apellido);
@@ -79,6 +104,16 @@ namespace Mambo_s_Pizza.Modelo
                     comando.Parameters.AddWithValue("@Usuario", usuario.Usuario);
                     comando.Parameters.AddWithValue("@Contraseña", usuario.Contraseña);
                     comando.Parameters.AddWithValue("@Rol", usuario.Rol);
+=======
+                    comando.Parameters.AddWithValue("@IdUsuario", IdUsuario);
+                    comando.Parameters.AddWithValue("@Nombre", Nombre);
+                    comando.Parameters.AddWithValue("@Apellido", Apellido);
+                    comando.Parameters.AddWithValue("@FechaNacimiento", FechaNacimiento);
+                    comando.Parameters.AddWithValue("@Correo", Correo);
+                    comando.Parameters.AddWithValue("@Usuario", Usuario);
+                    comando.Parameters.AddWithValue("@Contraseña", Contraseña);
+                    comando.Parameters.AddWithValue("@Rol", Rol);
+>>>>>>> Stashed changes
 
                     int filasAfectadas = comando.ExecuteNonQuery();
                     msg.exitoActualizacion("Tabla: Usuarios.");
@@ -173,5 +208,62 @@ namespace Mambo_s_Pizza.Modelo
             return dt;
         }
 
+<<<<<<< Updated upstream
+=======
+        public static int IniciarSesion(string Usuario, string Contraseña)
+        {
+            int retorno = 0;
+            mensajes msg = new mensajes();
+            Conexion conexionBD = new Conexion();
+            Controlador_Usuarios controlador_Usuarios = new Controlador_Usuarios();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                string query = "SELECT IdUsuario, Rol FROM Usuarios WHERE Usuario = @Usuario AND Contraseña = @Contraseña";
+                SqlCommand comando = new SqlCommand(query, con);
+                comando.Parameters.AddWithValue("@Usuario", Usuario);
+                comando.Parameters.AddWithValue("@Contraseña", Contraseña);
+
+                try
+                {
+                    using (SqlDataReader reader = comando.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                           controlador_Usuarios.IdUsuario = Convert.ToInt32( reader["IdUsuario"]);
+                           controlador_Usuarios.Rol =  reader["Rol"].ToString();
+                        }
+                        msg.exitoInicioSesion();
+                        return 1;
+
+                    }
+                   
+
+                }
+                catch (SqlException ex)
+                {
+                    msg.errorInicioSesion(ex.Message);
+                    return 0; // Retorna 0 si hay un error
+                }
+                finally
+                {
+                    conexionBD.CerrarConexion();
+                }
+            }
+        }
+
+        //public static int GuardarUsuario(int Id)
+        //{
+        //    mensajes msg = new mensajes();
+        //    Conexion conexionBD = new Conexion();
+        //    Controlador_Usuarios controlador_Usuarios = new Controlador_Usuarios();
+
+        //    using (SqlConnection con = conexionBD.AbrirConexion())
+        //    {
+        //        string query = "SELECT Rol FROM Usuarios WHERE IdUsuario = @IdUsuario";
+        //        SqlCommand comando = new SqlCommand(query, con);
+        //    }
+        //}
+>>>>>>> Stashed changes
     }
 }

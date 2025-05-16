@@ -72,14 +72,18 @@ namespace Mambo_s_Pizza.Vista
                     return;
                 }
 
+<<<<<<< Updated upstream
                 int resultado = Modelo_Usuarios.AgregarUsuarios(nuevoUsuario);
+=======
+                //int resultado = Controlador_Usuarios.InsertarUsuarios(nuevoUsuario);
+>>>>>>> Stashed changes
 
-                if (resultado > 0)
-                {
-                    msg.exitoInsercion("Usuario agregado correctamente");
-                    limpiarCampos();
-                    RefrescarPantalla();
-                }
+                //if (resultado > 0)
+                //{
+                //    msg.exitoInsercion("Usuario agregado correctamente");
+                //    limpiarCampos();
+                //    RefrescarPantalla();
+                //}
             }
             catch (FormatException)
             {
@@ -122,7 +126,10 @@ namespace Mambo_s_Pizza.Vista
             try
             {
                 Controlador_Usuarios usuarioActualizado = new Controlador_Usuarios();
+<<<<<<< Updated upstream
                 usuarioActualizado.IdUsuario = Convert.ToInt32(txtID.Text);
+=======
+>>>>>>> Stashed changes
                 usuarioActualizado.Nombre = txtNombre.Text;
                 usuarioActualizado.Apellido = txtApellido.Text;
                 usuarioActualizado.FechaNacimiento = dtpExpiracion.Value;
@@ -130,18 +137,24 @@ namespace Mambo_s_Pizza.Vista
                 usuarioActualizado.Usuario = txtUsuario.Text;
                 usuarioActualizado.Contraseña = txtContraseña.Text;
                 usuarioActualizado.Rol = txtRol.Text;
+                usuarioActualizado.IdUsuario = Convert.ToInt32(txtID.Text);
+
 
                 // Llamar al controlador para actualizar
+<<<<<<< Updated upstream
                 int resultado = Modelo_Usuarios.ActualizarUsuario(usuarioActualizado);
+=======
+                //int resultado = Controlador_Usuarios.ActualizarUsuarios(usuarioActualizado);
+>>>>>>> Stashed changes
 
-                if (resultado > 0)
-                {
-                    msg.exitoActualizacion("Usuario actualizado correctamente");
-                }
-                else
-                {
-                    msg.errorActualizacion("No se pudo actualizar el usuario", "Tabla: Usuarios");
-                }
+                //if (resultado > 0)
+                //{
+                //    msg.exitoActualizacion("Usuario actualizado correctamente");
+                //}
+                //else
+                //{
+                //    msg.errorActualizacion("No se pudo actualizar el usuario", "Tabla: Usuarios");
+                //}
             }
             catch (FormatException)
             {
@@ -180,7 +193,11 @@ namespace Mambo_s_Pizza.Vista
                     int id = Convert.ToInt32(dgvDatos.CurrentRow.Cells["IdUsuario"].Value);
 
                     // Llamar al controlador para eliminar
+<<<<<<< Updated upstream
                     int resultado = Modelo_Usuarios.EliminarUsuario(id);
+=======
+                    int resultado = Controlador_Usuarios.EliminarUsuarios(id);
+>>>>>>> Stashed changes
 
                     if (resultado > 0)
                     {
