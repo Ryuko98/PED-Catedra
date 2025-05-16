@@ -28,5 +28,14 @@ namespace Mambo_s_Pizza.Controlador
         {
             return Modelo_Clientes.MostrarClientes();
         }
+
+        public static List<KeyValuePair<int, string>> CargarUsuariosClientes()
+        {
+            return Modelo_Clientes.CargarUsuariosClientes();
+        }
+        public static List<KeyValuePair<int, string>> CargarMembresiaCliente()
+        {
+            return Modelo_Clientes.CargarMembresiaCliente();
+        }
     }
 }

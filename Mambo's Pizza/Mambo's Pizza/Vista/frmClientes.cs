@@ -18,6 +18,10 @@ namespace Mambo_s_Pizza.Vista
         mensajes msg = new mensajes();
         public Controlador_Clientes objClientes;
 
+        List<KeyValuePair<int, string>> listaUsuarios = Controlador_Clientes.CargarUsuariosClientes();
+        List<KeyValuePair<int, string>> listaMembresias = Controlador_Clientes.CargarMembresiaCliente();
+
+
         public frmClientes()
         {
             InitializeComponent();
@@ -41,9 +45,18 @@ namespace Mambo_s_Pizza.Vista
             txtID.Enabled = false;
 
             dgvDatos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            // Configurar el ComboBox de usuarios
+            cmbUsuario.DataSource = listaUsuarios;
+            cmbUsuario.DisplayMember = "Value";  // Muestra el nombre completo
+            cmbUsuario.ValueMember = "Key";      // Valor oculto (IdUsuario)
+
+            // Configurar el ComboBox de membresias
+            cmbMembresia.DataSource = listaMembresias;
+            cmbMembresia.DisplayMember = "Value";  // Muestra el nombre completo
+            cmbMembresia.ValueMember = "Key";      // Valor oculto (IdMembresia)
         }
 
-        private void btnInsertar_Click(object sender, EventArgs e)
+            private void btnInsertar_Click(object sender, EventArgs e)
         {
 
         }
