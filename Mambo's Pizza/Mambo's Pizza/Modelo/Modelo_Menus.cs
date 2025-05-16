@@ -15,7 +15,7 @@ namespace Mambo_s_Pizza.Modelo
             DataTable dt = new DataTable();
 
             // Columnas basadas en tu modelo de usuarios
-            //dt.Columns.Add("IdMenu");
+            dt.Columns.Add("IdMenu");
             dt.Columns.Add("Nombre de Menu");
             dt.Columns.Add("Precio");
             dt.Columns.Add("Descripción");
@@ -33,6 +33,7 @@ namespace Mambo_s_Pizza.Modelo
                         while (reader.Read())
                         {
                             dt.Rows.Add(
+                                reader["IdMenu"],
                                 reader["NombreMenu"],
                                 reader["Precio"],
                                 reader["Descripcion"]
@@ -116,6 +117,96 @@ namespace Mambo_s_Pizza.Modelo
                 }
             }
             return idCliente;
+        }
+
+        public static bool AgregarMenus(string mNombre, float mPrecio, string mDescripcion)
+
+        {
+            bool retorno = false;
+            mensajes msg = new mensajes();
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                try
+                {
+                    string query = "INSERT INTO Menus (NombreMenu, Precio, Descripcion) " +
+                                 "VALUES (@Nombre, @Precio, @Descripcion)";
+
+                    SqlCommand comando = new SqlCommand(query, con);
+
+                    comando.Parameters.AddWithValue("@Nombre", mNombre);
+                    comando.Parameters.AddWithValue("@Precio", mPrecio);
+                    comando.Parameters.AddWithValue("@Descripcion", mDescripcion);
+
+                    retorno = Convert.ToBoolean(comando.ExecuteNonQuery());
+                    msg.exitoInsercion("Tabla: Menus. ");
+                    return retorno; // Retorna 1 si se agrega correctamente
+                }
+                catch (SqlException ex)
+                {
+                    msg.errorInsercion(ex.Message, "Tabla: Menus. ");
+                    return retorno; // Retorna 0 si hay un error
+                }
+                finally
+                {
+                    conexionBD.CerrarConexion();
+                }
+            }
+        }
+
+        public static bool ActualizarMenu(int mIdMenu, string mNombreMenu, float mPrecio, string mDescripcion)
+        {
+            bool retorno = false;
+            mensajes msg = new mensajes();
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                try
+                {
+                    SqlCommand query = new SqlCommand("UPDATE Menus SET NombreMenu = '" + mNombreMenu + "', Precio = " + mPrecio + ", Descripcion = '" + mDescripcion + "' WHERE IdMenu = '" + mIdMenu + "'", con);
+                    retorno = Convert.ToBoolean(query.ExecuteNonQuery());
+                    return retorno; // Retorna el número de filas afectadas
+                }
+                catch (SqlException ex)
+                {
+                    return retorno; // Retorna 0 si hay un error
+                }
+                finally
+                {
+                    conexionBD.CerrarConexion();
+                }
+            }
+        }
+
+        public static bool EliminarMenu(int idMenu)
+        {
+            bool retorno = false;
+            mensajes msg = new mensajes();
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                try
+                {
+                    string query = "DELETE FROM Menus WHERE IdMenu = @IdMenu";
+                    SqlCommand comando = new SqlCommand(query, con);
+                    comando.Parameters.AddWithValue("@IdMenu", idMenu);
+                    retorno = Convert.ToBoolean(comando.ExecuteNonQuery());
+                    return retorno;
+
+                }
+                catch (SqlException ex)
+                {
+                    msg.errorEliminacion(ex.Message, "Tabla: Menus.");
+                    return retorno = false; // Retorna 0 si hay un error
+                }
+                finally
+                {
+                    conexionBD.CerrarConexion();
+                }
+            }
         }
     }
 }

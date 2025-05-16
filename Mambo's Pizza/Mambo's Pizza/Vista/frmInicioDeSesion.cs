@@ -159,7 +159,6 @@ namespace Mambo_s_Pizza
                 switch (Controlador_InicioSesion.Rol)
                 {
                     case "admin":
-
                         Vista.frmPrincipal frmAdmin = new Vista.frmPrincipal();
                         frmAdmin.Show();
                         this.Hide();
