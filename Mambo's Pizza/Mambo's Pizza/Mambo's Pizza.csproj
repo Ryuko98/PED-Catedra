@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\Conexion.cs" />
+    <Compile Include="Controlador\Controlador_InicioSesion.cs" />
     <Compile Include="Controlador\Controlador_Menus.cs" />
     <Compile Include="Controlador\Controlador_Repartidores.cs" />
     <Compile Include="Controlador\Controlador_Usuarios.cs" />

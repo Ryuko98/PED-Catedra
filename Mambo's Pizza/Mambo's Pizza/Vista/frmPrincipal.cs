@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mambo_s_Pizza.Controlador;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,9 +16,10 @@ namespace Mambo_s_Pizza.Vista
         int x = 0;
         int y = 0;
 
-        public frmPrincipal()
+        public frmPrincipal(int id, string nombre, string rol)
         {
             InitializeComponent();
+            acceso(id,nombre,rol);
             frmInicio frm = new frmInicio();
             MostarPanel(frm);
         }
@@ -153,6 +155,32 @@ namespace Mambo_s_Pizza.Vista
             {
                 Left = Left + (e.X - x);
                 Top = Top + (e.Y - y);
+            }
+        }
+
+        void acceso(int id, string nombre, string rol)
+        {
+            switch (rol)
+            {
+                case "admin":
+
+                    Vista.frmPrincipal frmAdmin = new Vista.frmPrincipal(Controlador_InicioSesion.IdUsuario, Controlador_InicioSesion.Nombre, Controlador_InicioSesion.Rol);
+                    frmAdmin.Show();
+                    this.Hide();
+                    break;
+                case "cliente":
+                    Vista.frmVistaClientes frmClientes = new Vista.frmVistaClientes();
+                    frmClientes.Show();
+                    this.Hide();
+                    break;
+                case "repartidor":
+                    Vista.frmPerfilRepartidor frmRepartidor = new Vista.frmPerfilRepartidor();
+                    frmRepartidor.Show();
+                    this.Hide();
+                    break;
+                default:
+                    MessageBox.Show("Verifique nuevamente las credenciales ingresadas", "Credenciales incorrectas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
             }
         }
     }

@@ -20,6 +20,7 @@ namespace Mambo_s_Pizza.Vista
         {
             InitializeComponent();
         }
+        public Controlador_Usuarios objUsuario;
 
         public void RefrescarPantalla()
         {
@@ -56,26 +57,29 @@ namespace Mambo_s_Pizza.Vista
 
             try
             {
-                Controlador_Usuarios nuevoUsuario = new Controlador_Usuarios();
-                nuevoUsuario.Nombre = txtNombre.Text;
-                nuevoUsuario.Apellido = txtApellido.Text;
-                nuevoUsuario.FechaNacimiento = dtpExpiracion.Value;
-                nuevoUsuario.Correo = txtCorreo.Text;
-                nuevoUsuario.Usuario = txtUsuario.Text;
-                nuevoUsuario.Contraseña = txtContraseña.Text;
-                nuevoUsuario.Rol = txtRol.Text;  // Usando el TextBox para el rol
+                string nombre, apellido, correo, usuario, contraseña, rol;
+                DateTime fechanacimiento;
+                nombre = txtNombre.Text;
+                apellido = txtApellido.Text;
+                fechanacimiento = dtpExpiracion.Value;
+                correo = txtCorreo.Text;
+                usuario = txtUsuario.Text;
+                contraseña = txtContraseña.Text;
+                rol = txtRol.Text;
+                objUsuario = new Controlador_Usuarios(nombre,apellido,fechanacimiento,correo,usuario,contraseña,rol);
+
 
                 // Validación básica del rol
-                if (!EsRolValido(nuevoUsuario.Rol))
+                if (!EsRolValido(rol))
                 {
                     msg.errorInsercion("El rol especificado no es válido", "Usuario");
                     return;
                 }
 
-                int resultado = Controlador_Usuarios.InsertarUsuarios(nuevoUsuario);
+                bool resultado = objUsuario.InsertarUsuarios();
 
 
-                if (resultado > 0)
+                if (resultado == true)
                 {
                     msg.exitoInsercion("Usuario agregado correctamente");
                     limpiarCampos();
@@ -122,29 +126,31 @@ namespace Mambo_s_Pizza.Vista
 
             try
             {
-                Controlador_Usuarios usuarioActualizado = new Controlador_Usuarios();
-                usuarioActualizado.Nombre = txtNombre.Text;
-                usuarioActualizado.Apellido = txtApellido.Text;
-                usuarioActualizado.FechaNacimiento = dtpExpiracion.Value;
-                usuarioActualizado.Correo = txtCorreo.Text;
-                usuarioActualizado.Usuario = txtUsuario.Text;
-                usuarioActualizado.Contraseña = txtContraseña.Text;
-                usuarioActualizado.Rol = txtRol.Text;
-                usuarioActualizado.IdUsuario = Convert.ToInt32(txtID.Text);
+                string nombre, apellido, correo, usuario, contraseña, rol;
+                DateTime fechanacimiento;
+                nombre = txtNombre.Text;
+                apellido = txtApellido.Text;
+                fechanacimiento = dtpExpiracion.Value;
+                correo = txtCorreo.Text;
+                usuario = txtUsuario.Text;
+                contraseña = txtContraseña.Text;
+                rol = txtRol.Text;
+                Controlador_Usuarios.IdUsuario = Convert.ToInt16(txtID.Text);
+                objUsuario = new Controlador_Usuarios(nombre, apellido, fechanacimiento, correo, usuario, contraseña, rol);
 
 
-                // Llamar al controlador para actualizar
+                //Llamar al controlador para actualizar
 
-                //int resultado = Controlador_Usuarios.ActualizarUsuarios(usuarioActualizado);
+                bool resultado = objUsuario.ActualizarUsuarios();
 
-                //if (resultado > 0)
-                //{
-                //    msg.exitoActualizacion("Usuario actualizado correctamente");
-                //}
-                //else
-                //{
-                //    msg.errorActualizacion("No se pudo actualizar el usuario", "Tabla: Usuarios");
-                //}
+                if (resultado == true)
+                {
+                    MessageBox.Show("Usuario Actualizado con exito","Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo actualizar el usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
             catch (FormatException)
             {
@@ -180,14 +186,14 @@ namespace Mambo_s_Pizza.Vista
                 try
                 {
                     // Obtener el ID del usuario seleccionado
-                    int id = Convert.ToInt32(dgvDatos.CurrentRow.Cells["IdUsuario"].Value);
+                    Controlador_Usuarios.IdUsuario = Convert.ToInt32(txtID.Text);
 
                     // Llamar al controlador para eliminar
 
-                    int resultado = Controlador_Usuarios.EliminarUsuarios(id);
+                    bool resultado = Controlador_Usuarios.EliminarUsuarios();
 
 
-                    if (resultado > 0)
+                    if (resultado == true)
                     {
                         msg.exitoEliminacion("Usuario eliminado correctamente");
                     }

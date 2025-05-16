@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace Mambo_s_Pizza.Controlador
 {
-    class Controlador_Usuarios
+    public class Controlador_Usuarios
     {
-        public int IdUsuario { get; set; }
+        public static int IdUsuario { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public DateTime FechaNacimiento { get; set; }
@@ -21,30 +21,35 @@ namespace Mambo_s_Pizza.Controlador
         public string Contraseña { get; set; }
         public string Rol { get; set; }
 
+        public Controlador_Usuarios(string pNombre, string pApellido, DateTime pFechaNacimiento, string pCorreo, string pUsuario, string pContraseña, string pRol) 
+        { 
+            Nombre = pNombre;
+            Apellido = pApellido;
+            FechaNacimiento = pFechaNacimiento;
+            Correo = pCorreo;
+            Usuario = pUsuario;
+            Contraseña = pContraseña;
+            Rol = pRol;
+        }
+
         public static DataTable ObtenerUsuarios()
         {
             return Modelo_Usuarios.MostrarUsuarios();
         }
 
-
-        public static int InsertarUsuarios(string Nombre, string Apellido, DateTime FechaNacimiento, string Correo, string Usuario, string Contraseña, string Rol)
+        public  bool InsertarUsuarios()
         {
             return Modelo_Usuarios.AgregarUsuarios(Nombre, Apellido, FechaNacimiento, Correo, Usuario, Contraseña, Rol);
         }
 
-        public static int ActualizarUsuarios(string Nombre, string Apellido, DateTime FechaNacimiento, string Correo, string Usuario, string Contraseña, string Rol, int IdUsuario)
+        public  bool ActualizarUsuarios()
         {
-            return Modelo_Usuarios.ActualizarUsuario(Nombre, Apellido, FechaNacimiento, Correo, Usuario, Contraseña, Rol, IdUsuario);
+            return Modelo_Usuarios.ActualizarUsuario(IdUsuario, Nombre, Apellido, FechaNacimiento, Correo, Usuario, Contraseña, Rol);
         }
 
-        public static int EliminarUsuarios(int IdUsuario)
+        public static bool EliminarUsuarios()
         {
             return Modelo_Usuarios.EliminarUsuario(IdUsuario);
-        }
-
-        public static int IniciarSesion(string Usuario, string Contraseña)
-        {
-            return Modelo_Usuarios.IniciarSesion(Usuario, Contraseña);
         }
 
     }
