@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using Mambo_s_Pizza.Controlador;
 
 namespace Mambo_s_Pizza
 {
@@ -74,7 +75,7 @@ namespace Mambo_s_Pizza
             try
             {
                 SqlConnection conn = con.AbrirConexion();
-                MessageBox.Show("Conexión exitosa.");
+                
 
                 validarCredenciales();
 
@@ -133,6 +134,7 @@ namespace Mambo_s_Pizza
 
         void validarCredenciales()
         {
+            Controlador_Usuarios controlador_Usuarios = new Controlador_Usuarios();
             string usuario = txtUsuario.Text.Trim();
             string clave = txtClave.Text.Trim();
 
@@ -142,9 +144,18 @@ namespace Mambo_s_Pizza
                 return;
             }
 
-            switch (txtUsuario.Text)
+            int resultado = Controlador_Usuarios.IniciarSesion(usuario,clave);
+
+            if (resultado != 1)
+            {
+                return;
+            }
+            MessageBox.Show(controlador_Usuarios.Rol);
+            MessageBox.Show(controlador_Usuarios.IdUsuario.ToString());
+            switch (controlador_Usuarios.Rol)
             {
                 case "admin":
+
                     Vista.frmPrincipal frmAdmin = new Vista.frmPrincipal();
                     frmAdmin.Show();
                     this.Hide();

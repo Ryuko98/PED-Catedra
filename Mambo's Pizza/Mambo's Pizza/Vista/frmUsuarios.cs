@@ -23,7 +23,7 @@ namespace Mambo_s_Pizza.Vista
 
         public void RefrescarPantalla()
         {
-            dgvDatos.DataSource = Modelo_Usuarios.MostrarUsuarios();
+            dgvDatos.DataSource = Controlador_Usuarios.ObtenerUsuarios();
         }
 
         void limpiarCampos()
@@ -72,7 +72,8 @@ namespace Mambo_s_Pizza.Vista
                     return;
                 }
 
-                int resultado = Modelo_Usuarios.AgregarUsuarios(nuevoUsuario);
+                int resultado = Controlador_Usuarios.InsertarUsuarios(nuevoUsuario);
+
 
                 if (resultado > 0)
                 {
@@ -122,7 +123,6 @@ namespace Mambo_s_Pizza.Vista
             try
             {
                 Controlador_Usuarios usuarioActualizado = new Controlador_Usuarios();
-                usuarioActualizado.IdUsuario = Convert.ToInt32(txtID.Text);
                 usuarioActualizado.Nombre = txtNombre.Text;
                 usuarioActualizado.Apellido = txtApellido.Text;
                 usuarioActualizado.FechaNacimiento = dtpExpiracion.Value;
@@ -130,18 +130,21 @@ namespace Mambo_s_Pizza.Vista
                 usuarioActualizado.Usuario = txtUsuario.Text;
                 usuarioActualizado.Contraseña = txtContraseña.Text;
                 usuarioActualizado.Rol = txtRol.Text;
+                usuarioActualizado.IdUsuario = Convert.ToInt32(txtID.Text);
+
 
                 // Llamar al controlador para actualizar
-                int resultado = Modelo_Usuarios.ActualizarUsuario(usuarioActualizado);
 
-                if (resultado > 0)
-                {
-                    msg.exitoActualizacion("Usuario actualizado correctamente");
-                }
-                else
-                {
-                    msg.errorActualizacion("No se pudo actualizar el usuario", "Tabla: Usuarios");
-                }
+                //int resultado = Controlador_Usuarios.ActualizarUsuarios(usuarioActualizado);
+
+                //if (resultado > 0)
+                //{
+                //    msg.exitoActualizacion("Usuario actualizado correctamente");
+                //}
+                //else
+                //{
+                //    msg.errorActualizacion("No se pudo actualizar el usuario", "Tabla: Usuarios");
+                //}
             }
             catch (FormatException)
             {
@@ -180,7 +183,9 @@ namespace Mambo_s_Pizza.Vista
                     int id = Convert.ToInt32(dgvDatos.CurrentRow.Cells["IdUsuario"].Value);
 
                     // Llamar al controlador para eliminar
-                    int resultado = Modelo_Usuarios.EliminarUsuario(id);
+
+                    int resultado = Controlador_Usuarios.EliminarUsuarios(id);
+
 
                     if (resultado > 0)
                     {
