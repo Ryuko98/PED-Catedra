@@ -30,6 +30,7 @@ namespace Mambo_s_Pizza.Vista
 
         void limpiarCampos()
         {
+            txtID.Clear();
             txtDUI.Clear();
             txtCalificacionPromedio.Clear();
             txtTotalReseñas.Clear();

@@ -48,5 +48,34 @@ namespace Mambo_s_Pizza.Modelo
             }
             return dt;
         }
+
+        public static bool EliminarReseña(int idReview)
+        {
+            bool retorno = false;
+            mensajes msg = new mensajes();
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                try
+                {
+                    string query = "DELETE FROM Reviews WHERE IdReview = @IdReview";
+                    SqlCommand comando = new SqlCommand(query, con);
+                    comando.Parameters.AddWithValue("@IdReview", idReview);
+                    retorno = Convert.ToBoolean(comando.ExecuteNonQuery());
+                    return retorno;
+
+                }
+                catch (SqlException ex)
+                {
+                    msg.errorEliminacion(ex.Message, "Tabla: Reviews.");
+                    return retorno = false; // Retorna 0 si hay un error
+                }
+                finally
+                {
+                    conexionBD.CerrarConexion();
+                }
+            }
+        }
     }
 }

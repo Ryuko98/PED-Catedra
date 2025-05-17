@@ -29,6 +29,7 @@ namespace Mambo_s_Pizza.Vista
 
         void limpiarCampos()    
         {
+            txtID.Clear();
             txtDescipcion.Clear();
             cmbCliente.SelectedIndex = -1;
             cmbRepartidor.SelectedIndex = -1;

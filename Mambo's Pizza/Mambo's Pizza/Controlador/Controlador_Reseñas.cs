@@ -20,5 +20,10 @@ namespace Mambo_s_Pizza.Controlador
         {
             return Modelo_Reseñas.MostrarReseñas();
         }
+
+        public static bool EliminarReseñas()
+        {
+            return Modelo_Reseñas.EliminarReseña(IdReview);
+        }
     }
 }

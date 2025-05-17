@@ -32,6 +32,7 @@ namespace Mambo_s_Pizza.Vista
 
         private void Limpiar()
         {
+            txtID.Clear();
             cmbUsuario.SelectedIndex = -1;
             cmbMembresia.SelectedIndex = -1;
             txtDireccion.Clear();

@@ -29,6 +29,7 @@ namespace Mambo_s_Pizza.Vista
 
         void limpiarCampos()
         {
+            txtID.Clear();
             txtNombre.Clear();
             txtApellido.Clear();
             txtCorreo.Clear();
