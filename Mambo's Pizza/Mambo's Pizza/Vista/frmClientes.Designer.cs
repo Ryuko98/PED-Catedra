@@ -171,6 +171,7 @@
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(40, 40);
             this.btnActualizar.TabIndex = 13;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // btnEliminar
             // 
@@ -180,6 +181,7 @@
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(40, 40);
             this.btnEliminar.TabIndex = 14;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnLimpiar
             // 

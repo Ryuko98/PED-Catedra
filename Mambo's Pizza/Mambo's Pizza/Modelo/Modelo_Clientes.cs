@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
+using System.Data.SqlTypes;
 
 namespace Mambo_s_Pizza.Modelo
 {
@@ -221,6 +222,14 @@ namespace Mambo_s_Pizza.Modelo
         {
             bool retorno = false;
             mensajes msg = new mensajes();
+
+            // validacion de fecha
+            if (fechaExp < DateTime.Now)
+            {
+                msg.fechaInvalida("Tabla: Clientes");
+                return retorno;
+            }
+
             Conexion conexionBD = new Conexion();
 
             using (SqlConnection con = conexionBD.AbrirConexion())
@@ -245,6 +254,79 @@ namespace Mambo_s_Pizza.Modelo
                 {
                     msg.errorInsercion(ex.Message, "Tabla: Clientes. ");
                     return retorno; // Retorna 0 si hay un error
+                }
+                finally
+                {
+                    conexionBD.CerrarConexion();
+                }
+            }
+        }
+
+        public static bool ActualizarCliente(int idCliente, string direccion, int idMembresia, DateTime fechaExp)
+        {
+            bool retorno = false;
+            mensajes msg = new mensajes();
+
+            // validacion de fecha
+            if (fechaExp < DateTime.Now)
+            {
+                msg.fechaInvalida("Tabla: Clientes");
+                return retorno;
+            }
+
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                try
+                {
+                    string query = @"UPDATE Clientes 
+                   SET Direccion = @Direccion, 
+                       IdMembresia = @idMembresia, 
+                       FechaExpiracion = @FechaExpiracion 
+                   WHERE idCliente = @idCliente";
+
+                    SqlCommand comando = new SqlCommand(query, con);
+                    comando.Parameters.AddWithValue("@idCliente", idCliente);
+                    comando.Parameters.AddWithValue("@Direccion", direccion);
+                    comando.Parameters.AddWithValue("@idMembresia", idMembresia);
+                    comando.Parameters.AddWithValue("@FechaExpiracion", fechaExp);
+
+                    retorno = Convert.ToBoolean(comando.ExecuteNonQuery());
+                    msg.exitoActualizacion("Tabla: Clientes.");
+                    return retorno; // Retorna el número de filas afectadas
+                }
+                catch (SqlException ex)
+                {
+                    return retorno; // Retorna 0 si hay un error
+                }
+                finally
+                {
+                    conexionBD.CerrarConexion();
+                }
+            }
+        }
+        public static bool EliminarCliente(int idCliente)
+        {
+            bool retorno = false;
+            mensajes msg = new mensajes();
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                try
+                {
+                    string query = "DELETE FROM Clientes WHERE IdCliente = @IdCliente";
+                    SqlCommand comando = new SqlCommand(query, con);
+                    comando.Parameters.AddWithValue("@IdCliente", idCliente);
+                    retorno = Convert.ToBoolean(comando.ExecuteNonQuery());
+                    return retorno;
+
+                }
+                catch (SqlException ex)
+                {
+                    msg.errorEliminacion(ex.Message, "Tabla: Clientes.");
+                    return retorno = false; // Retorna 0 si hay un error
                 }
                 finally
                 {

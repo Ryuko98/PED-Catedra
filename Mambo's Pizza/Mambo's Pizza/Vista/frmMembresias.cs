@@ -26,6 +26,7 @@ namespace Mambo_s_Pizza.Vista
             txtID.Clear();
             txtDescripcion.Clear();
             txtMembresia.Clear();
+            dgvDatos.ClearSelection();
         }
 
         private void RefrescarPantalla()

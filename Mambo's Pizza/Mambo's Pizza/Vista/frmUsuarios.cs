@@ -35,6 +35,7 @@ namespace Mambo_s_Pizza.Vista
             txtUsuario.Clear();
             txtContraseña.Clear();
             txtRol.Clear();
+            dgvDatos.ClearSelection();
         }
 
         private void frmUsuarios_Load(object sender, EventArgs e)   

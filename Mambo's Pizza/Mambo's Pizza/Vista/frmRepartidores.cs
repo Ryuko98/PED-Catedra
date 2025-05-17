@@ -35,6 +35,7 @@ namespace Mambo_s_Pizza.Vista
             txtTotalReseñas.Clear();
             cmbUsuario.SelectedIndex = -1;
             txtDisponibilidad.Clear();
+            dgvDatos.ClearSelection();
         }
 
         private void frmRepartidores_Load(object sender, EventArgs e)

@@ -34,6 +34,7 @@ namespace Mambo_s_Pizza.Vista
             cmbRepartidor.SelectedIndex = -1;
             cmbEstado.SelectedIndex = -1;
             txtTotal.Clear();
+            dgvDatos.ClearSelection();
         }
 
         private void frmPedidos_Load(object sender, EventArgs e)

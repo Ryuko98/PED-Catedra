@@ -16,16 +16,14 @@ namespace Mambo_s_Pizza.Vista
     public partial class frmClientes : Form
     {
         mensajes msg = new mensajes();
-        public Controlador_Clientes objClientes;
 
         List<KeyValuePair<int, string>> listaUsuarios = Controlador_Clientes.CargarUsuariosClientes();
         List<KeyValuePair<int, string>> listaMembresias = Controlador_Clientes.CargarMembresiaCliente();
-
-
         public frmClientes()
         {
             InitializeComponent();
         }
+        public Controlador_Clientes objClientes;
 
         public void RefrescarPantalla()
         {
@@ -38,6 +36,7 @@ namespace Mambo_s_Pizza.Vista
             cmbMembresia.SelectedIndex = -1;
             txtDireccion.Clear();
             dtpExpiracion.Text = "";
+            dgvDatos.ClearSelection();
         }
 
         private void frmClientes_Load(object sender, EventArgs e)
@@ -72,8 +71,8 @@ namespace Mambo_s_Pizza.Vista
                 int idUsuario, idMembresia;
                 string direccion;
                 DateTime fechaExp;
-                idUsuario = cmbUsuario.SelectedIndex;
-                idMembresia = cmbMembresia.SelectedIndex;
+                idUsuario = (int)cmbUsuario.SelectedValue;
+                idMembresia = (int)cmbMembresia.SelectedValue;
                 direccion = txtDireccion.Text;
                 fechaExp = dtpExpiracion.Value;
 
@@ -101,6 +100,120 @@ namespace Mambo_s_Pizza.Vista
             catch (Exception ex)
             {
                 MessageBox.Show("Error crítico: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            // Validar que haya un usuario seleccionado
+            if (!(dgvDatos.SelectedRows.Count == 1 && txtID.Text != ""))
+            {
+                msg.seleccionarRegistro("actualizar");
+                return;
+            }
+            // Validación de campos vacíos
+            if (txtDireccion.Text == "" || cmbUsuario.SelectedIndex == -1 || cmbMembresia.SelectedIndex == -1 ||
+                dtpExpiracion.Text == "")
+            {
+                msg.camposVacios();
+                return;
+            }
+
+            try
+            {
+                int idUsuario, idMembresia;
+                string direccion;
+                DateTime fechaExp;
+                idUsuario = (int)cmbUsuario.SelectedValue;
+                idMembresia = (int)cmbMembresia.SelectedValue;
+                direccion = txtDireccion.Text;
+                fechaExp = dtpExpiracion.Value;
+
+                Controlador_Clientes.IdCliente = Convert.ToInt16(txtID.Text);
+                objClientes = new Controlador_Clientes(idUsuario, direccion, idMembresia, fechaExp);
+
+                //Llamar al controlador para actualizar
+
+                bool resultado = objClientes.ActualizarClientes();
+
+                if (resultado == true)
+                {
+                    Limpiar();
+                    RefrescarPantalla();
+                }
+                else
+                {
+                    msg.errorEliminacion("No se pudo actualizar", "Tabla: Clientes");
+                }
+            }
+            catch (FormatException)
+            {
+                msg.errorActualizacion("Formato de datos incorrecto", "Tabla: Clientes");
+            }
+            catch (SqlException sqlEx)
+            {
+                msg.errorActualizacion(sqlEx.Message, "Tabla: Clientes");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error crítico: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Limpiar();
+                RefrescarPantalla();
+            }
+        }
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            // Validar que haya una fila seleccionada y que el ID no esté vacío
+            if (!(dgvDatos.SelectedRows.Count == 1 && txtID.Text != ""))
+            {
+                msg.seleccionarRegistro("eliminar");
+                return;
+            }
+
+            // Confirmar con el usuario antes de eliminar
+            if (msg.confirmarEliminacion("Tabla: Clientes") == DialogResult.Yes)
+            {
+                try
+                {
+                    // Obtener el ID del usuario seleccionado
+                    Controlador_Clientes.IdCliente = Convert.ToInt32(txtID.Text);
+
+                    // Llamar al controlador para eliminar
+
+                    bool resultado = Controlador_Clientes.EliminarClientes();
+
+
+                    if (resultado == true)
+                    {
+                        Limpiar();
+                        RefrescarPantalla();
+                    }
+                    else
+                    {
+                        msg.errorEliminacion("No se pudo eliminar el cliente", "Tabla: Clientes");
+                    }
+
+                }
+                catch (FormatException)
+                {
+                    msg.errorEliminacion("ID de usuario no válido", "Tabla: Clientes");
+                }
+                catch (SqlException sqlEx)
+                {
+                    msg.errorEliminacion(sqlEx.Message, "Tabla: Clientes");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error crítico: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    Limpiar();
+                    RefrescarPantalla();
+                }
             }
         }
 

@@ -16,12 +16,12 @@ namespace Mambo_s_Pizza.Controlador
         public int IdMembresia { get; set; }
         public DateTime FechaExpiracion { get; set; }
 
-        public Controlador_Clientes(int idUsuario, string direccion, int idMembresia, DateTime fechaExpiracion)
+        public Controlador_Clientes(int pidUsuario, string pDireccion, int pidMembresia, DateTime pFechaExpiracion)
         {
-            IdUsuario = idUsuario;
-            Direccion = direccion;
-            IdMembresia = idMembresia;
-            FechaExpiracion = fechaExpiracion;
+            IdUsuario = pidUsuario;
+            Direccion = pDireccion;
+            IdMembresia = pidMembresia;
+            FechaExpiracion = pFechaExpiracion;
         }
 
         public static DataTable ObtenerClientes()
@@ -56,6 +56,16 @@ namespace Mambo_s_Pizza.Controlador
         public bool InsertarClientes()
         {
             return Modelo_Clientes.AgregarCliente(IdUsuario, Direccion, IdMembresia, FechaExpiracion);
+        }
+
+        public bool ActualizarClientes()
+        {
+            return Modelo_Clientes.ActualizarCliente(IdCliente, Direccion, IdMembresia, FechaExpiracion);
+        }
+
+        public static bool EliminarClientes()
+        {
+            return Modelo_Clientes.EliminarCliente(IdCliente);
         }
     }
 }

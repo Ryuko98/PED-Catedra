@@ -47,6 +47,11 @@ namespace Mambo_s_Pizza
             MessageBox.Show("Debe seleccionar un registro para " + accion, "Falta información", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
+        public void fechaInvalida(string tabla)
+        {
+            MessageBox.Show("Debe ingresar una fecha válida", tabla + "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
 
         public DialogResult confirmarEliminacion(string tabla)
         {

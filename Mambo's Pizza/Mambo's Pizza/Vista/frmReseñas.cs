@@ -32,6 +32,7 @@ namespace Mambo_s_Pizza.Vista
             txtCalificacion.Clear();
             txtComentario.Clear();
             txtFechaReview.Clear();
+            dgvDatos.ClearSelection();
         }
 
         private void frmReseñas_Load(object sender, EventArgs e)

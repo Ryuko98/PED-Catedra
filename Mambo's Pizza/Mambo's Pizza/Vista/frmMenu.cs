@@ -32,6 +32,7 @@ namespace Mambo_s_Pizza.Vista
             txtNombre.Clear();
             txtDescripcion.Clear();
             txtPrecioUnitario.Clear();
+            dgvDatos.ClearSelection();
         }
 
         private void frmMenu_Load(object sender, EventArgs e)
