@@ -35,12 +35,12 @@
             this.us = new System.Windows.Forms.Label();
             this.dgvDatos = new System.Windows.Forms.DataGridView();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.txtID = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnInsertar = new System.Windows.Forms.Label();
             this.btnActualizar = new System.Windows.Forms.Label();
             this.btnEliminar = new System.Windows.Forms.Label();
             this.btnLimpiar = new System.Windows.Forms.Label();
+            this.txtID = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,26 +93,6 @@
             this.dgvDatos.Size = new System.Drawing.Size(980, 150);
             this.dgvDatos.TabIndex = 9;
             // 
-            // txtID
-            // 
-            this.txtID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtID.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtID.Location = new System.Drawing.Point(770, 10);
-            this.txtID.Name = "txtID";
-            this.txtID.ReadOnly = true;
-            this.txtID.Size = new System.Drawing.Size(26, 26);
-            this.txtID.TabIndex = 12;
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(800, 50);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(200, 20);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "*Campos obligatorios";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // btnInsertar
             // 
             this.btnInsertar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(13)))), ((int)(((byte)(20)))));
@@ -122,6 +102,7 @@
             this.btnInsertar.Size = new System.Drawing.Size(40, 40);
             this.btnInsertar.TabIndex = 1;
             this.toolTip.SetToolTip(this.btnInsertar, "Insertar un registro");
+            this.btnInsertar.Click += new System.EventHandler(this.btnInsertar_Click);
             // 
             // btnActualizar
             // 
@@ -132,6 +113,7 @@
             this.btnActualizar.Size = new System.Drawing.Size(40, 40);
             this.btnActualizar.TabIndex = 2;
             this.toolTip.SetToolTip(this.btnActualizar, "Actualizar un registro seleccionado");
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // btnEliminar
             // 
@@ -153,6 +135,26 @@
             this.btnLimpiar.TabIndex = 4;
             this.toolTip.SetToolTip(this.btnLimpiar, "Limpiar los campos de texto");
             // 
+            // txtID
+            // 
+            this.txtID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtID.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtID.Location = new System.Drawing.Point(770, 10);
+            this.txtID.Name = "txtID";
+            this.txtID.ReadOnly = true;
+            this.txtID.Size = new System.Drawing.Size(26, 26);
+            this.txtID.TabIndex = 12;
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(800, 50);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(200, 20);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "*Campos obligatorios";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // frmMembresias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -172,6 +174,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmMembresias";
             this.Text = "Membresías";
+            this.Load += new System.EventHandler(this.frmMembresias_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

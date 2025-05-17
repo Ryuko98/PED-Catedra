@@ -61,5 +61,51 @@ namespace Mambo_s_Pizza.Vista
 
         }
 
+        private void dgvDatos_Click(object sender, EventArgs e)
+        {
+            dgvDatos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            if (dgvDatos.CurrentRow == null || dgvDatos.CurrentRow.IsNewRow) return;
+
+            try
+            {
+                // Asignar valores a los controles
+                txtID.Text = dgvDatos.CurrentRow.Cells["IdCliente"].Value?.ToString();
+                // obtener membresia
+                cmbMembresia.Text = ObtenerMembresia()?.ToString();
+                cmbUsuario.Text = ObtenerUsuario()?.ToString();
+
+                txtDireccion.Text = dgvDatos.CurrentRow.Cells["Direccion"].Value?.ToString();
+                dtpExpiracion.Text = dgvDatos.CurrentRow.Cells["FechaExpiracion"].Value?.ToString();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar datos del usuario: {ex.Message}", "Error",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private string ObtenerMembresia()
+        {
+            try
+            {
+                Controlador_Clientes.IdCliente = Convert.ToInt16(txtID.Text);
+                string Membresia = Controlador_Clientes.ObtenerMembresia();
+                return Membresia;
+            }
+            catch { return null; }
+        }
+
+        private string ObtenerUsuario()
+        {
+            try
+            {
+                Controlador_Clientes.IdCliente = Convert.ToInt16(txtID.Text);
+                string UsuarioCompleto = Controlador_Clientes.ObtenerUsuario();
+                return UsuarioCompleto;
+            }
+            catch { return null; }
+        }
     }
 }

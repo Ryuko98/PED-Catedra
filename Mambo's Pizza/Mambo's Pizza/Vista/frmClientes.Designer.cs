@@ -151,6 +151,7 @@
             this.dgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDatos.Size = new System.Drawing.Size(980, 209);
             this.dgvDatos.TabIndex = 27;
+            this.dgvDatos.Click += new System.EventHandler(this.dgvDatos_Click);
             // 
             // btnInsertar
             // 

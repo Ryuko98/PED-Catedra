@@ -49,6 +49,7 @@
     <Compile Include="Clases\Conexion.cs" />
     <Compile Include="Controlador\Controlador_Clientes.cs" />
     <Compile Include="Controlador\Controlador_InicioSesion.cs" />
+    <Compile Include="Controlador\Controlador_Membresias.cs" />
     <Compile Include="Controlador\Controlador_Menus.cs" />
     <Compile Include="Controlador\Controlador_Pedidos.cs" />
     <Compile Include="Controlador\Controlador_Repartidores.cs" />
@@ -61,6 +62,7 @@
     </Compile>
     <Compile Include="mensajes.cs" />
     <Compile Include="Modelo\Modelo_Clientes.cs" />
+    <Compile Include="Modelo\Modelo_Membresias.cs" />
     <Compile Include="Modelo\Modelo_Menus.cs" />
     <Compile Include="Modelo\Modelo_Pedidos.cs" />
     <Compile Include="Modelo\Modelo_Repartidores.cs" />
