@@ -44,24 +44,29 @@
             this.Menu,
             this.Cantidad,
             this.Subtotal});
-            this.dgvCarrito.Location = new System.Drawing.Point(12, 48);
+            this.dgvCarrito.Location = new System.Drawing.Point(16, 59);
+            this.dgvCarrito.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvCarrito.Name = "dgvCarrito";
-            this.dgvCarrito.Size = new System.Drawing.Size(776, 390);
+            this.dgvCarrito.RowHeadersWidth = 51;
+            this.dgvCarrito.Size = new System.Drawing.Size(1035, 480);
             this.dgvCarrito.TabIndex = 0;
             // 
             // Menu
             // 
             this.Menu.HeaderText = "Menu";
+            this.Menu.MinimumWidth = 6;
             this.Menu.Name = "Menu";
             // 
             // Cantidad
             // 
             this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.MinimumWidth = 6;
             this.Cantidad.Name = "Cantidad";
             // 
             // Subtotal
             // 
             this.Subtotal.HeaderText = "Subtotal";
+            this.Subtotal.MinimumWidth = 6;
             this.Subtotal.Name = "Subtotal";
             // 
             // btnFinalizarCompra
@@ -69,9 +74,10 @@
             this.btnFinalizarCompra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(13)))), ((int)(((byte)(20)))));
             this.btnFinalizarCompra.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinalizarCompra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            this.btnFinalizarCompra.Location = new System.Drawing.Point(668, 9);
+            this.btnFinalizarCompra.Location = new System.Drawing.Point(891, 11);
+            this.btnFinalizarCompra.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.btnFinalizarCompra.Name = "btnFinalizarCompra";
-            this.btnFinalizarCompra.Size = new System.Drawing.Size(120, 30);
+            this.btnFinalizarCompra.Size = new System.Drawing.Size(160, 37);
             this.btnFinalizarCompra.TabIndex = 6;
             this.btnFinalizarCompra.Text = "Finalizar compra";
             this.btnFinalizarCompra.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -79,12 +85,14 @@
             // 
             // frmCarrito
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.btnFinalizarCompra);
             this.Controls.Add(this.dgvCarrito);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmCarrito";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Carrito de compras";
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarrito)).EndInit();
             this.ResumeLayout(false);

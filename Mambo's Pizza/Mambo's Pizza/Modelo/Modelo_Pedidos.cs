@@ -330,5 +330,106 @@ namespace Mambo_s_Pizza.Modelo
 
         }
 
+        // Metodo para crear carrito 
+
+        public static int CrearCarrito(int pIdCliente)
+        {
+            int id = 0;
+            Conexion conexionBD = new Conexion();
+            mensajes msg = new mensajes();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                try
+                {
+                    string query = @"INSERT INTO [Pedidos] ([Descripcion], [IdCliente], [HoraPedido], 
+                                       [HoraEntrega], [IdRepartidor], [IdEstadoPedido], [TotalPrecio]) 
+                                        VALUES (NULL, @IdCliente, NULL, NULL, NULL, 1, 0);
+                                        SELECT SCOPE_IDENTITY();"; // Esto devuelve el ID recién insertado
+
+                    SqlCommand comando = new SqlCommand(query, con);
+                    comando.Parameters.AddWithValue("@IdCliente", pIdCliente);
+
+                    object resultado = comando.ExecuteScalar(); // Usamos ExecuteScalar para obtener el ID
+
+                    if (resultado != null)
+                    {
+                        id = Convert.ToInt32(resultado);
+                    }
+                    return id;
+                }
+                catch (SqlException ex)
+                {
+                    msg.errorInsercion(ex.Message, "Carrito");
+                    return 0; // Devuelve 0 si hubo error
+                }
+                finally
+                {
+                    conexionBD.CerrarConexion();
+                }
+            }
+        }
+
+
+        public static DataTable CargarCarrito(int idPedido)
+        {
+            DataTable dt = new DataTable();
+            // Columnas de la Tabla
+            dt.Columns.Add("NombreMenu", typeof(string));
+            dt.Columns.Add("Cantidad", typeof(int));
+            dt.Columns.Add("PrecioUnitario", typeof(decimal));
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                try
+                {
+                    string query = @"SELECT 
+                          M.NombreMenu,
+                          DP.Cantidad,
+                          DP.PrecioUnitario
+                          FROM DetallesPedidos DP
+                          INNER JOIN Menus M ON DP.IdMenu = M.IdMenu
+                          WHERE DP.IdPedido = @idPedido";
+
+                    using (SqlCommand comando = new SqlCommand(query, con))
+                    {
+                        comando.Parameters.AddWithValue("@idPedido", idPedido);
+
+                        using (SqlDataReader reader = comando.ExecuteReader())
+                        {
+                            if (!reader.HasRows)
+                            {
+                                // No hay registros, simplemente devuelve el DataTable vacío
+                                return dt;
+                            }
+                            while (reader.Read())
+                            {
+                                dt.Rows.Add(
+                                reader["NombreMenu"],
+                                reader["Cantidad"],
+                                reader["PrecioUnitario"]
+                                );
+                            }
+                        }
+                    }
+                    return dt;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error al obtener detalles del pedido: " + ex.Message);
+                    return null;
+                }
+                finally
+                {
+                    conexionBD.CerrarConexion();
+                }
+
+
+            }
+
+        }
+
+
     }
 }

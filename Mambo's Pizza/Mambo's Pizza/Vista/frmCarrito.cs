@@ -7,15 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Mambo_s_Pizza.Controlador;
 
 namespace Mambo_s_Pizza.Vista
 {
     public partial class frmCarrito : Form
     {
-        public frmCarrito()
+        int id_pedido;
+        public frmCarrito(int id = 0)
         {
             InitializeComponent();
-            dgvCarrito.Rows.Add("Orange Chicken", "2", "18.99");
+            id_pedido = id;
+            //dgvCarrito.Rows.Add("Orange Chicken", "2", "18.99");
+            CargarOfertas();
+        }
+        public void CargarOfertas()
+        {
+            dgvCarrito.DataSource = null; // Quita el origen de datos
+            dgvCarrito.Rows.Clear();      // Limpia las filas (por si acaso)
+            dgvCarrito.Columns.Clear();   // Limpia las 
+
+            DataTable dt = Controlador_Pedidos.CargarCarrito(Controlador_Pedidos.IdPedido);
+            dgvCarrito.DataSource = dt;
         }
 
         private void btnFinalizarCompra_Click(object sender, EventArgs e)

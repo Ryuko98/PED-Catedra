@@ -48,9 +48,10 @@
             // us
             // 
             this.us.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.us.Location = new System.Drawing.Point(10, 57);
+            this.us.Location = new System.Drawing.Point(13, 70);
+            this.us.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.us.Name = "us";
-            this.us.Size = new System.Drawing.Size(200, 30);
+            this.us.Size = new System.Drawing.Size(267, 37);
             this.us.TabIndex = 2;
             this.us.Text = "Ofertas !!!!";
             this.us.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -62,23 +63,27 @@
             this.dgvOfertas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Menu,
             this.Precio});
-            this.dgvOfertas.Location = new System.Drawing.Point(8, 91);
+            this.dgvOfertas.Location = new System.Drawing.Point(11, 112);
+            this.dgvOfertas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvOfertas.Name = "dgvOfertas";
             this.dgvOfertas.ReadOnly = true;
+            this.dgvOfertas.RowHeadersWidth = 51;
             this.dgvOfertas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvOfertas.Size = new System.Drawing.Size(780, 150);
+            this.dgvOfertas.Size = new System.Drawing.Size(1040, 185);
             this.dgvOfertas.TabIndex = 10;
             this.dgvOfertas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOfertas_CellDoubleClick);
             // 
             // Menu
             // 
             this.Menu.HeaderText = "Menu";
+            this.Menu.MinimumWidth = 6;
             this.Menu.Name = "Menu";
             this.Menu.ReadOnly = true;
             // 
             // Precio
             // 
             this.Precio.HeaderText = "Precio";
+            this.Precio.MinimumWidth = 6;
             this.Precio.Name = "Precio";
             this.Precio.ReadOnly = true;
             // 
@@ -89,31 +94,36 @@
             this.dgvVolverPedir.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Menu1,
             this.Precio1});
-            this.dgvVolverPedir.Location = new System.Drawing.Point(8, 288);
+            this.dgvVolverPedir.Location = new System.Drawing.Point(11, 354);
+            this.dgvVolverPedir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvVolverPedir.Name = "dgvVolverPedir";
             this.dgvVolverPedir.ReadOnly = true;
+            this.dgvVolverPedir.RowHeadersWidth = 51;
             this.dgvVolverPedir.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvVolverPedir.Size = new System.Drawing.Size(780, 150);
+            this.dgvVolverPedir.Size = new System.Drawing.Size(1040, 185);
             this.dgvVolverPedir.TabIndex = 12;
             // 
             // Menu1
             // 
             this.Menu1.HeaderText = "Menu";
+            this.Menu1.MinimumWidth = 6;
             this.Menu1.Name = "Menu1";
             this.Menu1.ReadOnly = true;
             // 
             // Precio1
             // 
             this.Precio1.HeaderText = "Precio";
+            this.Precio1.MinimumWidth = 6;
             this.Precio1.Name = "Precio1";
             this.Precio1.ReadOnly = true;
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(10, 255);
+            this.label1.Location = new System.Drawing.Point(13, 314);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(200, 30);
+            this.label1.Size = new System.Drawing.Size(267, 37);
             this.label1.TabIndex = 11;
             this.label1.Text = "Volver a pedir";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -123,9 +133,10 @@
             this.btnCarrito.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(13)))), ((int)(((byte)(20)))));
             this.btnCarrito.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCarrito.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            this.btnCarrito.Location = new System.Drawing.Point(668, 50);
+            this.btnCarrito.Location = new System.Drawing.Point(891, 62);
+            this.btnCarrito.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.btnCarrito.Name = "btnCarrito";
-            this.btnCarrito.Size = new System.Drawing.Size(120, 30);
+            this.btnCarrito.Size = new System.Drawing.Size(160, 37);
             this.btnCarrito.TabIndex = 13;
             this.btnCarrito.Text = "Ver carrito";
             this.btnCarrito.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -138,8 +149,9 @@
             this.barra.Controls.Add(this.btnCerrar);
             this.barra.Dock = System.Windows.Forms.DockStyle.Top;
             this.barra.Location = new System.Drawing.Point(0, 0);
+            this.barra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.barra.Name = "barra";
-            this.barra.Size = new System.Drawing.Size(800, 30);
+            this.barra.Size = new System.Drawing.Size(1067, 37);
             this.barra.TabIndex = 14;
             this.barra.MouseMove += new System.Windows.Forms.MouseEventHandler(this.barra_MouseMove);
             // 
@@ -148,9 +160,10 @@
             this.btnMinimizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMinimizar.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnMinimizar.Image = global::Mambo_s_Pizza.Properties.Resources.icons8_minimize_20;
-            this.btnMinimizar.Location = new System.Drawing.Point(740, 0);
+            this.btnMinimizar.Location = new System.Drawing.Point(987, 0);
+            this.btnMinimizar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.btnMinimizar.Name = "btnMinimizar";
-            this.btnMinimizar.Size = new System.Drawing.Size(30, 30);
+            this.btnMinimizar.Size = new System.Drawing.Size(40, 37);
             this.btnMinimizar.TabIndex = 3;
             this.btnMinimizar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnMinimizar.Click += new System.EventHandler(this.btnMinimizar_Click);
@@ -162,9 +175,10 @@
             this.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCerrar.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnCerrar.Image = global::Mambo_s_Pizza.Properties.Resources.icons8_close_20;
-            this.btnCerrar.Location = new System.Drawing.Point(770, 0);
+            this.btnCerrar.Location = new System.Drawing.Point(1027, 0);
+            this.btnCerrar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(30, 30);
+            this.btnCerrar.Size = new System.Drawing.Size(40, 37);
             this.btnCerrar.TabIndex = 1;
             this.btnCerrar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
@@ -173,9 +187,9 @@
             // 
             // frmVistaClientes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.barra);
             this.Controls.Add(this.btnCarrito);
             this.Controls.Add(this.dgvVolverPedir);
@@ -183,7 +197,9 @@
             this.Controls.Add(this.dgvOfertas);
             this.Controls.Add(this.us);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmVistaClientes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmVistaClientes";
             ((System.ComponentModel.ISupportInitialize)(this.dgvOfertas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVolverPedir)).EndInit();

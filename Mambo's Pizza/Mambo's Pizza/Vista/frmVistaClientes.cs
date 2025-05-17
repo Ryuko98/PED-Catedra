@@ -41,8 +41,16 @@ namespace Mambo_s_Pizza.Vista
 
         private void btnCarrito_Click(object sender, EventArgs e)
         {
-            frmCarrito frm = new frmCarrito();
-            frm.Show();
+            if (Controlador_Pedidos.IdPedido != 0)
+            {
+                frmCarrito frm1 = new frmCarrito(Controlador_Pedidos.IdPedido);
+                frm1.Show();
+            }
+            else
+            {
+                frmCarrito frm = new frmCarrito(); 
+                frm.Show();
+            }
         }
 
         private void barra_MouseMove(object sender, MouseEventArgs e)

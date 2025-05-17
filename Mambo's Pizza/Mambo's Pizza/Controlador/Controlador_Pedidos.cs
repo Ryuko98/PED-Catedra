@@ -69,5 +69,13 @@ namespace Mambo_s_Pizza.Controlador
         {
             return Modelo_Pedidos.VerificarCarrito(id_cliente);
         }
+        public static int CrearCarrito(int id_cliente)
+        {
+            return Modelo_Pedidos.CrearCarrito(id_cliente);
+        }
+        public static DataTable CargarCarrito(int id_pedido)
+        {
+            return Modelo_Pedidos.CargarCarrito(id_pedido);
+        }
     }
 }

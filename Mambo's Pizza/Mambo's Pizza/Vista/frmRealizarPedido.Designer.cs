@@ -113,6 +113,7 @@
             this.Controls.Add(this.us);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmRealizarPedido";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Añadir al carrito";
             this.ResumeLayout(false);
             this.PerformLayout();

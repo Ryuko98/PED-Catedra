@@ -59,7 +59,7 @@ namespace Mambo_s_Pizza.Modelo
             dt.Columns.Add("Precio");
             dt.Columns.Add("Descripción");
             dt.Columns.Add("Veces pedido");
-            dt.Columns.Add("Ultima vez pedido");
+            //dt.Columns.Add("Ultima vez pedido");
 
             Conexion conexionBD = new Conexion();
 
@@ -86,8 +86,8 @@ namespace Mambo_s_Pizza.Modelo
                                 reader["NombreMenu"].ToString(),
                                 reader["Precio"].ToString(),
                                 reader["Descripcion"].ToString(),
-                                Convert.ToInt32(reader["VecesPedido"]),
-                                Convert.ToDateTime(reader["UltimaVezPedido"])
+                                Convert.ToInt32(reader["VecesPedido"])
+                                //,Convert.ToDateTime(reader["UltimaVezPedido"])
                             );
                         }
                     }
