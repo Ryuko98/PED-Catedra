@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Mambo_s_Pizza.Controlador;
 
 namespace Mambo_s_Pizza.Vista
 {
@@ -18,6 +19,7 @@ namespace Mambo_s_Pizza.Vista
         public frmPerfilRepartidor()
         {
             InitializeComponent();
+            CargarDatosRepartidor();
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -71,6 +73,25 @@ namespace Mambo_s_Pizza.Vista
             {
                 Left = Left + (e.X - x);
                 Top = Top + (e.Y - y);
+            }
+        }
+
+        void CargarDatosRepartidor()
+        {
+            try
+            {
+                Controlador_PerfilRepartidor.CargarDatosRepartidor();
+
+                lblNombre.Text += Controlador_PerfilRepartidor.NombreCompleto;
+                lblCorreo.Text += Controlador_PerfilRepartidor.Correo;
+                lblUsuario.Text += Controlador_PerfilRepartidor.Usuario;
+                lblDUI.Text += Controlador_PerfilRepartidor.DUI;
+                lblCalificacion.Text += Controlador_PerfilRepartidor.CalificacionPromedio+"/5";
+                lblFechaRegistro.Text += Convert.ToDateTime(Controlador_PerfilRepartidor.FechaRegistro).ToString("dd/MM/yyyy");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -53,6 +53,7 @@
     <Compile Include="Controlador\Controlador_Membresias.cs" />
     <Compile Include="Controlador\Controlador_Menus.cs" />
     <Compile Include="Controlador\Controlador_Pedidos.cs" />
+    <Compile Include="Controlador\Controlador_PerfilRepartidor.cs" />
     <Compile Include="Controlador\Controlador_Repartidores.cs" />
     <Compile Include="Controlador\Controlador_Reseñas.cs" />
     <Compile Include="Controlador\Controlador_Usuarios.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Modelo\Modelo_Membresias.cs" />
     <Compile Include="Modelo\Modelo_Menus.cs" />
     <Compile Include="Modelo\Modelo_Pedidos.cs" />
+    <Compile Include="Modelo\Modelo_PerfilRepartidor.cs" />
     <Compile Include="Modelo\Modelo_Repartidores.cs" />
     <Compile Include="Modelo\Modelo_Reseñas.cs" />
     <Compile Include="Modelo\Modelo_Usuarios.cs" />

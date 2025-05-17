@@ -29,69 +29,71 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.us = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblUsuario = new System.Windows.Forms.Label();
+            this.lblCalificacion = new System.Windows.Forms.Label();
+            this.lblDUIadjakslj = new System.Windows.Forms.Label();
+            this.lblFechaRegistro = new System.Windows.Forms.Label();
+            this.lblDUI = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.btnMinimizar = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Label();
             this.barra = new System.Windows.Forms.Panel();
+            this.lblNombre = new System.Windows.Forms.Label();
+            this.lblCorreo = new System.Windows.Forms.Label();
             this.barra.SuspendLayout();
             this.SuspendLayout();
             // 
-            // us
+            // lblUsuario
             // 
-            this.us.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.us.Location = new System.Drawing.Point(10, 30);
-            this.us.Name = "us";
-            this.us.Size = new System.Drawing.Size(200, 30);
-            this.us.TabIndex = 6;
-            this.us.Text = "DUI: 06795006-2";
-            this.us.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblUsuario.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuario.Location = new System.Drawing.Point(10, 90);
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(300, 30);
+            this.lblUsuario.TabIndex = 6;
+            this.lblUsuario.Text = "Usuario: ";
+            this.lblUsuario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label1
+            // lblCalificacion
             // 
-            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(10, 60);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(200, 30);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Calificación: 4.5/5";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblCalificacion.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCalificacion.Location = new System.Drawing.Point(10, 150);
+            this.lblCalificacion.Name = "lblCalificacion";
+            this.lblCalificacion.Size = new System.Drawing.Size(300, 30);
+            this.lblCalificacion.TabIndex = 7;
+            this.lblCalificacion.Text = "Calificación: ";
+            this.lblCalificacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label2
+            // lblDUIadjakslj
             // 
-            this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(216, 60);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(200, 30);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Total de reseñas: 9999";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolTip.SetToolTip(this.label2, "Click para ver todas las reseñas");
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.lblDUIadjakslj.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDUIadjakslj.Location = new System.Drawing.Point(12, 210);
+            this.lblDUIadjakslj.Name = "lblDUIadjakslj";
+            this.lblDUIadjakslj.Size = new System.Drawing.Size(200, 30);
+            this.lblDUIadjakslj.TabIndex = 8;
+            this.lblDUIadjakslj.Text = "Total de reseñas: 9999";
+            this.lblDUIadjakslj.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolTip.SetToolTip(this.lblDUIadjakslj, "Click para ver todas las reseñas");
+            this.lblDUIadjakslj.Click += new System.EventHandler(this.label2_Click);
             // 
-            // label3
+            // lblFechaRegistro
             // 
-            this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 90);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(200, 30);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Registro: Dic 20 de 2004";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblFechaRegistro.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaRegistro.Location = new System.Drawing.Point(10, 180);
+            this.lblFechaRegistro.Name = "lblFechaRegistro";
+            this.lblFechaRegistro.Size = new System.Drawing.Size(300, 30);
+            this.lblFechaRegistro.TabIndex = 9;
+            this.lblFechaRegistro.Text = "Fecha Registro: ";
+            this.lblFechaRegistro.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label4
+            // lblDUI
             // 
-            this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(12, 120);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(200, 30);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Disponibilidad: En entrega";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblDUI.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDUI.Location = new System.Drawing.Point(10, 120);
+            this.lblDUI.Name = "lblDUI";
+            this.lblDUI.Size = new System.Drawing.Size(300, 30);
+            this.lblDUI.TabIndex = 10;
+            this.lblDUI.Text = "DUI: ";
+            this.lblDUI.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnMinimizar
             // 
@@ -135,17 +137,39 @@
             this.barra.TabIndex = 11;
             this.barra.MouseMove += new System.Windows.Forms.MouseEventHandler(this.barra_MouseMove);
             // 
+            // lblNombre
+            // 
+            this.lblNombre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombre.Location = new System.Drawing.Point(10, 30);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(300, 30);
+            this.lblNombre.TabIndex = 12;
+            this.lblNombre.Text = "Nombre: ";
+            this.lblNombre.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblCorreo
+            // 
+            this.lblCorreo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCorreo.Location = new System.Drawing.Point(10, 60);
+            this.lblCorreo.Name = "lblCorreo";
+            this.lblCorreo.Size = new System.Drawing.Size(300, 30);
+            this.lblCorreo.TabIndex = 13;
+            this.lblCorreo.Text = "Correo: ";
+            this.lblCorreo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // frmPerfilRepartidor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblCorreo);
+            this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.barra);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.us);
+            this.Controls.Add(this.lblDUI);
+            this.Controls.Add(this.lblFechaRegistro);
+            this.Controls.Add(this.lblDUIadjakslj);
+            this.Controls.Add(this.lblCalificacion);
+            this.Controls.Add(this.lblUsuario);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmPerfilRepartidor";
             this.Text = "frmPerfilRepartidor";
@@ -155,14 +179,16 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label us;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblUsuario;
+        private System.Windows.Forms.Label lblCalificacion;
+        private System.Windows.Forms.Label lblDUIadjakslj;
         private System.Windows.Forms.ToolTip toolTip;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblFechaRegistro;
+        private System.Windows.Forms.Label lblDUI;
         private System.Windows.Forms.Panel barra;
         private System.Windows.Forms.Label btnMinimizar;
         private System.Windows.Forms.Label btnCerrar;
+        private System.Windows.Forms.Label lblNombre;
+        private System.Windows.Forms.Label lblCorreo;
     }
 }
