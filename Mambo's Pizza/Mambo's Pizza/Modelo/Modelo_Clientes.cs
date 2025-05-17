@@ -92,9 +92,10 @@ namespace Mambo_s_Pizza.Modelo
                 List<KeyValuePair<int, string>> lista = new List<KeyValuePair<int, string>>();
                 try
                 {
-                    string query = @"SELECT DISTINCT m.IdMembresia, m.Membresia 
+                    string query = @"SELECT m.IdMembresia, m.Membresia 
                             FROM Membresias m
-                            INNER JOIN Clientes c ON m.IdMembresia = c.IdMembresia";
+                            INNER JOIN Clientes c ON m.IdMembresia = c.IdMembresia
+                            ORDER BY c.IdCliente";
 
                     SqlCommand comando = new SqlCommand(query, con);
                     SqlDataReader reader = comando.ExecuteReader();
@@ -117,68 +118,39 @@ namespace Mambo_s_Pizza.Modelo
             }
         }
 
-        public static string ObtenerMembresia(int idCliente)
+        public static int EncontrarIdCliente(int idUsuario)
         {
-            mensajes msg = new mensajes();
             Conexion conexionBD = new Conexion();
             using (SqlConnection con = conexionBD.AbrirConexion())
             {
-                string membresia = "";
+                int id = 0;
                 try
                 {
-                    string query = @"SELECT m.Membresia 
-                            FROM Clientes c
-                            INNER JOIN Membresias m ON c.IdMembresia = m.IdMembresia
-                            WHERE c.IdCliente = '" + idCliente + "'";
-
+                    string query = "SELECT [IdCliente] FROM [Clientes] WHERE IdUsuario = @idUsuario";
                     SqlCommand comando = new SqlCommand(query, con);
+                    comando.Parameters.Add(new SqlParameter("@idUsuario", idUsuario));
                     SqlDataReader reader = comando.ExecuteReader();
 
+                    if (!reader.HasRows)
+                    {
+                        Console.WriteLine("No se encontraron resultados para el cliente con id de usuario: " + idUsuario);
+                        return 0;
+                    }
                     while (reader.Read())
                     {
-                        membresia = reader["Membresia"].ToString();                        
+                        id = Convert.ToInt32(reader["IdCliente"]);
                     }
-
-                    return membresia;
+                    return id;
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine("Error: " + ex.Message);
-                    return null;
+                    return -1;
                 }
+
             }
+
         }
 
-        public static string ObtenerUsuario(int idCliente)
-        {
-            mensajes msg = new mensajes();
-            Conexion conexionBD = new Conexion();
-            using (SqlConnection con = conexionBD.AbrirConexion())
-            {
-                string usuario = "";
-                try
-                {
-                    string query = @"SELECT u.Nombre, u.Apellido, u.Usuario
-                            FROM Usuarios u
-                            INNER JOIN Clientes c ON u.IdUsuario = c.IdUsuario
-                            WHERE c.IdCliente = '" + idCliente + "'";
-
-                    SqlCommand comando = new SqlCommand(query, con);
-                    SqlDataReader reader = comando.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        usuario = reader["Nombre"].ToString() + " " + reader["Apellido"] + ", " + reader["Usuario"];
-                    }
-
-                    return usuario;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error: " + ex.Message);
-                    return null;
-                }
-            }
-        }
     }
 }

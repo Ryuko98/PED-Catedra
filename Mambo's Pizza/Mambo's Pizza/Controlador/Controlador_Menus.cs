@@ -12,9 +12,9 @@ namespace Mambo_s_Pizza.Controlador
     public class Controlador_Menus
     {
         public static int IdMenu { get; set; }
-        public string NombreMenu { get; set; }
-        public float Precio { get; set; }
-        public string Descripcion { get; set; }
+        public static string NombreMenu { get; set; }
+        public static float Precio { get; set; }
+        public static string Descripcion { get; set; }
 
         public Controlador_Menus(string mNombreMenu, float mPrecio, string mDescripcion)
         {
@@ -46,6 +46,11 @@ namespace Mambo_s_Pizza.Controlador
         public static DataTable ObtenerHistorialMenus()
         {
             return Modelo_Menus.MostrarHistorialMenus(Controlador_InicioSesion.IdUsuario);
+        }
+
+        public static List<string> DatosMenu()
+        {
+            return Modelo_Menus.DatosMenu(IdMenu);
         }
     }
 }

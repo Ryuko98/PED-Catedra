@@ -47,5 +47,9 @@ namespace Mambo_s_Pizza.Controlador
         {
             return Modelo_Clientes.CargarMembresiaCliente();
         }
+        public static int EncontrarIdCliente(int id_usuario)
+        {
+            return Modelo_Clientes.EncontrarIdCliente(id_usuario);
+        }
     }
 }
