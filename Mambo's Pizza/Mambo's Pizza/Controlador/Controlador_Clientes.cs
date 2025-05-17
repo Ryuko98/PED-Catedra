@@ -28,17 +28,6 @@ namespace Mambo_s_Pizza.Controlador
         {
             return Modelo_Clientes.MostrarClientes();
         }
-
-        public static string ObtenerMembresia()
-        {
-            return Modelo_Clientes.ObtenerMembresia(IdCliente);
-        }
-
-        public static string ObtenerUsuario()
-        {
-            return Modelo_Clientes.ObtenerUsuario(IdCliente);
-        }
-
         public static List<KeyValuePair<int, string>> CargarUsuariosClientes()
         {
             return Modelo_Clientes.CargarUsuariosClientes();
@@ -50,6 +39,16 @@ namespace Mambo_s_Pizza.Controlador
         public static int EncontrarIdCliente(int id_usuario)
         {
             return Modelo_Clientes.EncontrarIdCliente(id_usuario);
+        }
+
+        public static string ObtenerMembresia()
+        {
+            return Modelo_Clientes.ObtenerMembresia(IdCliente);
+        }
+
+        public static string ObtenerUsuario()
+        {
+            return Modelo_Clientes.ObtenerUsuario(IdCliente);
         }
     }
 }

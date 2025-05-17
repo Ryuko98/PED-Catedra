@@ -92,6 +92,7 @@
             this.dgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDatos.Size = new System.Drawing.Size(980, 150);
             this.dgvDatos.TabIndex = 9;
+            this.dgvDatos.Click += new System.EventHandler(this.dgvDatos_Click);
             // 
             // btnInsertar
             // 
@@ -124,6 +125,7 @@
             this.btnEliminar.Size = new System.Drawing.Size(40, 40);
             this.btnEliminar.TabIndex = 3;
             this.toolTip.SetToolTip(this.btnEliminar, "Eliminar un registro seleccionado");
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnLimpiar
             // 
@@ -134,6 +136,7 @@
             this.btnLimpiar.Size = new System.Drawing.Size(40, 40);
             this.btnLimpiar.TabIndex = 4;
             this.toolTip.SetToolTip(this.btnLimpiar, "Limpiar los campos de texto");
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // txtID
             // 

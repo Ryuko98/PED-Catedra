@@ -152,5 +152,69 @@ namespace Mambo_s_Pizza.Modelo
 
         }
 
+        public static string ObtenerMembresia(int idCliente)
+        {
+            mensajes msg = new mensajes();
+            Conexion conexionBD = new Conexion();
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                string membresia = "";
+                try
+                {
+                    string query = @"SELECT m.Membresia 
+                            FROM Clientes c
+                            INNER JOIN Membresias m ON c.IdMembresia = m.IdMembresia
+                            WHERE c.IdCliente = '" + idCliente + "'";
+
+                    SqlCommand comando = new SqlCommand(query, con);
+                    SqlDataReader reader = comando.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        membresia = reader["Membresia"].ToString();
+                    }
+
+                    return membresia;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                    return null;
+                }
+            }
+        }
+
+        public static string ObtenerUsuario(int idCliente)
+        {
+            mensajes msg = new mensajes();
+            Conexion conexionBD = new Conexion();
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                string usuario = "";
+                try
+                {
+                    string query = @"SELECT u.Nombre, u.Apellido, u.Usuario
+                            FROM Usuarios u
+                            INNER JOIN Clientes c ON u.IdUsuario = c.IdUsuario
+                            WHERE c.IdCliente = '" + idCliente + "'";
+
+                    SqlCommand comando = new SqlCommand(query, con);
+                    SqlDataReader reader = comando.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        usuario = reader["Nombre"].ToString() + " " + reader["Apellido"] + ", " + reader["Usuario"];
+                    }
+
+                    return usuario;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                    return null;
+                }
+            }
+
+        }
     }
 }

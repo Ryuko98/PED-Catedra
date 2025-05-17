@@ -12,6 +12,7 @@ namespace Mambo_s_Pizza.Vista
 {
     public partial class frmReseñas : Form
     {
+        mensajes msg = new mensajes();
         public frmReseñas()
         {
             InitializeComponent();

@@ -37,6 +37,7 @@ namespace Mambo_s_Pizza.Vista
             cmbUsuario.SelectedIndex = -1;
             cmbMembresia.SelectedIndex = -1;
             txtDireccion.Clear();
+            dtpExpiracion.Text = "";
         }
 
         private void frmClientes_Load(object sender, EventArgs e)
@@ -56,7 +57,7 @@ namespace Mambo_s_Pizza.Vista
             cmbMembresia.ValueMember = "Key";      // Valor oculto (IdMembresia)
         }
 
-            private void btnInsertar_Click(object sender, EventArgs e)
+        private void btnInsertar_Click(object sender, EventArgs e)
         {
 
         }
@@ -106,6 +107,11 @@ namespace Mambo_s_Pizza.Vista
                 return UsuarioCompleto;
             }
             catch { return null; }
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            Limpiar();
         }
     }
 }

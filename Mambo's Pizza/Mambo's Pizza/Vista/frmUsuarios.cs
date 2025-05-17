@@ -205,7 +205,7 @@ namespace Mambo_s_Pizza.Vista
                     }
                     else
                     {
-                        msg.errorEliminacion("No se pudo eliminar la opcion", "Tabla: Menus");
+                        msg.errorEliminacion("No se pudo eliminar el usuario", "Tabla: Usuarios");
                     }
 
                 }

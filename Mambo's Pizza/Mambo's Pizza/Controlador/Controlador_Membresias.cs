@@ -10,7 +10,7 @@ namespace Mambo_s_Pizza.Controlador
 {
     public class Controlador_Membresias
     {
-        public static int IdMembresia {  get; set; }
+        public static int IdMembresia { get; set; }
         public string Membresia { get; set; }
         public string Descripcion { get; set; }
 
@@ -26,6 +26,14 @@ namespace Mambo_s_Pizza.Controlador
         public bool InsertarMembresias()
         {
             return Modelo_Membresias.AgregarMembresia(Membresia, Descripcion);
+        }
+        public bool ActualizarMembresias()
+        {
+            return Modelo_Membresias.ActualizarMembresia(IdMembresia, Membresia, Descripcion);
+        }
+        public static bool EliminarMembresias()
+        {
+            return Modelo_Membresias.EliminarMembresia(IdMembresia);
         }
     }
 }
