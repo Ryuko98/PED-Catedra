@@ -118,17 +118,17 @@ ALTER TABLE [DetallesPedidos] ADD CONSTRAINT [fk_DetallesPedidos_Menu] FOREIGN K
 GO
 
 -- Insert initial state into EstadosPedidos
-INSERT INTO [EstadosPedidos] ([Estado]) VALUES ('En proceso'),('Entregado'),('Calificado');
+INSERT INTO [EstadosPedidos] ([Estado]) VALUES ('Recien creado'),('Esperando confirmación'),('En camino'),('Entregado'),('Calificado');
 GO
 
 -- Insert Usuarios
 INSERT INTO [Usuarios] ([Nombre], [Apellido], [FechaNacimiento], [Correo], [Usuario], [Contraseña], [Rol]) VALUES
-('Carlos', 'Gomez', '1985-05-15', 'carlos.gomez@example.com', 'carlosg', 'Carlos123', 'admin'),
+('Carlos', 'Gomez', '1985-05-15', 'carlos.gomez@example.com', 'carlosg', '123', 'admin'),
 ('Maria', 'Lopez', '1990-07-22', 'maria.lopez@example.com', 'marial', 'Maria123', 'cliente'),
 ('Juan', 'Martinez', '1988-03-10', 'juan.martinez@example.com', 'juanm', 'Juan123', 'cliente'),
 ('Ana', 'Garcia', '1992-11-30', 'ana.garcia@example.com', 'anag', 'Ana123', 'cliente'),
 ('Laura', 'Perez', '1991-06-18', 'laura.perez@example.com', 'laurap', 'Laura123', 'cliente'),
-('Daniel', 'Hernandez', '1991-02-20', 'danie@egmail.com', 'danie', 'Danie123', 'cliente'),
+('Daniel', 'Hernandez', '1991-02-20', 'danie@egmail.com', 'danie', '123', 'cliente'),
 ('Luis', 'Hernandez', '1987-09-25', 'luis.hernandez@example.com', 'luish', 'Luis123', 'repartidor'), --7
 ('Sofia', 'Ramirez', '1995-01-05', 'sofia.ramirez@example.com', 'sofiar', 'Sofia123', 'repartidor'),--8
 ('Miguel', 'Fernandez', '1983-12-12', 'miguel.fernandez@example.com', 'miguelf', 'Miguel123', 'repartidor');--9

@@ -13,11 +13,9 @@ namespace Mambo_s_Pizza.Vista
 {
     public partial class frmCarrito : Form
     {
-        int id_pedido;
-        public frmCarrito(int id = 0)
+        public frmCarrito(bool existe_carrito)
         {
             InitializeComponent();
-            id_pedido = id;
             //dgvCarrito.Rows.Add("Orange Chicken", "2", "18.99");
             CargarOfertas();
         }

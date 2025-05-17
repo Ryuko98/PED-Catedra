@@ -64,7 +64,7 @@
             this.Menu,
             this.Precio});
             this.dgvOfertas.Location = new System.Drawing.Point(11, 112);
-            this.dgvOfertas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvOfertas.Margin = new System.Windows.Forms.Padding(4);
             this.dgvOfertas.Name = "dgvOfertas";
             this.dgvOfertas.ReadOnly = true;
             this.dgvOfertas.RowHeadersWidth = 51;
@@ -95,7 +95,7 @@
             this.Menu1,
             this.Precio1});
             this.dgvVolverPedir.Location = new System.Drawing.Point(11, 354);
-            this.dgvVolverPedir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvVolverPedir.Margin = new System.Windows.Forms.Padding(4);
             this.dgvVolverPedir.Name = "dgvVolverPedir";
             this.dgvVolverPedir.ReadOnly = true;
             this.dgvVolverPedir.RowHeadersWidth = 51;
@@ -149,7 +149,7 @@
             this.barra.Controls.Add(this.btnCerrar);
             this.barra.Dock = System.Windows.Forms.DockStyle.Top;
             this.barra.Location = new System.Drawing.Point(0, 0);
-            this.barra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.barra.Margin = new System.Windows.Forms.Padding(4);
             this.barra.Name = "barra";
             this.barra.Size = new System.Drawing.Size(1067, 37);
             this.barra.TabIndex = 14;
@@ -197,7 +197,7 @@
             this.Controls.Add(this.dgvOfertas);
             this.Controls.Add(this.us);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmVistaClientes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmVistaClientes";

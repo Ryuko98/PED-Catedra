@@ -77,5 +77,9 @@ namespace Mambo_s_Pizza.Controlador
         {
             return Modelo_Pedidos.CargarCarrito(id_pedido);
         }
+        public static List<string> CarritoFinalizado(int id_cliente)
+        {
+            return Modelo_Pedidos.CarritoFinalizado(id_cliente);
+        }
     }
 }
