@@ -34,9 +34,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtCalificacion = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.txtComentario = new System.Windows.Forms.TextBox();
             this.clave = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtFechaReview = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvDatos = new System.Windows.Forms.DataGridView();
             this.txtID = new System.Windows.Forms.TextBox();
@@ -106,15 +106,15 @@
             this.label3.Text = "*Calificación:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtDescripcion
+            // txtComentario
             // 
-            this.txtDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDescripcion.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescripcion.Location = new System.Drawing.Point(220, 40);
-            this.txtDescripcion.Multiline = true;
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(200, 85);
-            this.txtDescripcion.TabIndex = 50;
+            this.txtComentario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtComentario.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtComentario.Location = new System.Drawing.Point(220, 40);
+            this.txtComentario.Multiline = true;
+            this.txtComentario.Name = "txtComentario";
+            this.txtComentario.Size = new System.Drawing.Size(200, 85);
+            this.txtComentario.TabIndex = 50;
             // 
             // clave
             // 
@@ -126,15 +126,15 @@
             this.clave.Text = "Comentario:";
             this.clave.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox1
+            // txtFechaReview
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(220, 160);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(200, 26);
-            this.textBox1.TabIndex = 52;
+            this.txtFechaReview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtFechaReview.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFechaReview.Location = new System.Drawing.Point(220, 160);
+            this.txtFechaReview.Name = "txtFechaReview";
+            this.txtFechaReview.ReadOnly = true;
+            this.txtFechaReview.Size = new System.Drawing.Size(200, 26);
+            this.txtFechaReview.TabIndex = 52;
             // 
             // label2
             // 
@@ -155,6 +155,7 @@
             this.dgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDatos.Size = new System.Drawing.Size(980, 150);
             this.dgvDatos.TabIndex = 53;
+            this.dgvDatos.Click += new System.EventHandler(this.dgvDatos_Click);
             // 
             // txtID
             // 
@@ -211,6 +212,7 @@
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(40, 40);
             this.btnLimpiar.TabIndex = 57;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // frmReseñas
             // 
@@ -224,9 +226,9 @@
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.dgvDatos);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtFechaReview);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtDescripcion);
+            this.Controls.Add(this.txtComentario);
             this.Controls.Add(this.clave);
             this.Controls.Add(this.txtCalificacion);
             this.Controls.Add(this.label3);
@@ -237,6 +239,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmReseñas";
             this.Text = "Reseñas";
+            this.Load += new System.EventHandler(this.frmReseñas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -251,9 +254,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtCalificacion;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtDescripcion;
+        private System.Windows.Forms.TextBox txtComentario;
         private System.Windows.Forms.Label clave;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtFechaReview;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dgvDatos;
         private System.Windows.Forms.TextBox txtID;

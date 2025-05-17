@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace Mambo_s_Pizza.Modelo
 {
@@ -92,10 +93,9 @@ namespace Mambo_s_Pizza.Modelo
                 List<KeyValuePair<int, string>> lista = new List<KeyValuePair<int, string>>();
                 try
                 {
-                    string query = @"SELECT m.IdMembresia, m.Membresia 
+                    string query = @"SELECT DISTINCT m.IdMembresia, m.Membresia 
                             FROM Membresias m
-                            INNER JOIN Clientes c ON m.IdMembresia = c.IdMembresia
-                            ORDER BY c.IdCliente";
+                            INNER JOIN Clientes c ON m.IdMembresia = c.IdMembresia";
 
                     SqlCommand comando = new SqlCommand(query, con);
                     SqlDataReader reader = comando.ExecuteReader();
@@ -161,7 +161,7 @@ namespace Mambo_s_Pizza.Modelo
                 string membresia = "";
                 try
                 {
-                    string query = @"SELECT m.Membresia 
+                    string query = @"SELECT m.Membresia
                             FROM Clientes c
                             INNER JOIN Membresias m ON c.IdMembresia = m.IdMembresia
                             WHERE c.IdCliente = '" + idCliente + "'";
@@ -215,6 +215,42 @@ namespace Mambo_s_Pizza.Modelo
                 }
             }
 
+        }
+
+        public static bool AgregarCliente(int idUsuario, string Direccion, int idMembresia, DateTime fechaExp)
+        {
+            bool retorno = false;
+            mensajes msg = new mensajes();
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                try
+                {
+                    string query = "INSERT INTO Clientes (IdUsuario, Direccion, IdMembresia, FechaExpiracion) " +
+                                 "VALUES (@IdUsuario, @Direccion, @IdMembresia, @FechaExpiracion)";
+
+                    SqlCommand comando = new SqlCommand(query, con);
+
+                    comando.Parameters.AddWithValue("@IdUsuario", idUsuario);
+                    comando.Parameters.AddWithValue("@Direccion", Direccion);
+                    comando.Parameters.AddWithValue("@IdMembresia", idMembresia);
+                    comando.Parameters.AddWithValue("@FechaExpiracion", fechaExp);
+
+                    retorno = Convert.ToBoolean(comando.ExecuteNonQuery());
+                    msg.exitoInsercion("Tabla: Clientes. ");
+                    return retorno; // Retorna 1 si se agrega correctamente
+                }
+                catch (SqlException ex)
+                {
+                    msg.errorInsercion(ex.Message, "Tabla: Clientes. ");
+                    return retorno; // Retorna 0 si hay un error
+                }
+                finally
+                {
+                    conexionBD.CerrarConexion();
+                }
+            }
         }
     }
 }

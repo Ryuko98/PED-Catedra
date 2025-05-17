@@ -59,7 +59,49 @@ namespace Mambo_s_Pizza.Vista
 
         private void btnInsertar_Click(object sender, EventArgs e)
         {
+            // Validación de campos vacíos
+            if (txtDireccion.Text == "" || cmbUsuario.SelectedIndex == -1 || cmbMembresia.SelectedIndex == -1 ||
+                dtpExpiracion.Text == "")
+            {
+                msg.camposVacios();
+                return;
+            }
 
+            try
+            {
+                int idUsuario, idMembresia;
+                string direccion;
+                DateTime fechaExp;
+                idUsuario = cmbUsuario.SelectedIndex;
+                idMembresia = cmbMembresia.SelectedIndex;
+                direccion = txtDireccion.Text;
+                fechaExp = dtpExpiracion.Value;
+
+                objClientes = new Controlador_Clientes(idUsuario, direccion, idMembresia, fechaExp);
+                bool resultado = objClientes.InsertarClientes();
+
+                if (resultado == true)
+                {
+                    Limpiar();
+                    RefrescarPantalla();
+                }
+                else
+                {
+                    msg.errorEliminacion("No se pudo agregar", "Tabla: Clientes");
+                }
+            }
+            catch (FormatException)
+            {
+                msg.errorInsercion("Formato incorrecto en los datos", "Clientes");
+            }
+            catch (SqlException sqlEx)
+            {
+                msg.errorInsercion(sqlEx.Message, "Clientes");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error crítico: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void dgvDatos_Click(object sender, EventArgs e)
