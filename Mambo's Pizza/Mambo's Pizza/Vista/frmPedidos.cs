@@ -16,6 +16,7 @@ namespace Mambo_s_Pizza.Vista
     public partial class frmPedidos : Form
     {
         mensajes msg = new mensajes();
+        Controlador_Pedidos objPedido;
         public frmPedidos()
         {
             InitializeComponent();
@@ -69,37 +70,43 @@ namespace Mambo_s_Pizza.Vista
 
             try
             {
-                //Controlador_Pedidos nuevoPedido = new Controlador_Pedidos();
+                string Descripcion;
+                int idCliente, idRepartidor, idEstado;
+                double precio;
+                DateTime horaPedido, horaEntrega;
+                //Asignación de valores desde los controles
+                Descripcion = txtDescipcion.Text;
+                idCliente = Convert.ToInt32(cmbCliente.SelectedValue);
+                horaPedido = dtpPedido.Value;
+                // HoraEntrega (puede ser nula)
+                horaEntrega = dtpEntrega.Value;
+                // Repartidor (puede ser nulo si no está asignado)
+                idRepartidor = cmbRepartidor.SelectedValue != null ?
+                                         Convert.ToInt32(cmbRepartidor.SelectedValue) : 0;
 
-                // Asignación de valores desde los controles
-                //nuevoPedido.Descripcion = txtDescipcion.Text;
-                //nuevoPedido.IdCliente = Convert.ToInt32(cmbCliente.SelectedValue);
-                //nuevoPedido.HoraPedido = dtpPedido.Value;
-                //// HoraEntrega (puede ser nula)
-                //nuevoPedido.HoraEntrega = dtpEntrega.Value;
-                //// Repartidor (puede ser nulo si no está asignado)
-                //nuevoPedido.IdRepartidor = cmbRepartidor.SelectedValue != null ?
-                //                         Convert.ToInt32(cmbRepartidor.SelectedValue) : 0;
+                idEstado = Convert.ToInt32(cmbEstado.SelectedValue);
 
-                //nuevoPedido.IdEstadoPedido = Convert.ToInt32(cmbEstado.SelectedValue);
+                // Validación del precio total
+                if (!double.TryParse(txtTotal.Text, out double totalPrecio))
+                {
+                    msg.errorInsercion("El precio total debe ser un valor numérico válido", "Pedido");
+                    return;
+                }
+                precio = totalPrecio;
 
-                //// Validación del precio total
-                //if (!decimal.TryParse(txtTotal.Text, out decimal totalPrecio))
-                //{
-                //    msg.errorInsercion("El precio total debe ser un valor numérico válido", "Pedido");
-                //    return;
-                //}
-                //nuevoPedido.TotalPrecio = totalPrecio;
+                objPedido = new Controlador_Pedidos(Descripcion, idCliente, horaPedido, horaEntrega, idRepartidor, idEstado, precio);
+                // Llamada al modelo para insertar
+                bool resultado = objPedido.InsertarUsuarios();
 
-                //// Llamada al modelo para insertar
-                //int resultado = Modelo_Pedidos.AgregarPedido(nuevoPedido);
-
-                //if (resultado > 0)
-                //{
-                //    msg.exitoInsercion("Pedido registrado correctamente");
-                //    limpiarCampos();
-                //    RefrescarPantalla();
-                //}
+                if (resultado == true)
+                {
+                    limpiarCampos();
+                    RefrescarPantalla();
+                }
+                else
+                {
+                    msg.errorEliminacion("No se pudo agregar el pedido", "Tabla: Menus");
+                }
             }
             catch (FormatException)
             {
@@ -136,42 +143,43 @@ namespace Mambo_s_Pizza.Vista
 
             try
             {
-                //Controlador_Pedidos pedidoActualizado = new Controlador_Pedidos();
+                string Descripcion;
+                int idCliente, idRepartidor, idEstado;
+                double precio;
+                DateTime horaPedido, horaEntrega;
+                //Asignación de valores desde los controles
+                Descripcion = txtDescipcion.Text;
+                idCliente = Convert.ToInt32(cmbCliente.SelectedValue);
+                horaPedido = dtpPedido.Value;
+                // HoraEntrega (puede ser nula)
+                horaEntrega = dtpEntrega.Value;
+                // Repartidor (puede ser nulo si no está asignado)
+                idRepartidor = cmbRepartidor.SelectedValue != null ?
+                                         Convert.ToInt32(cmbRepartidor.SelectedValue) : 0;
 
-                //// Asignación de valores desde los controles
-                //pedidoActualizado.IdPedido = Convert.ToInt32(txtID.Text);
-                //pedidoActualizado.Descripcion = txtDescipcion.Text;
-                //pedidoActualizado.IdCliente = Convert.ToInt32(cmbCliente.SelectedValue);
-                //pedidoActualizado.HoraPedido = dtpPedido.Value;
+                idEstado = Convert.ToInt32(cmbEstado.SelectedValue);
 
-                //// HoraEntrega (puede ser nula)
-                //pedidoActualizado.HoraEntrega = dtpEntrega.Value;
+                // Validación del precio total
+                if (!double.TryParse(txtTotal.Text, out double totalPrecio))
+                {
+                    msg.errorInsercion("El precio total debe ser un valor numérico válido", "Pedido");
+                    return;
+                }
+                precio = totalPrecio;
+                Controlador_Pedidos.IdPedido = Convert.ToInt32(txtID.Text);
+                objPedido = new Controlador_Pedidos(Descripcion, idCliente, horaPedido, horaEntrega, idRepartidor, idEstado, precio);
+                // Llamada al modelo para insertar
+                bool resultado = objPedido.ActualizarUsuarios();
 
-                //// Repartidor (puede ser nulo si no está asignado)
-                //pedidoActualizado.IdRepartidor = cmbRepartidor.SelectedValue != null ?
-                //                               Convert.ToInt32(cmbRepartidor.SelectedValue) : 0;
-
-                //pedidoActualizado.IdEstadoPedido = Convert.ToInt32(cmbEstado.SelectedValue);
-
-                //// Validación del precio total
-                //if (!decimal.TryParse(txtTotal.Text, out decimal totalPrecio))
-                //{
-                //    msg.errorActualizacion("El precio total debe ser un valor numérico válido", "Tabla: Pedidos");
-                //    return;
-                //}
-                //pedidoActualizado.TotalPrecio = totalPrecio;
-
-                //// Llamar al modelo para actualizar
-                //int resultado = Modelo_Pedidos.ActualizarPedido(pedidoActualizado);
-
-                //if (resultado > 0)
-                //{
-                //    msg.exitoActualizacion("Pedido actualizado correctamente");
-                //}
-                //else
-                //{
-                //    msg.errorActualizacion("No se pudo actualizar el pedido", "Tabla: Pedidos");
-                //}
+                if (resultado == true)
+                {
+                    limpiarCampos();
+                    RefrescarPantalla();
+                }
+                else
+                {
+                    msg.errorEliminacion("No se pudo actualizar el pedido", "Tabla: Menus");
+                }
             }
             catch (FormatException)
             {
@@ -209,17 +217,18 @@ namespace Mambo_s_Pizza.Vista
                     // Obtener el ID del pedido seleccionado
                     int id = Convert.ToInt32(dgvDatos.CurrentRow.Cells["IdPedido"].Value);
 
-                    // Llamar al controlador para eliminar
-                    //int resultado = Modelo_Pedidos.EliminarPedido(id);
+                    //Llamar al controlador para eliminar
+                    bool resultado = Modelo_Pedidos.EliminarPedido(id);
 
-                    //if (resultado > 0)
-                    //{
-                    //    msg.exitoEliminacion("Pedido eliminado correctamente");
-                    //}
-                    //else
-                    //{
-                    //    msg.errorEliminacion("No se pudo eliminar el pedido", "Tabla: Pedidos");
-                    //}
+                    if (resultado == true)
+                    {
+                        limpiarCampos();
+                        RefrescarPantalla();
+                    }
+                    else
+                    {
+                        msg.errorEliminacion("No se pudo eliminar el pedido", "Tabla: Pedidos");
+                    }
                 }
                 catch (FormatException)
                 {
