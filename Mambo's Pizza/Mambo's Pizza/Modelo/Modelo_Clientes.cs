@@ -117,5 +117,40 @@ namespace Mambo_s_Pizza.Modelo
                 }
             }
         }
+
+        public static int EncontrarIdCliente(int idUsuario)
+        {
+            Conexion conexionBD = new Conexion();
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                int id = 0;
+                try
+                {
+                    string query = "SELECT [IdCliente] FROM [Clientes] WHERE IdUsuario = @idUsuario";
+                    SqlCommand comando = new SqlCommand(query, con);
+                    comando.Parameters.Add(new SqlParameter("@idUsuario", idUsuario));
+                    SqlDataReader reader = comando.ExecuteReader();
+
+                    if (!reader.HasRows)
+                    {
+                        Console.WriteLine("No se encontraron resultados para el cliente con id de usuario: " + idUsuario);
+                        return 0;
+                    }
+                    while (reader.Read())
+                    {
+                        id = Convert.ToInt32(reader["IdCliente"]);
+                    }
+                    return id;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                    return -1;
+                }
+
+            }
+
+        }
+
     }
 }

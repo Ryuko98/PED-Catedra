@@ -38,11 +38,6 @@ namespace Mambo_s_Pizza.Vista
             WindowState = FormWindowState.Minimized;
         }
 
-        private void dgvOfertas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            frmRealizarPedido frm = new frmRealizarPedido();
-            frm.Show();
-        }
 
         private void btnCarrito_Click(object sender, EventArgs e)
         {
@@ -93,6 +88,20 @@ namespace Mambo_s_Pizza.Vista
             dgvOfertas.DataSource = dt;
         }
 
+        private void dgvOfertas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // Aseguramos que no se hizo clic en el encabezado
+            {
+                // Hagarramos el valor del la primera columna (idMenu) 
+                int id = Convert.ToInt32(dgvOfertas.Rows[e.RowIndex].Cells[0].Value);
+
+                // Pasa el ID al nuevo formulario
+                frmRealizarPedido frm = new frmRealizarPedido(id);
+                frm.Show();
+            }
+;
+        }
+
         public void CargarHistorialPedidos()
         {
             dgvVolverPedir.DataSource = null;
@@ -100,6 +109,7 @@ namespace Mambo_s_Pizza.Vista
             dgvVolverPedir.Columns.Clear();
             DataTable dt = Controlador_Menus.ObtenerHistorialMenus();
             dgvVolverPedir.DataSource = dt;
+            dgvOfertas.Columns[0].Visible = false;
         }
     }
 }

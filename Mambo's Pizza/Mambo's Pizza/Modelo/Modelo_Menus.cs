@@ -220,5 +220,50 @@ namespace Mambo_s_Pizza.Modelo
                 }
             }
         }
+
+
+        public static List<string> DatosMenu(int idMenu)
+        {
+            mensajes msg = new mensajes();
+            Conexion conexionBD = new Conexion();
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                List<string> lista = new List<string>();
+                string a, b, c;
+                try
+                {
+                    string query = "SELECT [IdMenu],[NombreMenu],[Precio],[Descripcion] FROM [Menus] WHERE idMenu = @idMenu";
+                    SqlCommand comando = new SqlCommand(query, con);
+                    comando.Parameters.Add(new SqlParameter("@idMenu", idMenu));
+                    SqlDataReader reader = comando.ExecuteReader();
+
+                    if (!reader.HasRows)
+                    {
+                        Console.WriteLine("No se encontraron resultados para el menu con id: " + idMenu);
+                        return lista;
+                    }
+
+                    while (reader.Read())
+                    {
+                        lista.Add(reader["idMenu"].ToString());
+                        lista.Add(reader["NombreMenu"].ToString());
+                        lista.Add(reader["Precio"].ToString());
+                        lista.Add(reader["Descripcion"].ToString());
+                    }
+
+                    return lista;
+
+                }
+
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                    return null;
+                }
+
+            }
+
+        }
+
     }
 }

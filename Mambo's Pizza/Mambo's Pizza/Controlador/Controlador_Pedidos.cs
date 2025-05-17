@@ -11,13 +11,13 @@ namespace Mambo_s_Pizza.Controlador
     class Controlador_Pedidos
     {
         public static int IdPedido { get; set; }
-        public string Descripcion { get; set; }
-        public int IdCliente { get; set; }
-        public DateTime HoraPedido { get; set; }
-        public DateTime HoraEntrega { get; set; }
-        public int IdRepartidor { get; set; }
-        public int IdEstadoPedido { get; set; }
-        public double TotalPrecio { get; set; }
+        public static string Descripcion { get; set; }
+        public static int IdCliente { get; set; }
+        public static DateTime HoraPedido { get; set; }
+        public static DateTime HoraEntrega { get; set; }
+        public static int IdRepartidor { get; set; }
+        public static int IdEstadoPedido { get; set; }
+        public static double TotalPrecio { get; set; }
 
         public Controlador_Pedidos(string pDescripcion, int pIdCliente, DateTime pHoraPedido, DateTime pHoraEntrega, int pIdRepartidor, int pIdEstadoPedido, double pTotalPrecio)
         {
@@ -63,6 +63,11 @@ namespace Mambo_s_Pizza.Controlador
         public static DataTable ObtenerEstadoPedido()
         {
             return Modelo_Pedidos.MostrarEstados();
+        }
+
+        public static List<string> VerificarCarrito(int id_cliente)
+        {
+            return Modelo_Pedidos.VerificarCarrito(id_cliente);
         }
     }
 }

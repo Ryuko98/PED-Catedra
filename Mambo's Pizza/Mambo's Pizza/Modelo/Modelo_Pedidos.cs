@@ -286,5 +286,49 @@ namespace Mambo_s_Pizza.Modelo
             return dt;
         }
 
+        public static List<string> VerificarCarrito(int idCliente)
+        {
+            mensajes msg = new mensajes();
+            Conexion conexionBD = new Conexion();
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                List<string> lista = new List<string>();
+                try
+                {
+                    string query = "SELECT * FROM [Pedidos] WHERE [IdCliente] = @idCliente AND [IdEstadoPedido] = 1";
+                    SqlCommand comando = new SqlCommand(query, con);
+                    comando.Parameters.Add(new SqlParameter("@idCliente", idCliente));
+                    SqlDataReader reader = comando.ExecuteReader();
+
+                    if (!reader.HasRows)
+                    {
+                        //Carrito no existia, por lo tanto hay que crearlo
+                        return lista;
+                    }
+
+                    while (reader.Read())
+                    {
+                        //Carrito ya existe
+                        lista.Add(reader["idPedido"].ToString());
+                        lista.Add(reader["Descripcion"].ToString());
+                        lista.Add(reader["IdCliente"].ToString());
+                        lista.Add(reader["HoraPedido"].ToString());
+                        lista.Add(reader["HoraEntrega"].ToString());
+                        lista.Add(reader["IdRepartidor"].ToString());
+                        lista.Add(reader["IdEstadoPedido"].ToString());
+                        lista.Add(reader["TotalPrecio"].ToString());
+                    }
+                    return lista;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                    return null;
+                }
+
+            }
+
+        }
+
     }
 }
