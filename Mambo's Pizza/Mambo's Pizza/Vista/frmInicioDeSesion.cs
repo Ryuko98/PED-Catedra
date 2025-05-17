@@ -211,22 +211,25 @@ namespace Mambo_s_Pizza
 
         private void btnRegistrarse_Click(object sender, EventArgs e)
         {
-            Vista.frmRegistrarse frm = new Vista.frmRegistrarse();
-            MostarPanel(frm);
+            frmRegistrarse frm = new frmRegistrarse();
+            frm.Show();
+            this.Hide();
+
         }
 
-        void MostarPanel(Form frm)
-        {
-            while (fondo.Controls.Count > 0)
-            {
-                fondo.Controls.RemoveAt(0);
-            }
-            frm.TopLevel = false;
-            frm.FormBorderStyle = FormBorderStyle.None;
-            frm.Dock = DockStyle.Fill;
-            fondo.Controls.Clear();
-            fondo.Controls.Add(frm);
-            frm.Show();
-        }
+        //void MostarPanel(Form frm)
+        //{
+        //    while (fondo.Controls.Count > 0)
+        //    {
+        //        fondo.Controls.RemoveAt(0);
+        //    }
+        //    frm.TopLevel = false;
+        //    frm.FormBorderStyle = FormBorderStyle.None;
+        //    frm.Dock = DockStyle.Fill;
+        //    fondo.Controls.Clear();
+        //    fondo.Controls.Add(frm);
+        //    frm.Show();
+        //}
+
     }
 }

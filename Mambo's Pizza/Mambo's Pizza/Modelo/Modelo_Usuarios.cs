@@ -251,5 +251,44 @@ namespace Mambo_s_Pizza.Modelo
             }
 
         }
+
+        public static bool Registro(string pNombre, string pApellido, DateTime pFechaNacimiento, string pCorreo, string pUsuario, string pContraseña, string pRol)
+
+        {
+            bool retorno = false;
+            mensajes msg = new mensajes();
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                try
+                {
+                    string query = "INSERT INTO Usuarios (Nombre, Apellido, FechaNacimiento, Correo, Usuario, Contraseña, Rol) " +
+                                 "VALUES (@Nombre, @Apellido, @FechaNacimiento, @Correo, @Usuario, @Contraseña, @Rol)";
+
+                    SqlCommand comando = new SqlCommand(query, con);
+
+                    comando.Parameters.AddWithValue("@Nombre", pNombre);
+                    comando.Parameters.AddWithValue("@Apellido", pApellido);
+                    comando.Parameters.AddWithValue("@FechaNacimiento", pFechaNacimiento);
+                    comando.Parameters.AddWithValue("@Correo", pCorreo);
+                    comando.Parameters.AddWithValue("@Usuario", pUsuario);
+                    comando.Parameters.AddWithValue("@Contraseña", pContraseña);
+                    comando.Parameters.AddWithValue("@Rol", pRol);
+
+                    retorno = Convert.ToBoolean(comando.ExecuteNonQuery());
+                    return retorno; // Retorna 1 si se agrega correctamente
+                }
+                catch (SqlException ex)
+                {
+                    msg.errorInsercion(ex.Message, "Tabla: Usuarios. ");
+                    return retorno; // Retorna 0 si hay un error
+                }
+                finally
+                {
+                    conexionBD.CerrarConexion();
+                }
+            }
+        }
     }
 }

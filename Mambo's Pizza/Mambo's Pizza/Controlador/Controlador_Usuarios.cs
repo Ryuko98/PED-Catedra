@@ -52,6 +52,10 @@ namespace Mambo_s_Pizza.Controlador
             return Modelo_Usuarios.EliminarUsuario(IdUsuario);
         }
 
+        public bool Registro()
+        {
+            return Modelo_Usuarios.Registro(Nombre, Apellido, FechaNacimiento, Correo, Usuario, Contraseña, Rol);
+        }
 
     }
 }

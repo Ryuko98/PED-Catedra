@@ -263,6 +263,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="Resources\icons8-add-user-male-30.png" />
+    <None Include="Resources\icons8-add-user-male-30 %281%29.png" />
+    <None Include="Resources\icons8-add-user-male-30 %282%29.png" />
+    <None Include="Resources\icons8-back-30.png" />
     <Content Include="Res\logo.png" />
     <Content Include="Res\Icons\icons8-invisible-20.png" />
     <Content Include="Res\Icons\icons8-visible-20.png" />
