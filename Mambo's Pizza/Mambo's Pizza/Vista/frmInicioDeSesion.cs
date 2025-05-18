@@ -146,6 +146,7 @@ namespace Mambo_s_Pizza
             bool resultado = Controlador_InicioSesion.IniciarSesion();
             if (resultado == false)
             {
+                MessageBox.Show("Credenciales Incorrectas","Aviso",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 return;
             }
             else

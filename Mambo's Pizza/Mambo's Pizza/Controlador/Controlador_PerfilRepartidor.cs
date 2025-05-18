@@ -57,5 +57,15 @@ namespace Mambo_s_Pizza.Controlador
         {
             return Modelo_PerfilRepartidor.CargarReseñasRepartidor(Controlador_InicioSesion.IdUsuario);
         }
+
+        public static int OrdenarPrioridad()
+        {
+            return Modelo_PerfilRepartidor.PrioridadMembresia();
+        }
+
+        public static DataTable ObtenerPedidos()
+        {
+            return Modelo_PerfilRepartidor.MostrarPedidosEnEspera();
+        }
     }
 }
