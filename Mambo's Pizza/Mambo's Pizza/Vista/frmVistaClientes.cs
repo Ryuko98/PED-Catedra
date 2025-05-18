@@ -18,6 +18,7 @@ namespace Mambo_s_Pizza.Vista
         int x = 0;
         int y = 0;
         int id_pedido = 0, id_cliente = 0;
+        bool carrito_finalizado = false;
 
         public frmVistaClientes()
         {
@@ -47,28 +48,38 @@ namespace Mambo_s_Pizza.Vista
 
         private void btnCarrito_Click(object sender, EventArgs e)
         {
-            // Verificar si hay carrito existente
-            List<string> datosCarrito = new List<string>();
-            // Capturamos el carrito del cliente, si tiene
-            datosCarrito = Controlador_Pedidos.VerificarCarrito(id_cliente);
-
-            if (datosCarrito != null && datosCarrito.Count > 0)
+            if (carrito_finalizado)
             {
-                // Hay un carrito existente
-                id_pedido = int.Parse(datosCarrito[0]);
-                Controlador_Pedidos.IdPedido = id_pedido;
-                MessageBox.Show("Existe un carrito para: " + Convert.ToString(id_cliente));
-                frmCarrito frm1 = new frmCarrito(true);
+                // Ya hay un carrito finalizado
+                frmInfoActualPedido frm1 = new frmInfoActualPedido();
                 frm1.Show();
             }
             else
             {
-                // No hay carrito existente
-                MessageBox.Show("Carrito vacio.");
-                //frmCarrito frm = new frmCarrito(false);
-                //frm.Show();
+                // Verificar si hay carrito existente
+                List<string> datosCarrito = new List<string>();
+                // Capturamos el carrito del cliente, si tiene
+                datosCarrito = Controlador_Pedidos.VerificarCarrito(id_cliente);
+
+                if (datosCarrito != null && datosCarrito.Count > 0)
+                {
+                    // Hay un carrito existente
+                    id_pedido = int.Parse(datosCarrito[0]);
+                    Controlador_Pedidos.IdPedido = id_pedido;
+                    //MessageBox.Show("Existe un carrito para: " + Convert.ToString(id_cliente));
+                    frmCarrito frm1 = new frmCarrito();
+                    frm1.Show();
+                }
+                else
+                {
+                    // No hay carrito existente
+                    MessageBox.Show("Carrito vacio.");
+                    //frmCarrito frm = new frmCarrito(false);
+                    //frm.Show();
+                }
             }
-            this.Close();
+
+                this.Close();
         }
 
         private void barra_MouseMove(object sender, MouseEventArgs e)
@@ -148,10 +159,11 @@ namespace Mambo_s_Pizza.Vista
             if (datosCarrito != null && datosCarrito.Count > 0)
             {
                 MessageBox.Show("Cliente tiene un carrito siendo procesado.");
-                btnCarrito.Text = "Visualizar Pedido";
                 // Hay un carrito finalizado, por lo tanto se debe cambiar el boton
-                //id_pedido = int.Parse(datosCarrito[0]);
-                //Controlador_Pedidos.IdPedido = id_pedido;
+                btnCarrito.Text = "Visualizar Pedido";
+                id_pedido = int.Parse(datosCarrito[0]);
+                Controlador_Pedidos.IdPedido = id_pedido;
+                carrito_finalizado = true;
 
                 //MessageBox.Show("Existe un carrito para: " + Convert.ToString(id_cliente));
                 //frmCarrito frm1 = new frmCarrito(true);
@@ -161,6 +173,7 @@ namespace Mambo_s_Pizza.Vista
             {
                 // No hay carrito existente
                 MessageBox.Show("No hay carritos finalizados.");
+                carrito_finalizado = false;
                 //frmCarrito frm = new frmCarrito(false);
                 //frm.Show();
             }

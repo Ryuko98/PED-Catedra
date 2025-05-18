@@ -375,22 +375,20 @@ namespace Mambo_s_Pizza.Modelo
         {
             DataTable dt = new DataTable();
             // Columnas de la Tabla
-            dt.Columns.Add("NombreMenu", typeof(string));
-            dt.Columns.Add("Cantidad", typeof(int));
-            dt.Columns.Add("PrecioUnitario", typeof(decimal));
+            dt.Columns.Add("Nombre Menu", typeof(string));
+            dt.Columns.Add("Cantidad Total", typeof(int));
+            dt.Columns.Add("Precio Unitario", typeof(decimal));
+            dt.Columns.Add("SubTotal", typeof(decimal));
             Conexion conexionBD = new Conexion();
 
             using (SqlConnection con = conexionBD.AbrirConexion())
             {
                 try
                 {
-                    string query = @"SELECT 
-                          M.NombreMenu,
-                          DP.Cantidad,
-                          DP.PrecioUnitario
-                          FROM DetallesPedidos DP
-                          INNER JOIN Menus M ON DP.IdMenu = M.IdMenu
-                          WHERE DP.IdPedido = @idPedido";
+                    string query = @"SELECT M.NombreMenu, SUM(DP.Cantidad) AS CantidadTotal,
+                                    DP.PrecioUnitario, SUM(DP.Cantidad * DP.PrecioUnitario) AS Subtotal FROM DetallesPedidos DP
+                                    INNER JOIN Menus M ON DP.IdMenu = M.IdMenu WHERE DP.IdPedido = @idPedido 
+                                    GROUP BY M.NombreMenu, DP.PrecioUnitario";
 
                     using (SqlCommand comando = new SqlCommand(query, con))
                     {
@@ -407,8 +405,9 @@ namespace Mambo_s_Pizza.Modelo
                             {
                                 dt.Rows.Add(
                                 reader["NombreMenu"],
-                                reader["Cantidad"],
-                                reader["PrecioUnitario"]
+                                reader["CantidadTotal"],
+                                reader["PrecioUnitario"],
+                                reader["Subtotal"]
                                 );
                             }
                         }
@@ -438,7 +437,7 @@ namespace Mambo_s_Pizza.Modelo
                 List<string> lista = new List<string>();
                 try
                 {
-                    string query = "SELECT * FROM [Pedidos] WHERE [IdCliente] = @idCliente AND [IdEstadoPedido] = 2 OR [IdEstadoPedido] = 3";
+                    string query = "SELECT * FROM [Pedidos] WHERE [IdCliente] = @idCliente AND ([IdEstadoPedido] = 2 OR [IdEstadoPedido] = 3)";
                     SqlCommand comando = new SqlCommand(query, con);
                     comando.Parameters.Add(new SqlParameter("@idCliente", idCliente));
                     SqlDataReader reader = comando.ExecuteReader();
@@ -471,6 +470,92 @@ namespace Mambo_s_Pizza.Modelo
 
             }
 
+        }
+
+
+        public static string ObtenerDescripcion(int idpedido)
+        {
+            string descripcion = "";
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                string query = "SELECT Descripcion FROM [Pedidos] WHERE IdPedido = @idPedido";
+
+                using (SqlCommand comando = new SqlCommand(query, con))
+                {
+                    comando.Parameters.AddWithValue("@idPedido", idpedido);
+                    object result = comando.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        descripcion = Convert.ToString(result);
+                    }
+                }
+            }
+            return descripcion;
+        }
+        public static string ObtenerTotal(int idpedido)
+        {
+            string total = "";
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                string query = "SELECT SUM(m.Precio * dp.Cantidad) AS TotalPedido FROM DetallesPedidos dp " +
+                    "JOIN Menus m ON dp.IdMenu = m.IdMenu WHERE dp.IdPedido = @idPedido";
+
+                using (SqlCommand comando = new SqlCommand(query, con))
+                {
+                    comando.Parameters.AddWithValue("@idPedido", idpedido);
+                    object result = comando.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        total = Convert.ToString(result);
+                    }
+                }
+            }
+            return total;
+        }
+
+        public static bool FinalizarPedido(int IdPedido, string pDescripcion, DateTime pHoraPedido, double pTotalPrecio)
+        {
+            bool retorno = false;
+            mensajes msg = new mensajes();
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                try
+                {
+                    string query = @"UPDATE Pedidos 
+                           SET Descripcion = @Descripcion,
+                               HoraPedido = @HoraPedido,
+                               IdEstadoPedido = 2,
+                               TotalPrecio = @TotalPrecio
+                           WHERE IdPedido = @IdPedido";
+
+                    SqlCommand comando = new SqlCommand(query, con);
+
+                    comando.Parameters.AddWithValue("@IdPedido", IdPedido);
+                    comando.Parameters.AddWithValue("@Descripcion", pDescripcion);
+                    comando.Parameters.AddWithValue("@HoraPedido", pHoraPedido);
+                    comando.Parameters.AddWithValue("@TotalPrecio", pTotalPrecio);
+
+                    retorno = Convert.ToBoolean(comando.ExecuteNonQuery());
+                    return retorno;
+                }
+                catch (SqlException ex)
+                {
+                    msg.errorActualizacion(ex.Message, "Tabla: Pedidos.");
+                    return retorno;
+                }
+                finally
+                {
+                    conexionBD.CerrarConexion();
+                }
+            }
         }
 
 

@@ -81,5 +81,17 @@ namespace Mambo_s_Pizza.Controlador
         {
             return Modelo_Pedidos.CarritoFinalizado(id_cliente);
         }
+        public static string ObtenerDescripcion(int id_pedido)
+        {
+            return Modelo_Pedidos.ObtenerDescripcion(id_pedido);
+        }
+        public static string ObtenerTotal(int id_pedido)
+        {
+            return Modelo_Pedidos.ObtenerTotal(id_pedido);
+        }
+        public static bool FinalizarPedido(int id_pedido, string descipcion, DateTime hora_pedido,  double total_pedido)
+        {
+            return Modelo_Pedidos.FinalizarPedido(id_pedido, descipcion, hora_pedido, total_pedido);
+        }
     }
 }
