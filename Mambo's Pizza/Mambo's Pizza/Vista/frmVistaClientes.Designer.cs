@@ -32,7 +32,7 @@
             this.dgvOfertas = new System.Windows.Forms.DataGridView();
             this.Menu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvVolverPedir = new System.Windows.Forms.DataGridView();
+            this.dgvEvaluar = new System.Windows.Forms.DataGridView();
             this.Menu1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,8 +40,9 @@
             this.barra = new System.Windows.Forms.Panel();
             this.btnMinimizar = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Label();
+            this.btnEvaluar = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOfertas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVolverPedir)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEvaluar)).BeginInit();
             this.barra.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,21 +88,22 @@
             this.Precio.Name = "Precio";
             this.Precio.ReadOnly = true;
             // 
-            // dgvVolverPedir
+            // dgvEvaluar
             // 
-            this.dgvVolverPedir.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvVolverPedir.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvVolverPedir.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvEvaluar.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvEvaluar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEvaluar.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Menu1,
             this.Precio1});
-            this.dgvVolverPedir.Location = new System.Drawing.Point(11, 354);
-            this.dgvVolverPedir.Margin = new System.Windows.Forms.Padding(4);
-            this.dgvVolverPedir.Name = "dgvVolverPedir";
-            this.dgvVolverPedir.ReadOnly = true;
-            this.dgvVolverPedir.RowHeadersWidth = 51;
-            this.dgvVolverPedir.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvVolverPedir.Size = new System.Drawing.Size(1040, 185);
-            this.dgvVolverPedir.TabIndex = 12;
+            this.dgvEvaluar.Location = new System.Drawing.Point(11, 354);
+            this.dgvEvaluar.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvEvaluar.Name = "dgvEvaluar";
+            this.dgvEvaluar.ReadOnly = true;
+            this.dgvEvaluar.RowHeadersWidth = 51;
+            this.dgvEvaluar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvEvaluar.Size = new System.Drawing.Size(1040, 185);
+            this.dgvEvaluar.TabIndex = 12;
+            this.dgvEvaluar.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEvaluar_CellClick);
             // 
             // Menu1
             // 
@@ -125,7 +127,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(267, 37);
             this.label1.TabIndex = 11;
-            this.label1.Text = "Volver a pedir";
+            this.label1.Text = "Evaluar Repartidores";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnCarrito
@@ -185,14 +187,30 @@
             this.btnCerrar.MouseEnter += new System.EventHandler(this.btnCerrar_MouseEnter);
             this.btnCerrar.MouseLeave += new System.EventHandler(this.btnCerrar_MouseLeave);
             // 
+            // btnEvaluar
+            // 
+            this.btnEvaluar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(13)))), ((int)(((byte)(20)))));
+            this.btnEvaluar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEvaluar.Enabled = false;
+            this.btnEvaluar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            this.btnEvaluar.Location = new System.Drawing.Point(891, 313);
+            this.btnEvaluar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.btnEvaluar.Name = "btnEvaluar";
+            this.btnEvaluar.Size = new System.Drawing.Size(160, 37);
+            this.btnEvaluar.TabIndex = 15;
+            this.btnEvaluar.Text = "Evaluar";
+            this.btnEvaluar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnEvaluar.Click += new System.EventHandler(this.btnEvaluar_Click);
+            // 
             // frmVistaClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.btnEvaluar);
             this.Controls.Add(this.barra);
             this.Controls.Add(this.btnCarrito);
-            this.Controls.Add(this.dgvVolverPedir);
+            this.Controls.Add(this.dgvEvaluar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvOfertas);
             this.Controls.Add(this.us);
@@ -202,7 +220,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmVistaClientes";
             ((System.ComponentModel.ISupportInitialize)(this.dgvOfertas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVolverPedir)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEvaluar)).EndInit();
             this.barra.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -211,7 +229,7 @@
         #endregion
         private System.Windows.Forms.Label us;
         private System.Windows.Forms.DataGridView dgvOfertas;
-        private System.Windows.Forms.DataGridView dgvVolverPedir;
+        private System.Windows.Forms.DataGridView dgvEvaluar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Menu;
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
@@ -221,5 +239,6 @@
         private System.Windows.Forms.Panel barra;
         private System.Windows.Forms.Label btnMinimizar;
         private System.Windows.Forms.Label btnCerrar;
+        private System.Windows.Forms.Label btnEvaluar;
     }
 }

@@ -30,6 +30,11 @@ namespace Mambo_s_Pizza.Controlador
             TotalPrecio = pTotalPrecio;
         }
 
+        public Controlador_Pedidos()
+        {
+            //IdPedido = IdPedido;
+        }
+
         public static DataTable ObtenerPedidos()
         {
             return Modelo_Pedidos.MostrarPedidos();
@@ -108,6 +113,20 @@ namespace Mambo_s_Pizza.Controlador
         public static bool EntregarPedido(int id_pedido)
         {
             return Modelo_Pedidos.EntregarPedido(id_pedido);
+        }
+        public static DataTable ObtenerPedidosEntregados()
+        {
+            return Modelo_Pedidos.ObtenerPedidosCompletados();
+        }
+
+        public static List<string> DatosPedidoRepartidor()
+        {
+            return Modelo_Pedidos.DatosRepartidorPedido(IdCliente);
+        }
+
+        public bool ActualizarEstadoCalificado()
+        {
+            return Modelo_Pedidos.ActualizarEstadoCalificado(IdPedido);
         }
     }
 }

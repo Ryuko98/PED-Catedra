@@ -666,5 +666,119 @@ namespace Mambo_s_Pizza.Modelo
             }
         }
 
+        public static DataTable ObtenerPedidosCompletados()
+        {
+            DataTable dt = new DataTable();
+
+            // Columnas basadas en tu modelo de usuarios
+            dt.Columns.Add("Repartidor");
+            dt.Columns.Add("Descripcion");
+            dt.Columns.Add("Hora Entrega");
+            dt.Columns.Add("Total");
+
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                string query = @"SELECT CONCAT(b.Nombre, ' ', b.Apellido) AS Repartidor, 
+                                 MAX(a.Descripcion) AS Descripcion, 
+                                MAX(a.HoraEntrega) AS HoraEntrega, 
+                                MAX(a.TotalPrecio) AS TotalPrecio
+                                FROM Pedidos a  
+                                INNER JOIN Repartidores c ON a.IdRepartidor = c.IdRepartidor  
+                                INNER JOIN Usuarios b ON c.IdRepartidor = b.IdUsuario
+                                WHERE a.IdEstadoPedido = 4
+                                GROUP BY b.Nombre, b.Apellido;";
+
+                using (SqlCommand comando = new SqlCommand(query, con))
+                {
+                    using (SqlDataReader reader = comando.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            dt.Rows.Add(
+                                reader["Repartidor"],
+                                reader["Descripcion"],
+                                reader["HoraEntrega"],
+                                reader["TotalPrecio"]
+                            );
+                        }
+                    }
+                }
+            }
+            return dt;
+        }
+
+        public static List<string> DatosRepartidorPedido(int IdCliente)
+        {
+            mensajes msg = new mensajes();
+            Conexion conexionBD = new Conexion();
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                List<string> lista = new List<string>();
+                try
+                {
+                    string query = "SELECT IdPedido, IdRepartidor FROM Pedidos WHERE IdCliente = @Idcliente";
+                    SqlCommand comando = new SqlCommand(query, con);
+                    comando.Parameters.Add(new SqlParameter("@Idcliente", IdCliente));
+                    SqlDataReader reader = comando.ExecuteReader();
+
+                    if (!reader.HasRows)
+                    {
+                        Console.WriteLine("No se encontraron resultados");
+                        return lista;
+                    }
+
+                    while (reader.Read())
+                    {
+                        lista.Add(reader["IdPedido"].ToString());
+                        lista.Add(reader["IdRepartidor"].ToString());
+                    }
+
+                    return lista;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                    return null;
+                }
+
+            }
+
+        }
+
+        public static bool ActualizarEstadoCalificado(int pIdPedio)
+        {
+            bool retorno = false;
+            mensajes msg = new mensajes();
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                try
+                {
+                    string query = @"UPDATE Pedidos 
+                           SET IdEstadoPedido = 5 
+                           WHERE pIdPedio = @pIdPedio";
+
+                    SqlCommand comando = new SqlCommand(query, con);
+                    comando.Parameters.AddWithValue("@pIdPedio", pIdPedio);
+
+                    retorno = Convert.ToBoolean(comando.ExecuteNonQuery());
+                    msg.exitoActualizacion("Tabla: EstadosPedidos.");
+                    return retorno; // Returns true if update was successful
+                }
+                catch (SqlException ex)
+                {
+                    msg.errorActualizacion(ex.Message, "Tabla: EstadosPedidos.");
+                    return retorno; // Returns false if there was an error
+                }
+                finally
+                {
+                    conexionBD.CerrarConexion();
+                }
+            }
+        }
+
     }
 }

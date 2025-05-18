@@ -49,6 +49,43 @@ namespace Mambo_s_Pizza.Modelo
             return dt;
         }
 
+        public static bool AgregarReseña(int pIdRepartidor, int pIdPedido, int pCalificacion, string pComentario, DateTime pFechaReview)
+
+        {
+            bool retorno = false;
+            mensajes msg = new mensajes();
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                try
+                {
+                    string query = "INSERT INTO Reviews (IdRepartidor, IdPedido, Calificacion, Comentario, FechaReview) " +
+                                 "VALUES (@IdRepartidor, @IdPedido, @Calificacion, @Comentario, @FechaReview)";
+
+                    SqlCommand comando = new SqlCommand(query, con);
+
+                    comando.Parameters.AddWithValue("@IdRepartidor", pIdRepartidor);
+                    comando.Parameters.AddWithValue("@IdPedido", pIdPedido);
+                    comando.Parameters.AddWithValue("@Calificacion", pCalificacion);
+                    comando.Parameters.AddWithValue("@Comentario", pComentario);
+                    comando.Parameters.AddWithValue("@FechaReview", pFechaReview);
+
+                    retorno = Convert.ToBoolean(comando.ExecuteNonQuery());
+                    msg.exitoInsercion("Tabla: Reviews. ");
+                    return retorno; // Retorna 1 si se agrega correctamente
+                }
+                catch (SqlException ex)
+                {
+                    msg.errorInsercion(ex.Message, "Tabla: Reviews. ");
+                    return retorno; // Retorna 0 si hay un error
+                }
+                finally
+                {
+                    conexionBD.CerrarConexion();
+                }
+            }
+        }
         public static bool EliminarReseña(int idReview)
         {
             bool retorno = false;

@@ -124,5 +124,10 @@ namespace Mambo_s_Pizza.Vista
         {
             Limpiar();
         }
+
+        private void btnInsertar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

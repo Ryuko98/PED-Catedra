@@ -19,6 +19,7 @@ namespace Mambo_s_Pizza.Vista
         int y = 0;
         int id_pedido = 0, id_cliente = 0;
         bool carrito_finalizado = false;
+        mensajes msg = new mensajes();
 
         public frmVistaClientes()
         {
@@ -28,6 +29,7 @@ namespace Mambo_s_Pizza.Vista
             CargarOfertas();
             CargarHistorialPedidos();
             VerificarCarritoFinalizado();
+            CargarPedidosRecibidos();
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -126,6 +128,15 @@ namespace Mambo_s_Pizza.Vista
             dgvOfertas.DataSource = dt;
         }
 
+        private void CargarPedidosRecibidos()
+        {
+            dgvEvaluar.DataSource = null; // Quita el origen de datos
+            dgvEvaluar.Rows.Clear();      // Limpia las filas (por si acaso)
+            dgvEvaluar.Columns.Clear();   // Limpia las 
+            DataTable dt = Controlador_Pedidos.ObtenerPedidosEntregados();
+            dgvEvaluar.DataSource = dt;
+        }
+
         private void dgvOfertas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0) // Aseguramos que no se hizo clic en el encabezado
@@ -142,12 +153,41 @@ namespace Mambo_s_Pizza.Vista
 
         private void CargarHistorialPedidos()
         {
-            dgvVolverPedir.DataSource = null;
-            dgvVolverPedir.Rows.Clear();
-            dgvVolverPedir.Columns.Clear();
+            dgvEvaluar.DataSource = null;
+            dgvEvaluar.Rows.Clear();
+            dgvEvaluar.Columns.Clear();
             DataTable dt = Controlador_Menus.ObtenerHistorialMenus();
-            dgvVolverPedir.DataSource = dt;
+            dgvEvaluar.DataSource = dt;
             dgvOfertas.Columns[0].Visible = false;
+        }
+
+        private void dgvEvaluar_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+          
+            if (dgvEvaluar.CurrentRow == null || dgvEvaluar.CurrentRow.IsNewRow) return;
+            try
+            {
+                int idCliente = Controlador_InicioSesion.IdUsuario;
+                btnEvaluar.Enabled = true;
+                dgvEvaluar.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                List<string> datos = new List<string>();
+                datos = Controlador_Pedidos.DatosPedidoRepartidor();
+                Controlador_Pedidos.IdPedido = Convert.ToInt32(datos[0]);
+                Controlador_Pedidos.IdRepartidor = Convert.ToInt32(datos[1]);
+                MessageBox.Show(datos[0]);
+                MessageBox.Show(datos[1]);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void btnEvaluar_Click(object sender, EventArgs e)
+        {
+            frmReseñaDeCliente frm = new frmReseñaDeCliente();
+            frm.Show();
+            btnEvaluar.Enabled = false;
         }
 
         private void VerificarCarritoFinalizado()
