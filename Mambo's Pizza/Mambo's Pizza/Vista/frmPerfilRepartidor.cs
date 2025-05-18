@@ -20,6 +20,7 @@ namespace Mambo_s_Pizza.Vista
         {
             InitializeComponent();
             CargarDatosRepartidor();
+            ActualizarListaPedidos();
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -80,7 +81,7 @@ namespace Mambo_s_Pizza.Vista
                 lblCorreo.Text += Controlador_PerfilRepartidor.Correo;
                 lblUsuario.Text += Controlador_PerfilRepartidor.Usuario;
                 lblDUI.Text += Controlador_PerfilRepartidor.DUI;
-                lblCalificacion.Text += Controlador_PerfilRepartidor.CalificacionPromedio+"/5";
+                lblCalificacion.Text += Controlador_PerfilRepartidor.CalificacionPromedio + "/5";
                 lblFechaRegistro.Text += Convert.ToDateTime(Controlador_PerfilRepartidor.FechaRegistro).ToString("dd/MM/yyyy");
             }
             catch (Exception ex)
@@ -93,6 +94,50 @@ namespace Mambo_s_Pizza.Vista
         {
             frmPerfilRepartidorReseñas frm = new frmPerfilRepartidorReseñas();
             frm.Show();
+        }
+
+        private void btnDespacharPedido_Click(object sender, EventArgs e)
+        {
+            if (Controlador_PedidosHeap.DespacharPedido())
+            {
+                MessageBox.Show("Pedido despachado correctamente");
+                ActualizarListaPedidos();
+            }
+            else
+            {
+                MessageBox.Show("No hay pedidos para despachar");
+            }
+        }
+
+        private void ActualizarListaPedidos()
+        {
+            Controlador_PedidosHeap.CargarPedidosPendientes();
+            dgvDatos.Rows.Clear();
+
+            var pedidos = Controlador_PedidosHeap.ObtenerPedidosOrdenados();
+
+            foreach (var pedido in pedidos)
+            {
+                string nivelMembresia;
+
+                switch (pedido.IdMembresia)
+                {
+                    case 1:
+                        nivelMembresia = "Básica";
+                        break;
+                    case 2:
+                        nivelMembresia = "Intermedia";
+                        break;
+                    case 3:
+                        nivelMembresia = "VIP";
+                        break;
+                    default:
+                        nivelMembresia = "Desconocida";
+                        break;
+                }
+
+                dgvDatos.Rows.Add(pedido.IdPedido, nivelMembresia, pedido.IdMembresia);
+            }
         }
     }
 }

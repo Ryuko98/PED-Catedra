@@ -37,10 +37,17 @@
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.btnMinimizar = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Label();
+            this.btnDespacharPedido = new System.Windows.Forms.Label();
             this.barra = new System.Windows.Forms.Panel();
             this.lblNombre = new System.Windows.Forms.Label();
             this.lblCorreo = new System.Windows.Forms.Label();
+            this.dgvDatos = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.IdPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MembresiaTexto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdMembresia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.barra.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.SuspendLayout();
             // 
             // lblUsuario
@@ -71,7 +78,7 @@
             this.btnVerRseñas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
             this.btnVerRseñas.Location = new System.Drawing.Point(12, 210);
             this.btnVerRseñas.Name = "btnVerRseñas";
-            this.btnVerRseñas.Size = new System.Drawing.Size(100, 30);
+            this.btnVerRseñas.Size = new System.Drawing.Size(150, 30);
             this.btnVerRseñas.TabIndex = 8;
             this.btnVerRseñas.Text = "Ver reseñas";
             this.btnVerRseñas.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -128,6 +135,21 @@
             this.btnCerrar.MouseEnter += new System.EventHandler(this.btnCerrar_MouseEnter);
             this.btnCerrar.MouseLeave += new System.EventHandler(this.btnCerrar_MouseLeave);
             // 
+            // btnDespacharPedido
+            // 
+            this.btnDespacharPedido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(13)))), ((int)(((byte)(20)))));
+            this.btnDespacharPedido.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDespacharPedido.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDespacharPedido.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            this.btnDespacharPedido.Location = new System.Drawing.Point(10, 250);
+            this.btnDespacharPedido.Name = "btnDespacharPedido";
+            this.btnDespacharPedido.Size = new System.Drawing.Size(150, 30);
+            this.btnDespacharPedido.TabIndex = 57;
+            this.btnDespacharPedido.Text = "Despachar pedido";
+            this.btnDespacharPedido.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip.SetToolTip(this.btnDespacharPedido, "Click para despachar el pedido con mayor prioridad");
+            this.btnDespacharPedido.Click += new System.EventHandler(this.btnDespacharPedido_Click);
+            // 
             // barra
             // 
             this.barra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(13)))), ((int)(((byte)(20)))));
@@ -160,11 +182,58 @@
             this.lblCorreo.Text = "Correo: ";
             this.lblCorreo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // dgvDatos
+            // 
+            this.dgvDatos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdPedido,
+            this.MembresiaTexto,
+            this.IdMembresia});
+            this.dgvDatos.Location = new System.Drawing.Point(320, 60);
+            this.dgvDatos.Name = "dgvDatos";
+            this.dgvDatos.ReadOnly = true;
+            this.dgvDatos.RowHeadersWidth = 51;
+            this.dgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvDatos.Size = new System.Drawing.Size(470, 380);
+            this.dgvDatos.TabIndex = 55;
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(320, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(235, 30);
+            this.label1.TabIndex = 56;
+            this.label1.Text = "Pedidos pendientes";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // IdPedido
+            // 
+            this.IdPedido.HeaderText = "Num. Pedido";
+            this.IdPedido.Name = "IdPedido";
+            this.IdPedido.ReadOnly = true;
+            // 
+            // MembresiaTexto
+            // 
+            this.MembresiaTexto.HeaderText = "Membresía";
+            this.MembresiaTexto.Name = "MembresiaTexto";
+            this.MembresiaTexto.ReadOnly = true;
+            // 
+            // IdMembresia
+            // 
+            this.IdMembresia.HeaderText = "Nivel de membresía";
+            this.IdMembresia.Name = "IdMembresia";
+            this.IdMembresia.ReadOnly = true;
+            // 
             // frmPerfilRepartidor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnDespacharPedido);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dgvDatos);
             this.Controls.Add(this.lblCorreo);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.barra);
@@ -177,6 +246,7 @@
             this.Name = "frmPerfilRepartidor";
             this.Text = "frmPerfilRepartidor";
             this.barra.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -193,5 +263,11 @@
         private System.Windows.Forms.Label btnCerrar;
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.Label lblCorreo;
+        private System.Windows.Forms.DataGridView dgvDatos;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label btnDespacharPedido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdPedido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MembresiaTexto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdMembresia;
     }
 }
