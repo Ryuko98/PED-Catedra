@@ -145,6 +145,12 @@
     <Compile Include="Vista\frmPerfilRepartidor.Designer.cs">
       <DependentUpon>frmPerfilRepartidor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vista\frmPerfilRepartidorReseñas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmPerfilRepartidorReseñas.Designer.cs">
+      <DependentUpon>frmPerfilRepartidorReseñas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vista\frmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -232,6 +238,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vista\frmPerfilRepartidor.resx">
       <DependentUpon>frmPerfilRepartidor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmPerfilRepartidorReseñas.resx">
+      <DependentUpon>frmPerfilRepartidorReseñas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vista\frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>

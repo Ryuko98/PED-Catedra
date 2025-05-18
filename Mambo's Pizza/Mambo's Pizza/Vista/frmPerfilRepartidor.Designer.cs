@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.lblCalificacion = new System.Windows.Forms.Label();
-            this.lblDUIadjakslj = new System.Windows.Forms.Label();
+            this.btnVerRseñas = new System.Windows.Forms.Label();
             this.lblFechaRegistro = new System.Windows.Forms.Label();
             this.lblDUI = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
@@ -63,17 +63,20 @@
             this.lblCalificacion.Text = "Calificación: ";
             this.lblCalificacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblDUIadjakslj
+            // btnVerRseñas
             // 
-            this.lblDUIadjakslj.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDUIadjakslj.Location = new System.Drawing.Point(12, 210);
-            this.lblDUIadjakslj.Name = "lblDUIadjakslj";
-            this.lblDUIadjakslj.Size = new System.Drawing.Size(200, 30);
-            this.lblDUIadjakslj.TabIndex = 8;
-            this.lblDUIadjakslj.Text = "Total de reseñas: 9999";
-            this.lblDUIadjakslj.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolTip.SetToolTip(this.lblDUIadjakslj, "Click para ver todas las reseñas");
-            this.lblDUIadjakslj.Click += new System.EventHandler(this.label2_Click);
+            this.btnVerRseñas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(13)))), ((int)(((byte)(20)))));
+            this.btnVerRseñas.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVerRseñas.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerRseñas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            this.btnVerRseñas.Location = new System.Drawing.Point(12, 210);
+            this.btnVerRseñas.Name = "btnVerRseñas";
+            this.btnVerRseñas.Size = new System.Drawing.Size(100, 30);
+            this.btnVerRseñas.TabIndex = 8;
+            this.btnVerRseñas.Text = "Ver reseñas";
+            this.btnVerRseñas.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip.SetToolTip(this.btnVerRseñas, "Click para ver todas las reseñas");
+            this.btnVerRseñas.Click += new System.EventHandler(this.btnVerRseñas_Click);
             // 
             // lblFechaRegistro
             // 
@@ -167,7 +170,7 @@
             this.Controls.Add(this.barra);
             this.Controls.Add(this.lblDUI);
             this.Controls.Add(this.lblFechaRegistro);
-            this.Controls.Add(this.lblDUIadjakslj);
+            this.Controls.Add(this.btnVerRseñas);
             this.Controls.Add(this.lblCalificacion);
             this.Controls.Add(this.lblUsuario);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -181,7 +184,7 @@
         #endregion
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Label lblCalificacion;
-        private System.Windows.Forms.Label lblDUIadjakslj;
+        private System.Windows.Forms.Label btnVerRseñas;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.Label lblFechaRegistro;
         private System.Windows.Forms.Label lblDUI;

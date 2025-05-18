@@ -90,5 +90,45 @@ namespace Mambo_s_Pizza.Modelo
             }
             return dt;
         }
+
+        public static DataTable CargarReseñasRepartidor(int IdUsuario)
+        {
+            int IdRepartidor = ObtenerIdRepartidorPorUsuario(IdUsuario);
+
+            if (IdRepartidor == 0)
+            {
+                throw new Exception("El usuario no está asociado a un repartidor");
+            }
+
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Calificacion", typeof(string));
+            dt.Columns.Add("Comentario", typeof(string));
+            dt.Columns.Add("FechaReview", typeof(DateTime));
+
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                string query = @"SELECT Calificacion, Comentario, FechaReview FROM Reviews WHERE IdRepartidor = @IdRepartidor";
+
+                using (SqlCommand comando = new SqlCommand(query, con))
+                {
+                    comando.Parameters.AddWithValue("@IdRepartidor", IdRepartidor);
+
+                    using (SqlDataReader reader = comando.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            dt.Rows.Add(
+                                reader["Calificacion"].ToString(),
+                                reader["Comentario"].ToString(),
+                                Convert.ToDateTime(reader["FechaReview"])
+                            );
+                        }
+                    }
+                }
+            }
+            return dt;
+        }
     }
 }

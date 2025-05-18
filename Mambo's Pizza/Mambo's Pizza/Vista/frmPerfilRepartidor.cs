@@ -22,12 +22,6 @@ namespace Mambo_s_Pizza.Vista
             CargarDatosRepartidor();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-            Form1 frm = new Form1();
-            frm.Show();
-        }
-
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("¿Cerrar su sesión?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
@@ -93,6 +87,12 @@ namespace Mambo_s_Pizza.Vista
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnVerRseñas_Click(object sender, EventArgs e)
+        {
+            frmPerfilRepartidorReseñas frm = new frmPerfilRepartidorReseñas();
+            frm.Show();
         }
     }
 }
