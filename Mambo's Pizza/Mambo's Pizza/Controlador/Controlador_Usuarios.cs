@@ -13,11 +13,11 @@ namespace Mambo_s_Pizza.Controlador
     public class Controlador_Usuarios
     {
         public static int IdUsuario { get; set; }
-        public string Nombre { get; set; }
+        public static string Nombre { get; set; }
         public string Apellido { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public string Correo { get; set; }
-        public string Usuario { get; set; }
+        public static string Usuario { get; set; }
         public string Contraseña { get; set; }
         public string Rol { get; set; }
 
@@ -55,6 +55,11 @@ namespace Mambo_s_Pizza.Controlador
         public bool Registro()
         {
             return Modelo_Usuarios.Registro(Nombre, Apellido, FechaNacimiento, Correo, Usuario, Contraseña, Rol);
+        }
+
+        public static List<string> ObtenerIdUsuario()
+        {
+            return Modelo_Usuarios.IdUsuario(Usuario);
         }
 
     }

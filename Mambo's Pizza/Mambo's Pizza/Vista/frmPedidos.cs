@@ -43,15 +43,15 @@ namespace Mambo_s_Pizza.Vista
             RefrescarPantalla();
             txtID.Enabled = false;
 
-            cmbCliente.DataSource = Modelo_Pedidos.MostrarClientes();
+            cmbCliente.DataSource = Controlador_Pedidos.ObtenerCliente();
             cmbCliente.DisplayMember = "NombreUsuario";  // El nombre que se mostrará
             cmbCliente.ValueMember = "IdCliente";
 
-            cmbRepartidor.DataSource = Modelo_Pedidos.MostrarRepartidor();
-            cmbRepartidor.DisplayMember = "NombreCliente";  // El nombre que se mostrará
+            cmbRepartidor.DataSource = Controlador_Pedidos.ObtenerRepartidor();
+            cmbRepartidor.DisplayMember = "Nombre";  // El nombre que se mostrará
             cmbRepartidor.ValueMember = "IdRepartidor";
 
-            cmbEstado.DataSource = Modelo_Pedidos.MostrarEstados();
+            cmbEstado.DataSource = Controlador_Pedidos.ObtenerEstadoPedido();
             cmbEstado.DisplayMember = "Estado";  // El nombre que se mostrará
             cmbEstado.ValueMember = "IdEstadoPedido";
 

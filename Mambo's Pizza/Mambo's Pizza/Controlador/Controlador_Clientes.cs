@@ -34,6 +34,13 @@ namespace Mambo_s_Pizza.Controlador
             return Modelo_Clientes.ObtenerMembresia(IdCliente);
         }
 
+        public static DataTable ObtenerMembresiaRegistro()
+        {
+            return Modelo_Clientes.ObtenerMembresia();
+        }
+
+
+
         public static string ObtenerUsuario()
         {
             return Modelo_Clientes.ObtenerUsuario(IdCliente);

@@ -46,6 +46,10 @@
             this.btnInsertar = new System.Windows.Forms.Label();
             this.txtRepetirContraseña = new System.Windows.Forms.TextBox();
             this.btnVolver = new System.Windows.Forms.Label();
+            this.txtDireccion = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.cmbMembresia = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -76,7 +80,7 @@
             // 
             this.us.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.us.ForeColor = System.Drawing.Color.Black;
-            this.us.Location = new System.Drawing.Point(195, 153);
+            this.us.Location = new System.Drawing.Point(28, 227);
             this.us.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.us.Name = "us";
             this.us.Size = new System.Drawing.Size(267, 37);
@@ -88,7 +92,7 @@
             // 
             this.txtNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNombre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(195, 190);
+            this.txtNombre.Location = new System.Drawing.Point(28, 264);
             this.txtNombre.Margin = new System.Windows.Forms.Padding(4);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(266, 30);
@@ -98,7 +102,7 @@
             // 
             this.label7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(195, 227);
+            this.label7.Location = new System.Drawing.Point(28, 301);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(267, 37);
@@ -110,7 +114,7 @@
             // 
             this.txtApellido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtApellido.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApellido.Location = new System.Drawing.Point(195, 264);
+            this.txtApellido.Location = new System.Drawing.Point(28, 338);
             this.txtApellido.Margin = new System.Windows.Forms.Padding(4);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(266, 30);
@@ -120,7 +124,7 @@
             // 
             this.label6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(195, 301);
+            this.label6.Location = new System.Drawing.Point(24, 375);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(267, 37);
@@ -131,7 +135,7 @@
             // dtpExpiracion
             // 
             this.dtpExpiracion.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpExpiracion.Location = new System.Drawing.Point(195, 338);
+            this.dtpExpiracion.Location = new System.Drawing.Point(24, 412);
             this.dtpExpiracion.Margin = new System.Windows.Forms.Padding(4);
             this.dtpExpiracion.Name = "dtpExpiracion";
             this.dtpExpiracion.Size = new System.Drawing.Size(265, 30);
@@ -141,7 +145,7 @@
             // 
             this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(195, 375);
+            this.label3.Location = new System.Drawing.Point(324, 227);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(267, 37);
@@ -153,7 +157,7 @@
             // 
             this.txtCorreo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCorreo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCorreo.Location = new System.Drawing.Point(195, 412);
+            this.txtCorreo.Location = new System.Drawing.Point(324, 264);
             this.txtCorreo.Margin = new System.Windows.Forms.Padding(4);
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(266, 30);
@@ -163,7 +167,7 @@
             // 
             this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(541, 227);
+            this.label4.Location = new System.Drawing.Point(634, 227);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(267, 37);
@@ -175,7 +179,7 @@
             // 
             this.txtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUsuario.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsuario.Location = new System.Drawing.Point(541, 264);
+            this.txtUsuario.Location = new System.Drawing.Point(634, 264);
             this.txtUsuario.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(266, 30);
@@ -185,7 +189,7 @@
             // 
             this.label5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(541, 301);
+            this.label5.Location = new System.Drawing.Point(634, 301);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(267, 37);
@@ -197,7 +201,7 @@
             // 
             this.txtContraseña.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtContraseña.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContraseña.Location = new System.Drawing.Point(541, 338);
+            this.txtContraseña.Location = new System.Drawing.Point(634, 338);
             this.txtContraseña.Margin = new System.Windows.Forms.Padding(4);
             this.txtContraseña.Name = "txtContraseña";
             this.txtContraseña.PasswordChar = '*';
@@ -208,7 +212,7 @@
             // 
             this.label8.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(541, 375);
+            this.label8.Location = new System.Drawing.Point(634, 375);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(267, 37);
@@ -220,7 +224,7 @@
             // 
             this.btnInsertar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(13)))), ((int)(((byte)(20)))));
             this.btnInsertar.Image = global::Mambo_s_Pizza.Properties.Resources.icons8_add_user_male_30__2_;
-            this.btnInsertar.Location = new System.Drawing.Point(754, 472);
+            this.btnInsertar.Location = new System.Drawing.Point(847, 472);
             this.btnInsertar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.btnInsertar.Name = "btnInsertar";
             this.btnInsertar.Size = new System.Drawing.Size(53, 49);
@@ -231,7 +235,7 @@
             // 
             this.txtRepetirContraseña.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRepetirContraseña.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRepetirContraseña.Location = new System.Drawing.Point(541, 412);
+            this.txtRepetirContraseña.Location = new System.Drawing.Point(634, 412);
             this.txtRepetirContraseña.Margin = new System.Windows.Forms.Padding(4);
             this.txtRepetirContraseña.Name = "txtRepetirContraseña";
             this.txtRepetirContraseña.PasswordChar = '*';
@@ -249,12 +253,60 @@
             this.btnVolver.TabIndex = 84;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
+            // txtDireccion
+            // 
+            this.txtDireccion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDireccion.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDireccion.Location = new System.Drawing.Point(328, 338);
+            this.txtDireccion.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDireccion.Name = "txtDireccion";
+            this.txtDireccion.Size = new System.Drawing.Size(266, 30);
+            this.txtDireccion.TabIndex = 86;
+            // 
+            // label9
+            // 
+            this.label9.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Black;
+            this.label9.Location = new System.Drawing.Point(324, 301);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(267, 37);
+            this.label9.TabIndex = 85;
+            this.label9.Text = "*Direccion:";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // label10
+            // 
+            this.label10.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.Black;
+            this.label10.Location = new System.Drawing.Point(324, 375);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(267, 37);
+            this.label10.TabIndex = 87;
+            this.label10.Text = "Tipo de Membresia:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // cmbMembresia
+            // 
+            this.cmbMembresia.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbMembresia.FormattingEnabled = true;
+            this.cmbMembresia.Location = new System.Drawing.Point(324, 411);
+            this.cmbMembresia.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbMembresia.Name = "cmbMembresia";
+            this.cmbMembresia.Size = new System.Drawing.Size(265, 31);
+            this.cmbMembresia.TabIndex = 89;
+            // 
             // frmRegistrarse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(960, 554);
+            this.Controls.Add(this.cmbMembresia);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.txtDireccion);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.txtRepetirContraseña);
             this.Controls.Add(this.btnInsertar);
@@ -275,10 +327,11 @@
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmRegistrarse";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmRegistrarse";
+            this.Load += new System.EventHandler(this.frmRegistrarse_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -304,5 +357,9 @@
         private System.Windows.Forms.Label btnInsertar;
         private System.Windows.Forms.TextBox txtRepetirContraseña;
         private System.Windows.Forms.Label btnVolver;
+        private System.Windows.Forms.TextBox txtDireccion;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox cmbMembresia;
     }
 }

@@ -217,7 +217,6 @@ namespace Mambo_s_Pizza.Modelo
             using (SqlConnection con = conexionBD.AbrirConexion())
             {
                 List<string> lista = new List<string>();
-                string a, b, c;
                 try
                 {
                     string query = "SELECT IdUsuario, Nombre, Rol FROM Usuarios WHERE Usuario = @Usuario";
@@ -289,6 +288,45 @@ namespace Mambo_s_Pizza.Modelo
                     conexionBD.CerrarConexion();
                 }
             }
+        }
+
+        public static List<string> IdUsuario(string Usuario)
+        {
+            mensajes msg = new mensajes();
+            Conexion conexionBD = new Conexion();
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                List<string> lista = new List<string>();
+                try
+                {
+                    string query = "SELECT IdUsuario FROM Usuarios WHERE Usuario = @Usuario";
+                    SqlCommand comando = new SqlCommand(query, con);
+                    comando.Parameters.Add(new SqlParameter("@Usuario", Usuario));
+                    SqlDataReader reader = comando.ExecuteReader();
+
+                    if (!reader.HasRows)
+                    {
+                        Console.WriteLine("No se encontraron resultados para el usuario: " + Usuario);
+                        return lista;
+                    }
+
+                    while (reader.Read())
+                    {
+                        lista.Add(reader["IdUsuario"].ToString());
+                    }
+
+                    return lista;
+
+                }
+
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                    return null;
+                }
+
+            }
+
         }
     }
 }

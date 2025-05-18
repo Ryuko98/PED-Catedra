@@ -218,6 +218,40 @@ namespace Mambo_s_Pizza.Modelo
 
         }
 
+        public static DataTable ObtenerMembresia()
+        {
+            DataTable dt = new DataTable();
+
+            // Configurar columnas
+            dt.Columns.Add("IdMembresia", typeof(int));
+            dt.Columns.Add("Membresia", typeof(string));
+
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                string query = @"SELECT u.IdMembresia, u.Membresia
+                        FROM Clientes r
+                        INNER JOIN Membresias u ON r.IdMembresia = u.IdMembresia
+                        GROUP BY u.IdMembresia, u.Membresia";
+
+                using (SqlCommand comando = new SqlCommand(query, con))
+                {
+                    using (SqlDataReader reader = comando.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            dt.Rows.Add(
+                                reader.GetInt32(0),    
+                                reader.GetString(1)   
+                            );
+                        }
+                    }
+                }
+            }
+            return dt;
+        }
+
         public static bool AgregarCliente(int idUsuario, string Direccion, int idMembresia, DateTime fechaExp)
         {
             bool retorno = false;
@@ -248,12 +282,56 @@ namespace Mambo_s_Pizza.Modelo
 
                     retorno = Convert.ToBoolean(comando.ExecuteNonQuery());
                     msg.exitoInsercion("Tabla: Clientes. ");
-                    return retorno; // Retorna 1 si se agrega correctamente
+                    return retorno;
                 }
                 catch (SqlException ex)
                 {
                     msg.errorInsercion(ex.Message, "Tabla: Clientes. ");
-                    return retorno; // Retorna 0 si hay un error
+                    return retorno;
+                }
+                finally
+                {
+                    conexionBD.CerrarConexion();
+                }
+            }
+        }
+
+        public static bool AgregarClienteSinExpedicion(int idUsuario, string Direccion, int idMembresia, DateTime fechaExp)
+        {
+            bool retorno = false;
+            mensajes msg = new mensajes();
+
+            // validacion de fecha
+            if (fechaExp < DateTime.Now)
+            {
+                msg.fechaInvalida("Tabla: Clientes");
+                return retorno;
+            }
+
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                try
+                {
+                    string query = "INSERT INTO Clientes (IdUsuario, Direccion, IdMembresia, FechaExpiracion) " +
+                                 "VALUES (@IdUsuario, @Direccion, @IdMembresia, @FechaExpiracion)";
+
+                    SqlCommand comando = new SqlCommand(query, con);
+
+                    comando.Parameters.AddWithValue("@IdUsuario", idUsuario);
+                    comando.Parameters.AddWithValue("@Direccion", Direccion);
+                    comando.Parameters.AddWithValue("@IdMembresia", idMembresia);
+                    comando.Parameters.AddWithValue("@FechaExpiracion", fechaExp);
+
+                    retorno = Convert.ToBoolean(comando.ExecuteNonQuery());
+                    msg.exitoInsercion("Tabla: Clientes. ");
+                    return retorno;
+                }
+                catch (SqlException ex)
+                {
+                    msg.errorInsercion(ex.Message, "Tabla: Clientes. ");
+                    return retorno;
                 }
                 finally
                 {
