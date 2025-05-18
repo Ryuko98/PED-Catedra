@@ -31,11 +31,10 @@ namespace Mambo_s_Pizza.Vista
         {
             txtID.Clear();
             txtDescipcion.Clear();
-            cmbCliente.SelectedIndex = -1;
-            cmbRepartidor.SelectedIndex = -1;
-            cmbEstado.SelectedIndex = -1;
+            cmbCliente.SelectedIndex = 0;
+            cmbRepartidor.SelectedIndex = 0;
+            cmbEstado.SelectedIndex = 0;
             txtTotal.Clear();
-            dgvDatos.ClearSelection();
         }
 
         private void frmPedidos_Load(object sender, EventArgs e)
