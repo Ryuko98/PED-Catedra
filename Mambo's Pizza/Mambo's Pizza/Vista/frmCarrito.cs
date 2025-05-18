@@ -15,29 +15,60 @@ namespace Mambo_s_Pizza.Vista
     {
         int x = 0;
         int y = 0;
+        int id_pedido = 0;
+        string total = "";
 
-        public frmCarrito(bool existe_carrito)
+        public frmCarrito()
         {
             InitializeComponent();
-            //dgvCarrito.Rows.Add("Orange Chicken", "2", "18.99");
-            CargarOfertas();
+            id_pedido = Controlador_Pedidos.IdPedido;
+            CargarCarrito();
+            CargarInformacion();
         }
-        public void CargarOfertas()
+        private void CargarCarrito()
         {
             dgvCarrito.DataSource = null; // Quita el origen de datos
             dgvCarrito.Rows.Clear();      // Limpia las filas (por si acaso)
             dgvCarrito.Columns.Clear();   // Limpia las 
 
-            DataTable dt = Controlador_Pedidos.CargarCarrito(Controlador_Pedidos.IdPedido);
+            DataTable dt = Controlador_Pedidos.CargarCarrito(id_pedido);
             dgvCarrito.DataSource = dt;
         }
 
+        private void CargarInformacion()
+        {
+            string descripcion = Controlador_Pedidos.ObtenerDescripcion(id_pedido);
+            if (!string.IsNullOrEmpty(descripcion))
+            {
+                // La descripción no es nula
+                txtDescipcion.Text = descripcion;
+            }
+            total = Controlador_Pedidos.ObtenerTotal(id_pedido);
+            if (!string.IsNullOrEmpty(total))
+            {
+                // El total no es nulo
+                lblTotal.Text = "$"+ total;
+            }
+
+
+        }
+
+
         private void btnFinalizarCompra_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Compra realizada exitosamente. Puede monitorear la entrega de su pedido.", "Compra exitosa");
-            frmInfoActualPedido frm = new frmInfoActualPedido();
-            frm.Show();
-            this.Hide();
+            if (MessageBox.Show("¿Desea confirmar su compra?", "Confirmar carrito", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                // Confirmar pedido
+                DateTime horaActual = DateTime.Now;
+                bool confirmarCarrito = Controlador_Pedidos.FinalizarPedido(id_pedido, txtDescipcion.Text, horaActual, double.Parse(total));
+                if (confirmarCarrito)
+                {
+                    MessageBox.Show("Compra realizada exitosamente. Puede monitorear la entrega de su pedido", "Gracias por su compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    frmVistaClientes frm = new frmVistaClientes();
+                    frm.Show();
+                    this.Hide();
+                }
+            }
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
