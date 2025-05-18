@@ -62,7 +62,7 @@ namespace Mambo_s_Pizza.Controlador
             return max;
         }
 
-        // Reorganiza el heap desde la posición i
+        // Reorganiza el heap desde la posición i, para reacomodar según la prioridad
         private static void Heapify(int i)
         {
             int largest = i;
@@ -90,12 +90,17 @@ namespace Mambo_s_Pizza.Controlador
             var pedido = ExtraerPedidoMaxPrioridad();
             if (pedido == null) return false;
 
-            return Modelo_PedidosHeap.MarcarPedidoEnviado(pedido.Value.IdPedido); // 3 = "En camino"
+            return Modelo_PedidosHeap.MarcarPedidoEnviado(pedido.Value.IdPedido, ObtenerIdRepartidorPorUsuario(Controlador_InicioSesion.IdUsuario)); // 3 = "En camino"
         }
 
         public static List<(int IdPedido, int IdMembresia)> ObtenerPedidosOrdenados()
         {
             return new List<(int, int)>(heapPedidos);
+        }
+
+        public static int ObtenerIdRepartidorPorUsuario(int IdUsuario)
+        {
+            return Modelo_PedidosHeap.ObtenerIdRepartidorPorUsuario(IdUsuario);
         }
     }
 }
