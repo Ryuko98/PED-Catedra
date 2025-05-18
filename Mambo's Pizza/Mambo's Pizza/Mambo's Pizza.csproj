@@ -51,6 +51,7 @@
     <Compile Include="Clases\Monticulo.cs" />
     <Compile Include="Controlador\Controlador_Clientes.cs" />
     <Compile Include="Controlador\Controlador_DetallesPedidos.cs" />
+    <Compile Include="Controlador\Controlador_EstadosPedidos.cs" />
     <Compile Include="Controlador\Controlador_InicioSesion.cs" />
     <Compile Include="Controlador\Controlador_Membresias.cs" />
     <Compile Include="Controlador\Controlador_Menus.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="mensajes.cs" />
     <Compile Include="Modelo\Modelo_Clientes.cs" />
     <Compile Include="Modelo\Modelo_DetallesPedidos.cs" />
+    <Compile Include="Modelo\Modelo_EstadosPedidos.cs" />
     <Compile Include="Modelo\Modelo_Membresias.cs" />
     <Compile Include="Modelo\Modelo_Menus.cs" />
     <Compile Include="Modelo\Modelo_Pedidos.cs" />
