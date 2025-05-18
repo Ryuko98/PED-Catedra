@@ -53,9 +53,10 @@
             // lblUsuario
             // 
             this.lblUsuario.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuario.Location = new System.Drawing.Point(10, 90);
+            this.lblUsuario.Location = new System.Drawing.Point(13, 111);
+            this.lblUsuario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(300, 30);
+            this.lblUsuario.Size = new System.Drawing.Size(400, 37);
             this.lblUsuario.TabIndex = 6;
             this.lblUsuario.Text = "Usuario: ";
             this.lblUsuario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -63,9 +64,10 @@
             // lblCalificacion
             // 
             this.lblCalificacion.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCalificacion.Location = new System.Drawing.Point(10, 150);
+            this.lblCalificacion.Location = new System.Drawing.Point(13, 185);
+            this.lblCalificacion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCalificacion.Name = "lblCalificacion";
-            this.lblCalificacion.Size = new System.Drawing.Size(300, 30);
+            this.lblCalificacion.Size = new System.Drawing.Size(400, 37);
             this.lblCalificacion.TabIndex = 7;
             this.lblCalificacion.Text = "Calificación: ";
             this.lblCalificacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -76,7 +78,8 @@
             this.btnVerRseñas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnVerRseñas.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVerRseñas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            this.btnVerRseñas.Location = new System.Drawing.Point(12, 210);
+            this.btnVerRseñas.Location = new System.Drawing.Point(13, 492);
+            this.btnVerRseñas.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.btnVerRseñas.Name = "btnVerRseñas";
             this.btnVerRseñas.Size = new System.Drawing.Size(150, 30);
             this.btnVerRseñas.TabIndex = 8;
@@ -88,9 +91,10 @@
             // lblFechaRegistro
             // 
             this.lblFechaRegistro.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFechaRegistro.Location = new System.Drawing.Point(10, 180);
+            this.lblFechaRegistro.Location = new System.Drawing.Point(13, 222);
+            this.lblFechaRegistro.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFechaRegistro.Name = "lblFechaRegistro";
-            this.lblFechaRegistro.Size = new System.Drawing.Size(300, 30);
+            this.lblFechaRegistro.Size = new System.Drawing.Size(400, 37);
             this.lblFechaRegistro.TabIndex = 9;
             this.lblFechaRegistro.Text = "Fecha Registro: ";
             this.lblFechaRegistro.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -98,9 +102,10 @@
             // lblDUI
             // 
             this.lblDUI.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDUI.Location = new System.Drawing.Point(10, 120);
+            this.lblDUI.Location = new System.Drawing.Point(13, 148);
+            this.lblDUI.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDUI.Name = "lblDUI";
-            this.lblDUI.Size = new System.Drawing.Size(300, 30);
+            this.lblDUI.Size = new System.Drawing.Size(400, 37);
             this.lblDUI.TabIndex = 10;
             this.lblDUI.Text = "DUI: ";
             this.lblDUI.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -157,17 +162,19 @@
             this.barra.Controls.Add(this.btnCerrar);
             this.barra.Dock = System.Windows.Forms.DockStyle.Top;
             this.barra.Location = new System.Drawing.Point(0, 0);
+            this.barra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.barra.Name = "barra";
-            this.barra.Size = new System.Drawing.Size(800, 30);
+            this.barra.Size = new System.Drawing.Size(1120, 37);
             this.barra.TabIndex = 11;
             this.barra.MouseMove += new System.Windows.Forms.MouseEventHandler(this.barra_MouseMove);
             // 
             // lblNombre
             // 
             this.lblNombre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.Location = new System.Drawing.Point(10, 30);
+            this.lblNombre.Location = new System.Drawing.Point(13, 37);
+            this.lblNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(300, 30);
+            this.lblNombre.Size = new System.Drawing.Size(400, 37);
             this.lblNombre.TabIndex = 12;
             this.lblNombre.Text = "Nombre: ";
             this.lblNombre.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -175,9 +182,10 @@
             // lblCorreo
             // 
             this.lblCorreo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCorreo.Location = new System.Drawing.Point(10, 60);
+            this.lblCorreo.Location = new System.Drawing.Point(13, 74);
+            this.lblCorreo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCorreo.Name = "lblCorreo";
-            this.lblCorreo.Size = new System.Drawing.Size(300, 30);
+            this.lblCorreo.Size = new System.Drawing.Size(400, 37);
             this.lblCorreo.TabIndex = 13;
             this.lblCorreo.Text = "Correo: ";
             this.lblCorreo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -225,10 +233,9 @@
             this.IdMembresia.HeaderText = "Nivel de membresía";
             this.IdMembresia.Name = "IdMembresia";
             this.IdMembresia.ReadOnly = true;
-            // 
             // frmPerfilRepartidor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnDespacharPedido);
@@ -243,8 +250,10 @@
             this.Controls.Add(this.lblCalificacion);
             this.Controls.Add(this.lblUsuario);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmPerfilRepartidor";
             this.Text = "frmPerfilRepartidor";
+            this.Load += new System.EventHandler(this.frmPerfilRepartidor_Load);
             this.barra.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).EndInit();
             this.ResumeLayout(false);

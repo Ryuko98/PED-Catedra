@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clases\ClienteMonticulo.cs" />
+    <Compile Include="Clases\PedidosMonticulo.cs" />
     <Compile Include="Clases\Conexion.cs" />
     <Compile Include="Clases\Monticulo.cs" />
     <Compile Include="Controlador\Controlador_Clientes.cs" />

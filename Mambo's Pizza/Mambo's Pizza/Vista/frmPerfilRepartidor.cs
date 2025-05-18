@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Mambo_s_Pizza.Clases;
 using Mambo_s_Pizza.Controlador;
 
 namespace Mambo_s_Pizza.Vista
@@ -15,7 +16,7 @@ namespace Mambo_s_Pizza.Vista
     {
         int x = 0;
         int y = 0;
-
+        Monticulo mon;
         public frmPerfilRepartidor()
         {
             InitializeComponent();

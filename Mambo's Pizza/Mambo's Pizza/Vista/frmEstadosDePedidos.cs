@@ -62,7 +62,6 @@ namespace Mambo_s_Pizza.Vista
                 {
                     limpiarCampos();
                     RefrescarPantalla();
-                    msg.exitoInsercion("Estado de pedido");
                 }
                 else
                 {
@@ -108,7 +107,8 @@ namespace Mambo_s_Pizza.Vista
 
                 if (resultado)
                 {
-                    msg.exitoActualizacion("Estado de pedido");
+                    limpiarCampos();
+                    RefrescarPantalla();
                 }
                 else
                 {
@@ -165,7 +165,8 @@ namespace Mambo_s_Pizza.Vista
 
                     if (resultado)
                     {
-                        msg.exitoEliminacion("Estado de pedido");
+                        limpiarCampos();
+                        RefrescarPantalla();
                     }
                     else
                     {
