@@ -558,6 +558,113 @@ namespace Mambo_s_Pizza.Modelo
             }
         }
 
+        public static int ObtenerEstado(int idpedido)
+        {
+            int estado = 0;
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                string query = "SELECT [IdEstadoPedido] FROM [Pedidos] WHERE IdPedido = @idPedido";
+
+                using (SqlCommand comando = new SqlCommand(query, con))
+                {
+                    comando.Parameters.AddWithValue("@idPedido", idpedido);
+                    object result = comando.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        estado = Convert.ToInt32(result);
+                    }
+                }
+            }
+            return estado;
+        }
+
+        public static string ObtenerRepartidorNombre(int idpedido)
+        {
+            string repartidor = "";
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                string query = "SELECT U.Nombre + ' ' + U.Apellido AS NombreRepartidor FROM Pedidos P " +
+                    "INNER JOIN Repartidores R ON P.IdRepartidor = R.IdRepartidor INNER JOIN " +
+                    "Usuarios U ON R.IdUsuario = U.IdUsuario WHERE P.IdPedido = @idPedido";
+
+                using (SqlCommand comando = new SqlCommand(query, con))
+                {
+                    comando.Parameters.AddWithValue("@idPedido", idpedido);
+                    object result = comando.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        repartidor = Convert.ToString(result);
+                    }
+                }
+            }
+            return repartidor;
+        }
+
+        public static DateTime ObtenerHoraEntrega(int idpedido)
+        {
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                string query = "SELECT [HoraEntrega] FROM [Pedidos] WHERE IdPedido = @idPedido";
+
+                using (SqlCommand comando = new SqlCommand(query, con))
+                {
+                    comando.Parameters.AddWithValue("@idPedido", idpedido);
+                    object result = comando.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        return Convert.ToDateTime(result);
+                    }
+                    else
+                    {
+                        throw new Exception("No se encontró la hora de entrega para el pedido especificado.");
+                    }
+
+                }
+            }
+        }
+
+
+        public static bool EntregarPedido(int IdPedido)
+        {
+            bool retorno = false;
+            mensajes msg = new mensajes();
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                try
+                {
+                    string query = @"UPDATE Pedidos 
+                           SET IdEstadoPedido = 4
+                           WHERE IdPedido = @IdPedido";
+
+                    SqlCommand comando = new SqlCommand(query, con);
+
+                    comando.Parameters.AddWithValue("@IdPedido", IdPedido);
+
+                    retorno = Convert.ToBoolean(comando.ExecuteNonQuery());
+                    return retorno;
+                }
+                catch (SqlException ex)
+                {
+                    msg.errorActualizacion(ex.Message, " Tabla: Pedidos.");
+                    return retorno;
+                }
+                finally
+                {
+                    conexionBD.CerrarConexion();
+                }
+            }
+        }
 
     }
 }

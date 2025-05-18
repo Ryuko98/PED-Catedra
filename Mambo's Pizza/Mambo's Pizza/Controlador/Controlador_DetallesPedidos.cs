@@ -63,9 +63,14 @@ namespace Mambo_s_Pizza.Controlador
             return Cantidad * PrecioUnitario;
         }
 
-        internal static bool ObtenerDetallesPedidos(int idPedido, int idMenu, int cantidad, double subtotal)
+        public static bool ObtenerDetallesPedidos(int idPedido, int idMenu, int cantidad, double subtotal)
         {
             throw new NotImplementedException();
+        }
+
+        public static bool AgregarDetallePedido(int idPedido, int idMenu, int cantidad, decimal subtotal)
+        {
+            return Modelo_DetallesPedidos.AgregarDetallePedido(idPedido, idMenu, cantidad, subtotal);
         }
     }
 }

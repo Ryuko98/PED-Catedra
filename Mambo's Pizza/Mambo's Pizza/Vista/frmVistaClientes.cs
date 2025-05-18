@@ -53,6 +53,7 @@ namespace Mambo_s_Pizza.Vista
                 // Ya hay un carrito finalizado
                 frmInfoActualPedido frm1 = new frmInfoActualPedido();
                 frm1.Show();
+                this.Close();
             }
             else
             {
@@ -69,6 +70,7 @@ namespace Mambo_s_Pizza.Vista
                     //MessageBox.Show("Existe un carrito para: " + Convert.ToString(id_cliente));
                     frmCarrito frm1 = new frmCarrito();
                     frm1.Show();
+                    this.Close();
                 }
                 else
                 {
@@ -79,7 +81,6 @@ namespace Mambo_s_Pizza.Vista
                 }
             }
 
-                this.Close();
         }
 
         private void barra_MouseMove(object sender, MouseEventArgs e)

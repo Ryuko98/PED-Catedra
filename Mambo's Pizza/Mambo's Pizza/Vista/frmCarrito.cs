@@ -49,8 +49,6 @@ namespace Mambo_s_Pizza.Vista
                 // El total no es nulo
                 lblTotal.Text = "$"+ total;
             }
-
-
         }
 
 

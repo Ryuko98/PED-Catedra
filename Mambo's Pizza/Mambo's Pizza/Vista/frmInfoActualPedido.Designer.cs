@@ -41,6 +41,8 @@
             this.btnCerrar = new System.Windows.Forms.Label();
             this.btnRegresar = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.lblDescripcion = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).BeginInit();
             this.barra.SuspendLayout();
@@ -54,11 +56,11 @@
             this.Menu,
             this.Cantidad,
             this.Subtotal});
-            this.dgvPedido.Location = new System.Drawing.Point(16, 234);
-            this.dgvPedido.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvPedido.Location = new System.Drawing.Point(16, 244);
+            this.dgvPedido.Margin = new System.Windows.Forms.Padding(4);
             this.dgvPedido.Name = "dgvPedido";
             this.dgvPedido.RowHeadersWidth = 51;
-            this.dgvPedido.Size = new System.Drawing.Size(472, 283);
+            this.dgvPedido.Size = new System.Drawing.Size(484, 273);
             this.dgvPedido.TabIndex = 70;
             // 
             // Menu
@@ -82,10 +84,10 @@
             // pbImagen
             // 
             this.pbImagen.Image = global::Mambo_s_Pizza.Properties.Resources.maps;
-            this.pbImagen.Location = new System.Drawing.Point(543, 182);
-            this.pbImagen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbImagen.Location = new System.Drawing.Point(633, 244);
+            this.pbImagen.Margin = new System.Windows.Forms.Padding(4);
             this.pbImagen.Name = "pbImagen";
-            this.pbImagen.Size = new System.Drawing.Size(483, 335);
+            this.pbImagen.Size = new System.Drawing.Size(394, 273);
             this.pbImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbImagen.TabIndex = 71;
             this.pbImagen.TabStop = false;
@@ -93,10 +95,10 @@
             // lblRepartidor
             // 
             this.lblRepartidor.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRepartidor.Location = new System.Drawing.Point(16, 156);
+            this.lblRepartidor.Location = new System.Drawing.Point(539, 159);
             this.lblRepartidor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRepartidor.Name = "lblRepartidor";
-            this.lblRepartidor.Size = new System.Drawing.Size(267, 37);
+            this.lblRepartidor.Size = new System.Drawing.Size(267, 55);
             this.lblRepartidor.TabIndex = 73;
             this.lblRepartidor.Text = "Repartidor: Benja So";
             this.lblRepartidor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -104,10 +106,10 @@
             // lblEspera
             // 
             this.lblEspera.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEspera.Location = new System.Drawing.Point(16, 119);
+            this.lblEspera.Location = new System.Drawing.Point(539, 83);
             this.lblEspera.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEspera.Name = "lblEspera";
-            this.lblEspera.Size = new System.Drawing.Size(267, 37);
+            this.lblEspera.Size = new System.Drawing.Size(488, 55);
             this.lblEspera.TabIndex = 72;
             this.lblEspera.Text = "Tiempo estimado: 30 mins";
             this.lblEspera.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -119,7 +121,7 @@
             this.barra.Controls.Add(this.btnCerrar);
             this.barra.Dock = System.Windows.Forms.DockStyle.Top;
             this.barra.Location = new System.Drawing.Point(0, 0);
-            this.barra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.barra.Margin = new System.Windows.Forms.Padding(4);
             this.barra.Name = "barra";
             this.barra.Size = new System.Drawing.Size(1067, 37);
             this.barra.TabIndex = 74;
@@ -170,11 +172,35 @@
             this.toolTip.SetToolTip(this.btnRegresar, "Volver al inicio");
             this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
+            // lblDescripcion
+            // 
+            this.lblDescripcion.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescripcion.Location = new System.Drawing.Point(13, 159);
+            this.lblDescripcion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDescripcion.Name = "lblDescripcion";
+            this.lblDescripcion.Size = new System.Drawing.Size(475, 55);
+            this.lblDescripcion.TabIndex = 76;
+            this.lblDescripcion.Text = "Descripcion: ";
+            this.lblDescripcion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.Location = new System.Drawing.Point(13, 104);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(417, 55);
+            this.lblTotal.TabIndex = 77;
+            this.lblTotal.Text = "Total: ";
+            this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // frmInfoActualPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.lblTotal);
+            this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.btnRegresar);
             this.Controls.Add(this.barra);
             this.Controls.Add(this.lblRepartidor);
@@ -182,8 +208,9 @@
             this.Controls.Add(this.pbImagen);
             this.Controls.Add(this.dgvPedido);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmInfoActualPedido";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Seguimiento del pedido";
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedido)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).EndInit();
@@ -205,5 +232,7 @@
         private System.Windows.Forms.Label btnCerrar;
         private System.Windows.Forms.Label btnRegresar;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.Label lblDescripcion;
+        private System.Windows.Forms.Label lblTotal;
     }
 }
