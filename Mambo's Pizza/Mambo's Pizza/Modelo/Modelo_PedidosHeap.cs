@@ -20,7 +20,7 @@ namespace Mambo_s_Pizza.Modelo
                 SELECT p.idPedido, c.IdMembresia 
                 FROM Pedidos p
                 JOIN Clientes c ON p.IdCliente = c.idCliente
-                WHERE p.IdEstadoPedido = 5"; // Asumiendo que 2 es "esperando envío"
+                WHERE p.IdEstadoPedido = 2";
 
                 SqlCommand command = new SqlCommand(query, con);
 
@@ -41,7 +41,7 @@ namespace Mambo_s_Pizza.Modelo
             Conexion conexionBD = new Conexion();
             using (SqlConnection con = conexionBD.AbrirConexion())
             {
-                string query = "UPDATE Pedidos SET IdEstadoPedido = 1, HoraEntrega = @HoraEntrega, IdRepartidor = @IdRepartidor WHERE IdPedido = @IdPedido";
+                string query = "UPDATE Pedidos SET IdEstadoPedido = 3, HoraEntrega = @HoraEntrega, IdRepartidor = @IdRepartidor WHERE IdPedido = @IdPedido";
                 SqlCommand command = new SqlCommand(query, con);
                 command.Parameters.AddWithValue("@IdPedido", IdPedido);
                 command.Parameters.AddWithValue("@HoraEntrega", DateTime.Now.AddMinutes(1));
