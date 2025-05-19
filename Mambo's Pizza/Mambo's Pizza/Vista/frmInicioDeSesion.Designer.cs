@@ -187,7 +187,7 @@
             this.btnRecuperarClave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRecuperarClave.Font = new System.Drawing.Font("Arial", 10F);
             this.btnRecuperarClave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            this.btnRecuperarClave.Location = new System.Drawing.Point(20, 180);
+            this.btnRecuperarClave.Location = new System.Drawing.Point(20, 200);
             this.btnRecuperarClave.Name = "btnRecuperarClave";
             this.btnRecuperarClave.Size = new System.Drawing.Size(200, 20);
             this.btnRecuperarClave.TabIndex = 8;
@@ -203,7 +203,7 @@
             this.btnRegistrarse.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRegistrarse.Font = new System.Drawing.Font("Arial", 10F);
             this.btnRegistrarse.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            this.btnRegistrarse.Location = new System.Drawing.Point(20, 200);
+            this.btnRegistrarse.Location = new System.Drawing.Point(20, 180);
             this.btnRegistrarse.Name = "btnRegistrarse";
             this.btnRegistrarse.Size = new System.Drawing.Size(200, 20);
             this.btnRegistrarse.TabIndex = 9;
