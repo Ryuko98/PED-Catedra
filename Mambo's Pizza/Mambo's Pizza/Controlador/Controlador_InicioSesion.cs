@@ -27,5 +27,11 @@ namespace Mambo_s_Pizza.Controlador
         {
             return Modelo_Usuarios.DatosUsuario(Usuario);
         }
+
+        public static int obtenerIdCliente()
+        {
+            return Modelo_Usuarios.ObtenerIdClientePorUsuario(IdUsuario);
+
+        }
     }
 }

@@ -52,7 +52,7 @@
             this.us.Location = new System.Drawing.Point(13, 17);
             this.us.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.us.Name = "us";
-            this.us.Size = new System.Drawing.Size(333, 37);
+            this.us.Size = new System.Drawing.Size(638, 37);
             this.us.TabIndex = 63;
             this.us.Text = "¿Que opinas de nuestro repartidor?";
             this.us.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -63,10 +63,11 @@
             this.label1.Location = new System.Drawing.Point(13, 160);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(357, 37);
+            this.label1.Size = new System.Drawing.Size(590, 37);
             this.label1.TabIndex = 65;
-            this.label1.Text = "¿Del 1-10 como valorarias su servicio?";
+            this.label1.Text = "¿Del 1-5 como valorarias su servicio?";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtCalificacion
             // 
@@ -82,7 +83,6 @@
             // 
             this.btnEnviar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(13)))), ((int)(((byte)(20)))));
             this.btnEnviar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEnviar.Enabled = false;
             this.btnEnviar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
             this.btnEnviar.Location = new System.Drawing.Point(509, 243);
             this.btnEnviar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -93,7 +93,7 @@
             this.btnEnviar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnEnviar.Click += new System.EventHandler(this.btnEnviar_Click);
             // 
-            // ReseñaDeCliente
+            // frmReseñaDeCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -103,7 +103,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtComentario);
             this.Controls.Add(this.us);
-            this.Name = "ReseñaDeCliente";
+            this.Name = "frmReseñaDeCliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ReseñaDeCliente";
             this.ResumeLayout(false);

@@ -17,7 +17,7 @@ namespace Mambo_s_Pizza.Vista
     {
         int x = 0;
         int y = 0;
-        int id_pedido = 0, id_cliente = 0;
+        int id_pedido = 0, id_cliente = 0, id_repartidor = 0;
         bool carrito_finalizado = false;
         mensajes msg = new mensajes();
 
@@ -165,29 +165,26 @@ namespace Mambo_s_Pizza.Vista
         {
           
             if (dgvEvaluar.CurrentRow == null || dgvEvaluar.CurrentRow.IsNewRow) return;
-            try
-            {
-                int idCliente = Controlador_InicioSesion.IdUsuario;
-                btnEvaluar.Enabled = true;
-                dgvEvaluar.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                List<string> datos = new List<string>();
-                datos = Controlador_Pedidos.DatosPedidoRepartidor();
-                Controlador_Pedidos.IdPedido = Convert.ToInt32(datos[0]);
-                Controlador_Pedidos.IdRepartidor = Convert.ToInt32(datos[1]);
-                MessageBox.Show(datos[0]);
-                MessageBox.Show(datos[1]);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            btnEvaluar.Enabled = true;
         }
 
         private void btnEvaluar_Click(object sender, EventArgs e)
         {
-            frmReseñaDeCliente frm = new frmReseñaDeCliente();
-            frm.Show();
-            btnEvaluar.Enabled = false;
+            id_pedido = Convert.ToInt32(dgvEvaluar.CurrentRow.Cells["ID Pedido"].Value);
+            id_repartidor = Convert.ToInt32(dgvEvaluar.CurrentRow.Cells["ID Repartidor"].Value);
+            if (id_pedido != 0 && id_repartidor != 0)
+            {
+                Controlador_Pedidos.IdPedido = id_pedido;
+                Controlador_Pedidos.IdRepartidor = id_repartidor;
+                MessageBox.Show(id_pedido.ToString());
+                MessageBox.Show(id_repartidor.ToString());
+                frmReseñaDeCliente frm = new frmReseñaDeCliente();
+                frm.Show();
+            }
+            else
+            {
+                MessageBox.Show(";(");
+            }
         }
 
         private void VerificarCarritoFinalizado()

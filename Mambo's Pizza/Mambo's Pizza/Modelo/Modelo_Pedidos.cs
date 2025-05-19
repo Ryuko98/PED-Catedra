@@ -675,6 +675,8 @@ namespace Mambo_s_Pizza.Modelo
             dt.Columns.Add("Descripcion");
             dt.Columns.Add("Hora Entrega");
             dt.Columns.Add("Total");
+            dt.Columns.Add("ID Pedido");
+            dt.Columns.Add("ID Repartidor");
 
             Conexion conexionBD = new Conexion();
 
@@ -683,12 +685,14 @@ namespace Mambo_s_Pizza.Modelo
                 string query = @"SELECT CONCAT(b.Nombre, ' ', b.Apellido) AS Repartidor, 
                                  MAX(a.Descripcion) AS Descripcion, 
                                 MAX(a.HoraEntrega) AS HoraEntrega, 
-                                MAX(a.TotalPrecio) AS TotalPrecio
+                                MAX(a.TotalPrecio) AS TotalPrecio,
+								MAX(a.IdPedido) AS IdPedido,
+								MAX(a.IdRepartidor) AS IdRepartidor
                                 FROM Pedidos a  
                                 INNER JOIN Repartidores c ON a.IdRepartidor = c.IdRepartidor  
-                                INNER JOIN Usuarios b ON c.IdRepartidor = b.IdUsuario
+                                INNER JOIN Usuarios b ON c.IdUsuario = b.IdUsuario
                                 WHERE a.IdEstadoPedido = 4
-                                GROUP BY b.Nombre, b.Apellido;";
+                                GROUP BY b.Nombre, b.Apellido";
 
                 using (SqlCommand comando = new SqlCommand(query, con))
                 {
@@ -700,7 +704,9 @@ namespace Mambo_s_Pizza.Modelo
                                 reader["Repartidor"],
                                 reader["Descripcion"],
                                 reader["HoraEntrega"],
-                                reader["TotalPrecio"]
+                                reader["TotalPrecio"],
+                                reader["IdPedido"],
+                                reader["IdRepartidor"]
                             );
                         }
                     }
@@ -747,7 +753,7 @@ namespace Mambo_s_Pizza.Modelo
 
         }
 
-        public static bool ActualizarEstadoCalificado(int pIdPedio)
+        public static bool ActualizarEstadoCalificado(int pIdPedido)
         {
             bool retorno = false;
             mensajes msg = new mensajes();
@@ -759,13 +765,12 @@ namespace Mambo_s_Pizza.Modelo
                 {
                     string query = @"UPDATE Pedidos 
                            SET IdEstadoPedido = 5 
-                           WHERE pIdPedio = @pIdPedio";
+                           WHERE IdPedido = @pIdPedido";
 
                     SqlCommand comando = new SqlCommand(query, con);
-                    comando.Parameters.AddWithValue("@pIdPedio", pIdPedio);
+                    comando.Parameters.AddWithValue("@pIdPedido", pIdPedido);
 
                     retorno = Convert.ToBoolean(comando.ExecuteNonQuery());
-                    msg.exitoActualizacion("Tabla: EstadosPedidos.");
                     return retorno; // Returns true if update was successful
                 }
                 catch (SqlException ex)
@@ -779,6 +784,8 @@ namespace Mambo_s_Pizza.Modelo
                 }
             }
         }
+
+
 
     }
 }

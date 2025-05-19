@@ -119,7 +119,7 @@ namespace Mambo_s_Pizza.Controlador
             return Modelo_Pedidos.ObtenerPedidosCompletados();
         }
 
-        public static List<string> DatosPedidoRepartidor()
+        public static List<string> DatosPedidoRepartidor(int id_cliente)
         {
             return Modelo_Pedidos.DatosRepartidorPedido(IdCliente);
         }
@@ -128,5 +128,7 @@ namespace Mambo_s_Pizza.Controlador
         {
             return Modelo_Pedidos.ActualizarEstadoCalificado(IdPedido);
         }
+
+
     }
 }

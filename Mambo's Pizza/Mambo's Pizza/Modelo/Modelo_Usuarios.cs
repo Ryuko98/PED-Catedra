@@ -328,5 +328,27 @@ namespace Mambo_s_Pizza.Modelo
             }
 
         }
+        public static int ObtenerIdClientePorUsuario(int idUsuario)
+        {
+            int idCliente = 0;
+            Conexion conexionBD = new Conexion();
+
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                string query = "SELECT IdCliente FROM Clientes WHERE IdUsuario = @IdUsuario";
+
+                using (SqlCommand comando = new SqlCommand(query, con))
+                {
+                    comando.Parameters.AddWithValue("@IdUsuario", idUsuario);
+                    object result = comando.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        idCliente = Convert.ToInt32(result);
+                    }
+                }
+            }
+            return idCliente;
+        }
     }
 }

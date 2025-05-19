@@ -70,9 +70,7 @@ namespace Mambo_s_Pizza.Modelo
                     comando.Parameters.AddWithValue("@Calificacion", pCalificacion);
                     comando.Parameters.AddWithValue("@Comentario", pComentario);
                     comando.Parameters.AddWithValue("@FechaReview", pFechaReview);
-
                     retorno = Convert.ToBoolean(comando.ExecuteNonQuery());
-                    msg.exitoInsercion("Tabla: Reviews. ");
                     return retorno; // Retorna 1 si se agrega correctamente
                 }
                 catch (SqlException ex)

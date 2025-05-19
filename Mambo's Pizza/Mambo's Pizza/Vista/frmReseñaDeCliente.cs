@@ -27,9 +27,16 @@ namespace Mambo_s_Pizza.Vista
 
         private void btnEnviar_Click(object sender, EventArgs e)
         {
+            int calificacion = Convert.ToInt32(txtCalificacion.Text);
             if (string.IsNullOrWhiteSpace(txtComentario.Text) ||
                 string.IsNullOrWhiteSpace(txtCalificacion.Text))
             {
+                MessageBox.Show("Llenar todos los campos");
+                return;
+            }
+            if (calificacion < 1 && calificacion > 5)
+            {
+                MessageBox.Show("Ingresa una calificacion dentro del rango estimado");
                 return;
             }
 
@@ -52,8 +59,16 @@ namespace Mambo_s_Pizza.Vista
                 if (resultado == true)
                 {
                     Controlador_Pedidos objPedido = new Controlador_Pedidos();
-                    objPedido.ActualizarEstadoCalificado();
-                    this.Hide();
+                    bool resultado2 = objPedido.ActualizarEstadoCalificado();
+                    if (resultado2 == true)
+                    {
+                        MessageBox.Show("Reseña Agregada exitosamente","Exito",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al registrar la reseña","Aviso",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                    }
                 }
                 else
                 {
@@ -72,6 +87,11 @@ namespace Mambo_s_Pizza.Vista
             {
                 MessageBox.Show("Error crítico: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -253,7 +253,6 @@
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmPerfilRepartidor";
             this.Text = "frmPerfilRepartidor";
-            this.Load += new System.EventHandler(this.frmPerfilRepartidor_Load);
             this.barra.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).EndInit();
             this.ResumeLayout(false);
