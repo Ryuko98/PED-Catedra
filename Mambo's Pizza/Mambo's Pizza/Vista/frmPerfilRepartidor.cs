@@ -114,6 +114,11 @@ namespace Mambo_s_Pizza.Vista
         {
             Controlador_PedidosHeap.CargarPedidosPendientes();
             dgvDatos.Rows.Clear();
+            dgvDatos.Columns.Clear();
+            dgvDatos.Columns.Add("colIdPedido", "ID Pedido");
+            dgvDatos.Columns.Add("colMembresia", "Tipo Membresía");
+            dgvDatos.Columns.Add("colMembresia", "Nivel Membresía");
+            dgvDatos.Columns.Add("colDireccion", "Dirección Entrega");
 
             var pedidos = Controlador_PedidosHeap.ObtenerPedidosOrdenados();
 
@@ -137,7 +142,7 @@ namespace Mambo_s_Pizza.Vista
                         break;
                 }
 
-                dgvDatos.Rows.Add(pedido.IdPedido, nivelMembresia, pedido.IdMembresia);
+                dgvDatos.Rows.Add(pedido.IdPedido, nivelMembresia, pedido.IdMembresia, pedido.Direccion);
             }
         }
     }

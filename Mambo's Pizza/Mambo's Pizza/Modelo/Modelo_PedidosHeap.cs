@@ -10,29 +10,26 @@ namespace Mambo_s_Pizza.Modelo
 {
     public class Modelo_PedidosHeap
     {
-        public static List<(int IdPedido, int IdMembresia)> ObtenerPedidosPendientes()
+        public static List<(int IdPedido, int IdMembresia, string Direccion)> ObtenerPedidosPendientes()
         {
-            var pedidos = new List<(int, int)>();
+            var pedidos = new List<(int, int, string)>();
             Conexion conexionBD = new Conexion();
             using (SqlConnection con = conexionBD.AbrirConexion())
             {
-                string query = @"
-                SELECT p.idPedido, c.IdMembresia 
+                string query = @"SELECT p.idPedido, c.IdMembresia, c.Direccion
                 FROM Pedidos p
                 JOIN Clientes c ON p.IdCliente = c.idCliente
                 WHERE p.IdEstadoPedido = 2";
 
                 SqlCommand command = new SqlCommand(query, con);
-
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        pedidos.Add((reader.GetInt32(0), reader.GetInt32(1)));
+                        pedidos.Add((reader.GetInt32(0), reader.GetInt32(1), reader.GetString(2)));
                     }
                 }
             }
-
             return pedidos;
         }
 

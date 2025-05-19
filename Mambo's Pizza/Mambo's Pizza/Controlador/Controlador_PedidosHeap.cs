@@ -11,7 +11,7 @@ namespace Mambo_s_Pizza.Controlador
 {
     class Controlador_PedidosHeap
     {
-        private static List<(int IdPedido, int IdMembresia)> heapPedidos = new List<(int, int)>();
+        private static List<(int IdPedido, int IdMembresia, string Direccion)> heapPedidos = new List<(int, int, string)>();
 
         // Método para obtener todos los pedidos pendientes y construir el heap
         public static void CargarPedidosPendientes()
@@ -21,9 +21,9 @@ namespace Mambo_s_Pizza.Controlador
         }
 
         // Construye el heap maximizante basado en IdMembresia
-        private static void ConstruirHeap(List<(int IdPedido, int IdMembresia)> pedidos)
+        private static void ConstruirHeap(List<(int IdPedido, int IdMembresia, string Direccion)> pedidos)
         {
-            heapPedidos = new List<(int, int)>();
+            heapPedidos = new List<(int, int, string)>();
 
             foreach (var pedido in pedidos)
             {
@@ -32,7 +32,7 @@ namespace Mambo_s_Pizza.Controlador
         }
 
         // Inserta un nuevo elemento en el heap
-        private static void InsertarEnHeap((int IdPedido, int IdMembresia) pedido)
+        private static void InsertarEnHeap((int IdPedido, int IdMembresia, string Direccion) pedido)
         {
             heapPedidos.Add(pedido);
             int i = heapPedidos.Count - 1;
@@ -49,7 +49,7 @@ namespace Mambo_s_Pizza.Controlador
         }
 
         // Extrae el pedido con mayor prioridad
-        public static (int IdPedido, int IdMembresia)? ExtraerPedidoMaxPrioridad()
+        public static (int IdPedido, int IdMembresia, string Direccion)? ExtraerPedidoMaxPrioridad()
         {
             if (heapPedidos.Count == 0) return null;
 
@@ -93,9 +93,9 @@ namespace Mambo_s_Pizza.Controlador
             return Modelo_PedidosHeap.MarcarPedidoEnviado(pedido.Value.IdPedido, ObtenerIdRepartidorPorUsuario(Controlador_InicioSesion.IdUsuario)); // 3 = "En camino"
         }
 
-        public static List<(int IdPedido, int IdMembresia)> ObtenerPedidosOrdenados()
+        public static List<(int IdPedido, int IdMembresia, string Direccion)> ObtenerPedidosOrdenados()
         {
-            return new List<(int, int)>(heapPedidos);
+            return new List<(int, int, string)>(heapPedidos);
         }
 
         public static int ObtenerIdRepartidorPorUsuario(int IdUsuario)
