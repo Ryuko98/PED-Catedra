@@ -116,7 +116,7 @@ namespace Mambo_s_Pizza.Controlador
         }
         public static DataTable ObtenerPedidosEntregados()
         {
-            return Modelo_Pedidos.ObtenerPedidosCompletados();
+            return Modelo_Pedidos.ObtenerPedidosCompletados(Controlador_InicioSesion.IdUsuario);
         }
 
         public static List<string> DatosPedidoRepartidor(int id_cliente)

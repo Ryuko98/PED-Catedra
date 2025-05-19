@@ -502,8 +502,8 @@ namespace Mambo_s_Pizza.Modelo
 
             using (SqlConnection con = conexionBD.AbrirConexion())
             {
-                string query = "SELECT SUM(m.Precio * dp.Cantidad) AS TotalPedido FROM DetallesPedidos dp " +
-                    "JOIN Menus m ON dp.IdMenu = m.IdMenu WHERE dp.IdPedido = @idPedido";
+                string query = "SELECT SUM(DP.Cantidad * DP.PrecioUnitario) AS TotalPedido FROM DetallesPedidos DP " +
+                    "WHERE DP.IdPedido = @idPedido";
 
                 using (SqlCommand comando = new SqlCommand(query, con))
                 {
@@ -666,13 +666,21 @@ namespace Mambo_s_Pizza.Modelo
             }
         }
 
-        public static DataTable ObtenerPedidosCompletados()
+        public static DataTable ObtenerPedidosCompletados(int idUsuario)
         {
+
+            int idCliente = Modelo_Menus.ObtenerIdClientePorUsuario(idUsuario);
+
+            if (idCliente == 0)
+            {
+                throw new Exception("El usuario no está asociado a un cliente");
+            }
             DataTable dt = new DataTable();
 
             // Columnas basadas en tu modelo de usuarios
             dt.Columns.Add("Repartidor");
             dt.Columns.Add("Descripcion");
+            dt.Columns.Add("Hora Pedido");
             dt.Columns.Add("Hora Entrega");
             dt.Columns.Add("Total");
             dt.Columns.Add("ID Pedido");
@@ -683,19 +691,20 @@ namespace Mambo_s_Pizza.Modelo
             using (SqlConnection con = conexionBD.AbrirConexion())
             {
                 string query = @"SELECT CONCAT(b.Nombre, ' ', b.Apellido) AS Repartidor, 
-                                 MAX(a.Descripcion) AS Descripcion, 
-                                MAX(a.HoraEntrega) AS HoraEntrega, 
-                                MAX(a.TotalPrecio) AS TotalPrecio,
-								MAX(a.IdPedido) AS IdPedido,
-								MAX(a.IdRepartidor) AS IdRepartidor
-                                FROM Pedidos a  
-                                INNER JOIN Repartidores c ON a.IdRepartidor = c.IdRepartidor  
+                                 a.Descripcion AS Descripcion,  
+                                a.HoraPedido AS HoraPedido, 
+                                a.HoraEntrega AS HoraEntrega, 
+                                a.TotalPrecio AS TotalPrecio,
+                                a.IdPedido AS IdPedido,
+                                a.IdRepartidor AS IdRepartidor
+                                FROM Pedidos a
+                                INNER JOIN Repartidores c ON a.IdRepartidor = c.IdRepartidor
                                 INNER JOIN Usuarios b ON c.IdUsuario = b.IdUsuario
-                                WHERE a.IdEstadoPedido = 4
-                                GROUP BY b.Nombre, b.Apellido";
+                                WHERE a.IdEstadoPedido = 4 AND a.IdCliente = @idCliente";
 
                 using (SqlCommand comando = new SqlCommand(query, con))
                 {
+                    comando.Parameters.AddWithValue("@idCliente", idCliente);
                     using (SqlDataReader reader = comando.ExecuteReader())
                     {
                         while (reader.Read())
@@ -703,6 +712,7 @@ namespace Mambo_s_Pizza.Modelo
                             dt.Rows.Add(
                                 reader["Repartidor"],
                                 reader["Descripcion"],
+                                reader["HoraPedido"],
                                 reader["HoraEntrega"],
                                 reader["TotalPrecio"],
                                 reader["IdPedido"],

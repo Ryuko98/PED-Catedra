@@ -64,18 +64,17 @@ namespace Mambo_s_Pizza.Vista
                 bool confirmar = Controlador_Pedidos.EntregarPedido(id_pedido);
                 if (confirmar)
                 {
-                    MessageBox.Show("¡Esperamos que disfrute su comida! Gracias por confiar en nosotros. \n\nSi necesita algo más, no dude en contactarnos.",
-                     "Gracias por su compra",
-                     MessageBoxButtons.OK,
-                     MessageBoxIcon.Information);
-                    frmVistaClientes frm = new frmVistaClientes();
-                    frm.Show();
-                    this.Hide();
+                    // Verifica si el formulario frmInfoActualPedido está abierto
+                    if (Application.OpenForms["frmInfoActualPedido"] != null)
+                    {
+                        MessageBox.Show("¡Esperamos que disfrute su comida! Gracias por confiar en nosotros. \n\nSi necesita algo más, no dude en contactarnos.",
+                            "Gracias por su compra",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Error papu :(", "Gracias por su compra", 
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -120,6 +119,7 @@ namespace Mambo_s_Pizza.Vista
                 lblDescripcion.Text = "";
             }
             string total = Controlador_Pedidos.ObtenerTotal(id_pedido);
+            //MessageBox.Show("Total: " + total);
             if (!string.IsNullOrEmpty(total))
             {
                 // El total no es nulo
@@ -141,7 +141,7 @@ namespace Mambo_s_Pizza.Vista
         {
             frmVistaClientes frm = new frmVistaClientes();
             frm.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void btnMinimizar_Click(object sender, EventArgs e)
@@ -155,7 +155,7 @@ namespace Mambo_s_Pizza.Vista
             {
                 frmInicioDeSesion frmLogin = new frmInicioDeSesion();
                 frmLogin.Show();
-                this.Hide();
+                this.Close();
             }
         }
 

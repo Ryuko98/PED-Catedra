@@ -34,7 +34,7 @@ namespace Mambo_s_Pizza.Vista
                 MessageBox.Show("Llenar todos los campos");
                 return;
             }
-            if (calificacion < 1 && calificacion > 5)
+            if (calificacion < 1 || calificacion > 5)
             {
                 MessageBox.Show("Ingresa una calificacion dentro del rango estimado");
                 return;
@@ -63,7 +63,10 @@ namespace Mambo_s_Pizza.Vista
                     if (resultado2 == true)
                     {
                         MessageBox.Show("Reseña Agregada exitosamente","Exito",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                        this.Hide();
+
+                        frmVistaClientes frm = new frmVistaClientes();
+                        frm.Show();
+                        this.Close();
                     }
                     else
                     {

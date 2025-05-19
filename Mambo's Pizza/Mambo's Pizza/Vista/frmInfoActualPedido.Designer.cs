@@ -100,7 +100,7 @@
             this.lblRepartidor.Name = "lblRepartidor";
             this.lblRepartidor.Size = new System.Drawing.Size(267, 55);
             this.lblRepartidor.TabIndex = 73;
-            this.lblRepartidor.Text = "Repartidor: Benja So";
+            this.lblRepartidor.Text = "Repartidor: Por definir";
             this.lblRepartidor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblEspera

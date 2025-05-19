@@ -60,7 +60,7 @@ namespace Mambo_s_Pizza.Vista
                         // Hay un carrito existente
                         idPedido = int.Parse(datosCarrito[0]);
                         Controlador_Pedidos.IdPedido = idPedido;
-                        MessageBox.Show("Existe un carrito para: " + Convert.ToString(id_Cliente));
+                        //MessageBox.Show("Existe un carrito para: " + Convert.ToString(id_Cliente));
                         if (Controlador_DetallesPedidos.AgregarDetallePedido(idPedido, idMenu, cantidad, subtotal))
                         {
                             MessageBox.Show("Se ha agregado correctamente el menu al carrito", "Carrito actualizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -73,7 +73,7 @@ namespace Mambo_s_Pizza.Vista
                         //MessageBox.Show("Se procedera a crear un carrito nuevo para: " + Convert.ToString(id_Cliente));
                         // No hay carrito, por lo tanto se creara el carrito
                         int id_Carrito = Modelo_Pedidos.CrearCarrito(id_Cliente);
-                        MessageBox.Show("Se creo el carrito exitosamente con id: " + Convert.ToString(id_Carrito));
+                        //MessageBox.Show("Se creo el carrito exitosamente con id: " + Convert.ToString(id_Carrito));
                         if (Controlador_DetallesPedidos.AgregarDetallePedido(id_Carrito, idMenu, cantidad, subtotal))
                         {
                             Controlador_Pedidos.IdPedido = id_Carrito;

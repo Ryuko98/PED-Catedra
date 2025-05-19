@@ -96,7 +96,7 @@ namespace Mambo_s_Pizza.Modelo
             return dt;
         }
 
-        private static int ObtenerIdClientePorUsuario(int idUsuario)
+        public static int ObtenerIdClientePorUsuario(int idUsuario)
         {
             int idCliente = 0;
             Conexion conexionBD = new Conexion();

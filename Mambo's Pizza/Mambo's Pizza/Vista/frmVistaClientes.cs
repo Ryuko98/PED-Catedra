@@ -158,7 +158,7 @@ namespace Mambo_s_Pizza.Vista
             dgvEvaluar.Columns.Clear();
             DataTable dt = Controlador_Menus.ObtenerHistorialMenus();
             dgvEvaluar.DataSource = dt;
-            dgvOfertas.Columns[0].Visible = false;
+            //dgvOfertas.Columns[0].Visible = false;
         }
 
         private void dgvEvaluar_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -176,10 +176,11 @@ namespace Mambo_s_Pizza.Vista
             {
                 Controlador_Pedidos.IdPedido = id_pedido;
                 Controlador_Pedidos.IdRepartidor = id_repartidor;
-                MessageBox.Show(id_pedido.ToString());
-                MessageBox.Show(id_repartidor.ToString());
+                //MessageBox.Show(id_pedido.ToString());
+                //MessageBox.Show(id_repartidor.ToString());
                 frmReseñaDeCliente frm = new frmReseñaDeCliente();
                 frm.Show();
+                this.Close();
             }
             else
             {
@@ -196,7 +197,7 @@ namespace Mambo_s_Pizza.Vista
 
             if (datosCarrito != null && datosCarrito.Count > 0)
             {
-                MessageBox.Show("Cliente tiene un carrito siendo procesado.");
+                //MessageBox.Show("Cliente tiene un carrito siendo procesado.");
                 // Hay un carrito finalizado, por lo tanto se debe cambiar el boton
                 btnCarrito.Text = "Visualizar Pedido";
                 id_pedido = int.Parse(datosCarrito[0]);
@@ -210,7 +211,7 @@ namespace Mambo_s_Pizza.Vista
             else
             {
                 // No hay carrito existente
-                MessageBox.Show("No hay carritos finalizados.");
+                //MessageBox.Show("No hay carritos finalizados.");
                 carrito_finalizado = false;
                 //frmCarrito frm = new frmCarrito(false);
                 //frm.Show();
