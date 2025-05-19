@@ -99,6 +99,13 @@ namespace Mambo_s_Pizza.Vista
 
         private void btnDespacharPedido_Click(object sender, EventArgs e)
         {
+            // Primero validar si ya tiene un pedido en curso
+            if (Controlador_PedidosHeap.RepartidorTienePedidoEnCurso())
+            {
+                MessageBox.Show("No puedes aceptar más pedidos. Tienes uno en curso.","Advertencia",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                return;
+            }
+            // Si no tiene pedido en curso entonces procede a despachar el pedido correspondiente :p
             if (Controlador_PedidosHeap.DespacharPedido())
             {
                 MessageBox.Show("Pedido despachado correctamente");
@@ -143,6 +150,7 @@ namespace Mambo_s_Pizza.Vista
                 }
 
                 dgvDatos.Rows.Add(pedido.IdPedido, nivelMembresia, pedido.IdMembresia, pedido.Direccion);
+                dgvDatos.Rows[0].Selected = true;
             }
         }
     }

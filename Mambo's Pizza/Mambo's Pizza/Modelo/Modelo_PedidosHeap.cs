@@ -51,8 +51,8 @@ namespace Mambo_s_Pizza.Modelo
         public static int ObtenerIdRepartidorPorUsuario(int IdUsuario)
         {
             int IdRepartidor = 0;
-            Conexion conexionBD = new Conexion();
 
+            Conexion conexionBD = new Conexion();
             using (SqlConnection con = conexionBD.AbrirConexion())
             {
                 string query = "SELECT IdRepartidor FROM Repartidores WHERE IdUsuario = @IdUsuario";
@@ -69,6 +69,26 @@ namespace Mambo_s_Pizza.Modelo
                 }
             }
             return IdRepartidor;
+        }
+
+        public static bool RepartidorTienePedidoEnCurso(int idRepartidor)
+        {
+            Conexion conexionBD = new Conexion();
+            using (SqlConnection con = conexionBD.AbrirConexion())
+            {
+                string query = @"
+                SELECT COUNT(*) 
+                FROM Pedidos 
+                WHERE IdRepartidor = @idRepartidor 
+                AND IdEstadoPedido = 3";
+
+                SqlCommand command = new SqlCommand(query, con);
+                command.Parameters.AddWithValue("@idRepartidor", idRepartidor);
+
+                int count = (int)command.ExecuteScalar();
+
+                return count > 0;
+            }
         }
     }
 }

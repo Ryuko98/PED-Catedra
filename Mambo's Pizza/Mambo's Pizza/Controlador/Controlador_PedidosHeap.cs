@@ -12,6 +12,7 @@ namespace Mambo_s_Pizza.Controlador
     class Controlador_PedidosHeap
     {
         private static List<(int IdPedido, int IdMembresia, string Direccion)> heapPedidos = new List<(int, int, string)>();
+        private static int IdRepartidor = ObtenerIdRepartidorPorUsuario(Controlador_InicioSesion.IdUsuario);
 
         // Método para obtener todos los pedidos pendientes y construir el heap
         public static void CargarPedidosPendientes()
@@ -20,7 +21,7 @@ namespace Mambo_s_Pizza.Controlador
             ConstruirHeap(pedidos);
         }
 
-        // Construye el heap maximizante basado en IdMembresia
+        // Construye el heap maximizante basado en IdMembresia (Nivel de la membresia)
         private static void ConstruirHeap(List<(int IdPedido, int IdMembresia, string Direccion)> pedidos)
         {
             heapPedidos = new List<(int, int, string)>();
@@ -31,15 +32,16 @@ namespace Mambo_s_Pizza.Controlador
             }
         }
 
-        // Inserta un nuevo elemento en el heap
+        // Inserta un nuevo elemento en el heap (Se inserta al final)
         private static void InsertarEnHeap((int IdPedido, int IdMembresia, string Direccion) pedido)
         {
             heapPedidos.Add(pedido);
             int i = heapPedidos.Count - 1;
 
+            // Loop para ver si el valor determinante del heap es mayor a sus padres
             while (i > 0 && heapPedidos[(i - 1) / 2].IdMembresia < heapPedidos[i].IdMembresia)
             {
-                // Intercambiar con el padre
+                // Intercambiar con el padre en caso de ser necesario
                 var temp = heapPedidos[i];
                 heapPedidos[i] = heapPedidos[(i - 1) / 2];
                 heapPedidos[(i - 1) / 2] = temp;
@@ -48,7 +50,8 @@ namespace Mambo_s_Pizza.Controlador
             }
         }
 
-        // Extrae el pedido con mayor prioridad
+        // Extrae el pedido con mayor prioridad (con IdMembresia como prioridad)
+        // Nota: el ? sirve para que el método pueda devolver null sin problemas :D
         public static (int IdPedido, int IdMembresia, string Direccion)? ExtraerPedidoMaxPrioridad()
         {
             if (heapPedidos.Count == 0) return null;
@@ -65,24 +68,29 @@ namespace Mambo_s_Pizza.Controlador
         // Reorganiza el heap desde la posición i, para reacomodar según la prioridad
         private static void Heapify(int i)
         {
-            int largest = i;
-            int left = 2 * i + 1;
-            int right = 2 * i + 2;
+            int padre = i;
+            int izq = 2 * i + 1;
+            int der = 2 * i + 2;
 
-            if (left < heapPedidos.Count && heapPedidos[left].IdMembresia > heapPedidos[largest].IdMembresia)
-                largest = left;
+            if (izq < heapPedidos.Count && heapPedidos[izq].IdMembresia > heapPedidos[padre].IdMembresia)
+                padre = izq;
 
-            if (right < heapPedidos.Count && heapPedidos[right].IdMembresia > heapPedidos[largest].IdMembresia)
-                largest = right;
+            if (der < heapPedidos.Count && heapPedidos[der].IdMembresia > heapPedidos[padre].IdMembresia)
+                padre = der;
 
-            if (largest != i)
+            if (padre != i)
             {
                 var temp = heapPedidos[i];
-                heapPedidos[i] = heapPedidos[largest];
-                heapPedidos[largest] = temp;
+                heapPedidos[i] = heapPedidos[padre];
+                heapPedidos[padre] = temp;
 
-                Heapify(largest);
+                Heapify(padre);
             }
+        }
+
+        public static bool RepartidorTienePedidoEnCurso()
+        {
+            return Modelo_PedidosHeap.RepartidorTienePedidoEnCurso(IdRepartidor);
         }
 
         public static bool DespacharPedido()
@@ -90,7 +98,7 @@ namespace Mambo_s_Pizza.Controlador
             var pedido = ExtraerPedidoMaxPrioridad();
             if (pedido == null) return false;
 
-            return Modelo_PedidosHeap.MarcarPedidoEnviado(pedido.Value.IdPedido, ObtenerIdRepartidorPorUsuario(Controlador_InicioSesion.IdUsuario)); // 3 = "En camino"
+            return Modelo_PedidosHeap.MarcarPedidoEnviado(pedido.Value.IdPedido, IdRepartidor);
         }
 
         public static List<(int IdPedido, int IdMembresia, string Direccion)> ObtenerPedidosOrdenados()
